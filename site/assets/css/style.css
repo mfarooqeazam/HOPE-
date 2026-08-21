@@ -82,7 +82,11 @@ body{
   line-height:1.65;
   -webkit-font-smoothing:antialiased;
 }
-h1,h2,h3,h4{font-family:var(--font); font-weight:700; margin:0; text-wrap:balance}
+h1,h2,h3,h4{font-family:var(--font); font-weight:700; margin:0; text-wrap:pretty}
+/* Balancing is measurably expensive — ~540ms of Style & Layout on the long
+   home page — and it only earns its cost on large display type where a
+   single orphaned word is visible. Restricted to h1/h2 for that reason. */
+h1,h2{text-wrap:balance}
 h1{font-size:clamp(2.4rem,1.5rem + 3.8vw,3.7rem); line-height:1.12}
 h2{font-size:clamp(1.85rem,1.25rem + 2.3vw,2.6rem); line-height:1.22; color:var(--teal)}
 h3{font-size:clamp(1.2rem,1.08rem + .55vw,1.45rem); line-height:1.32}
@@ -127,7 +131,8 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
   font-size:.8125rem; font-weight:700; letter-spacing:.12em;
   text-transform:uppercase; color:var(--sage-deep); margin:0 0 var(--s3);
 }
-.lede{font-size:clamp(1.06rem,1.02rem + .35vw,1.3rem); color:var(--muted); line-height:1.6}
+.lede{font-size:clamp(1.06rem,1.02rem + .35vw,1.3rem); color:var(--muted); line-height:1.6;
+  max-width:64ch}
 
 .grid{display:grid; gap:var(--s5); grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); margin-top:var(--s7)}
 .grid--tight{gap:var(--s4); grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
@@ -305,18 +310,42 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
 .note strong{color:var(--gold-deep)}
 
 /* 8. PAGE SECTIONS ========================================================= */
-.hero{padding-block:clamp(2.5rem,6vw,4.5rem) clamp(2.5rem,5vw,3.5rem)}
-.hero h1{max-width:17ch}
-.hero__lede{margin-top:var(--s5); max-width:58ch}
-.fork{display:grid; gap:var(--s5); grid-template-columns:1fr; margin-top:clamp(2rem,4vw,3rem)}
+/* Hero. Deliberately sparse: eyebrow, headline, one line, two choices,
+   and a way down. Everything the page used to stack above the fold now
+   sits below it. A first screen with fifteen things on it asks the
+   visitor to make a decision before they have read anything. */
+.hero{padding-block:clamp(3.5rem,9vw,7rem) clamp(3rem,7vw,5rem)}
+.hero h1{max-width:15ch}
+.hero__lede{margin-top:var(--s5); max-width:46ch}
+.hero__acts{display:flex; flex-wrap:wrap; gap:var(--s4);
+  margin-top:clamp(2rem,4.5vw,2.9rem)}
+
+/* Scroll cue. Static — a looping bounce would violate the motion budget,
+   and this audience is exactly who that budget protects. It moves only
+   on hover, which the visitor initiates. */
+.cue{display:inline-flex; align-items:center; gap:.5rem;
+  margin-top:clamp(2.5rem,6vw,4rem); font-size:.85rem; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--muted);
+  text-decoration:none}
+.cue svg{width:18px; height:18px; transition:transform .25s cubic-bezier(.2,.7,.3,1)}
+.cue:hover,.cue:focus-visible{color:var(--teal-deep)}
+.cue:hover svg,.cue:focus-visible svg{transform:translateY(3px)}
+
+/* Credentials band — a thin strip between hero and content, not a block
+   competing inside the hero itself. */
+.band{background:var(--white); border-block:1px solid var(--line);
+  padding-block:clamp(1rem,2.5vw,1.4rem)}
+.band .trust{margin-top:0; padding-top:0; border-top:0}
+
+.fork{display:grid; gap:var(--s5); grid-template-columns:1fr; margin-top:var(--s7)}
 @media(min-width:820px){.fork{grid-template-columns:1fr 1fr}}
 
-.trust{display:flex; flex-wrap:wrap; gap:var(--s3) var(--s6); margin-top:clamp(2rem,4vw,3rem); padding-top:var(--s5); border-top:1px solid var(--line); list-style:none}
+.trust{display:flex; flex-wrap:wrap; gap:var(--s3) var(--s6); margin:0; padding:0; list-style:none; justify-content:space-between}
 .trust li{display:flex; align-items:center; gap:.55rem; font-weight:700; font-size:.95rem; color:var(--teal)}
 .trust svg{flex:none; width:20px; height:20px; color:var(--gold-deep)}
 
 /* Page banner for inner pages */
-.banner{background:var(--teal-wash); border-bottom:1px solid var(--line); padding-block:clamp(2.25rem,5vw,3.5rem)}
+.banner{background:var(--teal-wash); border-bottom:1px solid var(--line); padding-block:clamp(2.75rem,6vw,4.5rem)}
 .banner h1{font-size:clamp(2rem,1.3rem + 2.8vw,3rem); color:var(--teal)}
 .banner p{margin-top:var(--s4)}
 .crumbs{font-size:.9rem; color:var(--muted); margin-bottom:var(--s4)}
