@@ -23,11 +23,9 @@
 window.HOPE_CONFIG = {
   SUPABASE_URL: "https://cqqhxizsbuasbwdwhwko.supabase.co",
 
-  /* STILL NEEDED — paste the "anon public" key here.
-     Supabase dashboard → Settings → API → Project API keys → anon public.
-     It is a long string beginning "eyJ". Until this is filled in, forms
-     validate and say plainly that nothing was sent. */
-  SUPABASE_ANON_KEY: "",
+  /* Supabase "publishable" key (the current name for what used to be called
+     the anon key). Public by design — see the note above. */
+  SUPABASE_ANON_KEY: "sb_publishable_8_Go4wID_ZRYx15LZ-1KJQ_gREp1xeL",
 
   /* Shown to visitors when a submission fails, so they always have a way through */
   FALLBACK_PHONE: "+92 335 5443660",
