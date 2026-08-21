@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Project hope — Where Healing Meets Growth</title>
+<meta name="description" content="The Project hope. Therapy, IBAO-approved professional training and inclusive education in Shahzad Town, Islamabad.">
+
+<!-- Tinos is metric-compatible with Times New Roman. Times New Roman is not
+     installed on Android (most of this audience), so without this the page
+     would silently fall back to an arbitrary serif. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400&display=swap">
+
+<style>
+/* ============================================================
+   The Project hope — homepage prototype
+   Deliberately SINGLE THEME (warm cream brand ground).
+   Tokens from .claude/skills/hope-brand-system/SKILL.md, contrast-verified.
+   Never put text on --coral, --sage or --gold: fills only.
+   ============================================================ */
+
+:root{
+  --cream:#F9F7F2; --sunk:#F2EFE7; --white:#FFFFFF;
+  --charcoal:#2D2D2D; --muted:#5A5A5A;
+  --teal:#1F5F6B; --teal-deep:#164A54; --teal-wash:#E8F0F1;
+  --sage:#8FB996; --sage-deep:#47724F; --sage-wash:#EDF3EE;
+  --coral:#E88D7A; --coral-deep:#BC3B21; --coral-wash:#FBEDE9;
+  --gold:#D4AF37; --gold-deep:#7E661B;
+  --line:#E2DDD1; --error:#A8452F;
+
+  --font-head:'Times New Roman',Tinos,'Liberation Serif',Times,serif;
+  --font-body:'Times New Roman',Tinos,'Liberation Serif',Times,serif;
+
+  --s3:.75rem; --s4:1rem; --s5:1.5rem; --s6:2rem; --s7:3rem; --s8:4rem; --s9:6rem;
+  --r-sm:8px; --r-md:14px; --r-lg:22px; --r-pill:999px;
+  --e1:0 1px 2px rgba(31,95,107,.06),0 2px 8px rgba(31,95,107,.05);
+  --e2:0 4px 12px rgba(31,95,107,.08),0 12px 28px rgba(31,95,107,.07);
+  --wrap:1140px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--cream); color:var(--charcoal);
+  font-family:var(--font-body); font-size:clamp(1.0625rem,1rem + .3vw,1.1875rem);
+  line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+/* Times tops out at bold (700); 800 would be a synthesised fake bold.
+   No negative tracking — Times is already tightly fitted. */
+h1,h2,h3{font-family:var(--font-head); text-wrap:balance; margin:0; font-weight:700}
+h1{font-size:clamp(2.4rem,1.5rem + 3.8vw,3.7rem); line-height:1.12}
+h2{font-size:clamp(1.85rem,1.25rem + 2.3vw,2.6rem); line-height:1.22; color:var(--teal)}
+h3{font-size:clamp(1.2rem,1.08rem + .55vw,1.45rem); line-height:1.32}
+p{margin:0; max-width:65ch}
+img{max-width:100%; display:block}
+
+.wrap{width:min(100% - 2.5rem,var(--wrap)); margin-inline:auto}
+.section{padding-block:clamp(3rem,7vw,6rem)}
+.section--sunk{background:var(--sunk)}
+.section--wash{background:var(--teal-wash)}
+.section--sage{background:var(--sage-wash)}
+.eyebrow{
+  font-family:var(--font-head); font-size:.8125rem; font-weight:700;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--sage-deep); margin:0 0 var(--s3);
+}
+.lede{font-size:clamp(1.06rem,1.02rem + .35vw,1.3rem); color:var(--muted); line-height:1.6}
+.mt1{margin-top:1rem} .mt2{margin-top:2rem}
+
+.skip{
+  position:absolute; left:-9999px; top:0; z-index:100; background:var(--teal); color:#fff;
+  padding:.75rem 1.25rem; border-radius:0 0 var(--r-sm) 0; font-weight:700; text-decoration:none;
+}
+.skip:focus{left:0}
+:focus-visible{outline:3px solid var(--teal); outline-offset:2px; border-radius:2px}
+[id]{scroll-margin-top:5.5rem}
+
+.progress{
+  position:fixed; inset:0 0 auto 0; height:3px; background:var(--coral-deep);
+  transform:scaleX(0); transform-origin:left center; z-index:60;
+}
+
+/* ---- header ---- */
+.head{
+  position:sticky; top:0; z-index:50; background:rgba(249,247,242,.94);
+  backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
+}
+.head__in{display:flex; align-items:center; gap:var(--s5); min-height:76px; position:relative}
+.logo{text-decoration:none; margin-right:auto; display:flex; align-items:center; gap:.8rem; color:var(--teal)}
+.logo img{height:54px; width:auto; flex:none}
+.logo__fb{display:flex; align-items:baseline; font-size:2rem; font-weight:700; font-family:var(--font-head); line-height:1}
+.logo__fb[hidden]{display:none}
+.logo__fb i{font-style:normal}
+.logo__fb .l1{color:var(--gold)} .logo__fb .l2{color:var(--teal)}
+.logo__fb .l3{color:var(--sage-deep)} .logo__fb .l4{color:var(--coral-deep)}
+.logo__name{font-family:var(--font-head); font-weight:700; font-size:1.28rem; color:var(--teal); white-space:nowrap}
+@media(max-width:1000px){ .logo__name{display:none} }
+
+.nav{display:flex; gap:.1rem; align-items:center}
+.nav a{
+  position:relative; font-family:var(--font-head); font-size:.98rem; color:var(--charcoal);
+  text-decoration:none; padding:.55rem .6rem; border-radius:var(--r-sm);
+}
+.nav a::after{
+  content:""; position:absolute; left:.6rem; right:.6rem; bottom:.3rem; height:2px;
+  background:var(--teal); transform:scaleX(0); transform-origin:left center; transition:transform .2s ease-out;
+}
+.nav a:hover{color:var(--teal)}
+.nav a:hover::after{transform:scaleX(1)}
+.nav a[aria-current]{color:var(--teal); font-weight:700}
+.nav a[aria-current]::after{transform:scaleX(1)}
+
+.nav-toggle{
+  display:none; align-items:center; justify-content:center; min-height:48px; min-width:48px;
+  padding:0 .9rem; border-radius:var(--r-sm); background:transparent; border:2px solid var(--teal);
+  color:var(--teal); font-family:var(--font-head); font-weight:700; font-size:1rem; cursor:pointer;
+}
+@media(min-width:1001px){ .nav .btn{display:none} }
+@media(max-width:1000px){
+  .nav-toggle{display:inline-flex}
+  .btn--head{display:none}
+  .nav{
+    display:none; position:absolute; left:0; right:0; top:100%; flex-direction:column;
+    align-items:stretch; gap:0; background:var(--cream); border-bottom:1px solid var(--line);
+    box-shadow:var(--e2); padding:var(--s3); max-height:calc(100dvh - 76px); overflow-y:auto;
+  }
+  .nav.is-open{display:flex}
+  .nav a{padding:.9rem 1rem; font-size:1.1rem; border-bottom:1px solid var(--line)}
+  .nav a::after{display:none}
+  .nav a[aria-current]{background:var(--teal-wash)}
+  .nav .btn{margin-top:var(--s3); border-bottom:0}
+}
+
+/* ---- buttons ---- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem; min-height:48px;
+  padding:.8rem 1.6rem; border-radius:var(--r-pill); font-family:var(--font-head); font-weight:700;
+  font-size:1rem; text-decoration:none; border:2px solid transparent; cursor:pointer;
+  transition:background-color .2s,color .2s,transform .2s,box-shadow .2s;
+}
+.btn--primary{background:var(--teal); color:#fff; box-shadow:var(--e1)}
+.btn--primary:hover{background:var(--coral-deep); transform:translateY(-2px); box-shadow:var(--e2)}
+.btn--ghost{background:transparent; color:var(--teal); border-color:var(--teal)}
+.btn--ghost:hover{background:var(--teal-wash)}
+.btn--wa{background:var(--sage-deep); color:#fff}
+.btn--wa:hover{background:var(--teal); transform:translateY(-2px)}
+
+/* ---- hero ---- */
+.hero{padding-block:clamp(2.5rem,6vw,4.5rem) clamp(2.5rem,5vw,3.5rem)}
+.hero__kicker{
+  display:inline-flex; align-items:center; gap:.5rem; background:var(--sage-wash); color:var(--sage-deep);
+  border-radius:var(--r-pill); padding:.4rem .95rem; font-family:var(--font-head); font-weight:700;
+  font-size:.85rem; margin-bottom:var(--s5);
+}
+.hero h1{max-width:17ch}
+.hero__lede{margin-top:var(--s5); max-width:58ch}
+
+.fork{display:grid; gap:var(--s5); grid-template-columns:1fr; margin-top:clamp(2rem,4vw,3rem)}
+@media(min-width:820px){.fork{grid-template-columns:1fr 1fr}}
+.path{
+  background:var(--white); border:1px solid var(--line); border-radius:var(--r-md);
+  border-left:5px solid var(--teal); padding:var(--s6); box-shadow:var(--e1);
+  display:flex; flex-direction:column; gap:var(--s3); transition:transform .2s,box-shadow .2s;
+}
+.path--pro{border-left-color:var(--sage-deep)}
+.path:hover{transform:translateY(-4px); box-shadow:var(--e2)}
+.path__who{font-family:var(--font-head); font-size:.8rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--teal)}
+.path--pro .path__who{color:var(--sage-deep)}
+.path p{color:var(--muted); font-size:1rem}
+.path .btn{align-self:flex-start; margin-top:var(--s3)}
+
+.trust{display:flex; flex-wrap:wrap; gap:var(--s3) var(--s6); margin-top:clamp(2rem,4vw,3rem); padding:var(--s5) 0 0; border-top:1px solid var(--line); list-style:none}
+.trust li{display:flex; align-items:center; gap:.55rem; font-family:var(--font-head); font-weight:700; font-size:.95rem; color:var(--teal)}
+.trust svg{flex:none; width:20px; height:20px; color:var(--gold-deep)}
+
+/* ---- placeholder marker ---- */
+.tbd{
+  display:inline-block; border:1.5px dashed var(--coral-deep); border-radius:var(--r-sm);
+  background:var(--coral-wash); color:var(--coral-deep); padding:.05em .5em;
+  font-weight:700; font-size:.85em; line-height:1.4;
+}
+.tbd::before{content:"needs content: "; font-weight:400; opacity:.85}
+.note{border-left:4px solid var(--gold); background:#FDF8E8; border-radius:0 var(--r-sm) var(--r-sm) 0; padding:var(--s4) var(--s5); font-size:.95rem; color:#5C4A12; max-width:70ch}
+.note strong{color:var(--gold-deep)}
+
+/* ---- generic grids ---- */
+.grid{display:grid; gap:var(--s5); grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); margin-top:var(--s7)}
+.grid--tight{gap:var(--s4); grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{
+  background:var(--white); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s6);
+  box-shadow:var(--e1); display:flex; flex-direction:column; gap:var(--s3);
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+}
+.card:hover{transform:translateY(-6px); box-shadow:var(--e2); border-color:var(--teal)}
+.card__plate{width:52px; height:52px; border-radius:var(--r-md); background:var(--teal-wash); display:grid; place-items:center; color:var(--teal)}
+.card--b .card__plate{background:var(--sage-wash); color:var(--sage-deep)}
+.card--c .card__plate{background:var(--coral-wash); color:var(--coral-deep)}
+.card p{font-size:.98rem; color:var(--muted)}
+.card a.more{font-weight:700; color:var(--teal); text-decoration:none; margin-top:auto; padding-top:var(--s3); display:inline-flex; gap:.4rem; align-items:center}
+.card a.more:hover{color:var(--coral-deep)}
+.card a.more::after{content:"→"; transition:transform .2s}
+.card a.more:hover::after{transform:translateX(3px)}
+
+.mini{background:var(--white); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s5)}
+.mini h3{font-size:1.05rem; color:var(--teal); margin-bottom:.3rem}
+.mini p{font-size:.95rem; color:var(--muted)}
+
+/* ---- credentials ---- */
+.cred{
+  background:var(--white); border:1px solid var(--line); border-top:4px solid var(--gold);
+  border-radius:var(--r-md); padding:clamp(1.5rem,4vw,2.5rem); box-shadow:var(--e1);
+  display:grid; gap:clamp(1.5rem,4vw,2.5rem); grid-template-columns:1fr; align-items:center;
+}
+@media(min-width:760px){.cred{grid-template-columns:auto 1fr}}
+.cred__seal{
+  width:120px; height:120px; border-radius:50%; background:#FDF8E8; border:2px solid var(--gold);
+  display:grid; place-items:center; text-align:center; color:var(--gold-deep); font-weight:700;
+  line-height:1.15; justify-self:start;
+}
+.cred__seal b{display:block; font-size:1.7rem}
+.cred__seal span{font-size:.62rem; letter-spacing:.08em; text-transform:uppercase}
+.cred h3{color:var(--teal)}
+.cred__meta{list-style:none; margin:1.1rem 0 0; padding:0; display:grid; gap:.45rem; grid-template-columns:1fr; font-size:.95rem}
+@media(min-width:520px){.cred__meta{grid-template-columns:1fr 1fr; gap:.5rem 1.5rem}}
+.cred__meta li{display:flex; gap:.5rem; flex-wrap:wrap}
+.cred__meta dfn{font-style:normal; color:var(--muted); min-width:8.5em}
+.cred__meta b{font-variant-numeric:tabular-nums}
+.cred__link{display:inline-flex; align-items:center; gap:.45rem; margin-top:1.1rem; color:var(--teal); font-weight:700; text-decoration:underline; text-underline-offset:3px}
+.cred__link:hover{color:var(--coral-deep)}
+
+/* authorisation chips — gold is reserved for verifiable certification */
+.auths{display:grid; gap:var(--s4); grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin-top:var(--s6)}
+.auth{background:var(--white); border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:var(--r-sm); padding:var(--s5)}
+.auth h3{font-size:1.02rem; color:var(--gold-deep); margin-bottom:.2rem}
+.auth p{font-size:.93rem; color:var(--muted)}
+
+/* ---- about / photo ---- */
+.two{display:grid; gap:clamp(2rem,5vw,4rem); grid-template-columns:1fr; align-items:start}
+@media(min-width:880px){.two{grid-template-columns:1fr 1fr}}
+.two--narrow{grid-template-columns:1fr}
+@media(min-width:880px){.two--narrow{grid-template-columns:.85fr 1.15fr}}
+.photo{
+  aspect-ratio:4/3; border-radius:var(--r-md); border:2px dashed var(--teal); background:var(--teal-wash);
+  display:grid; place-items:center; text-align:center; padding:var(--s5); color:var(--teal);
+}
+.photo--portrait{aspect-ratio:3/4}
+.photo span{font-weight:700; max-width:28ch}
+.ticks{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:var(--s3)}
+.ticks li{display:flex; gap:.7rem; align-items:flex-start}
+.ticks svg{flex:none; width:22px; height:22px; color:var(--sage-deep); margin-top:.28em}
+
+/* ---- steps ---- */
+.steps{display:grid; gap:var(--s5); grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); margin-top:var(--s7)}
+.step{background:var(--white); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s5)}
+.step__n{width:40px; height:40px; border-radius:50%; background:var(--teal); color:#fff; display:grid; place-items:center; font-family:var(--font-head); font-weight:700; margin-bottom:var(--s3)}
+.step h3{font-size:1.05rem; color:var(--teal); margin-bottom:.3rem}
+.step p{font-size:.95rem; color:var(--muted)}
+
+/* ---- vision / donate ---- */
+.vision{background:var(--teal); color:#fff; border-radius:var(--r-lg); padding:clamp(1.75rem,5vw,3.5rem)}
+.vision h2{color:#fff}
+.vision p{color:#DCEAEC}
+.vision .btn--primary{background:#fff; color:var(--teal)}
+.vision .btn--primary:hover{background:var(--coral-deep); color:#fff}
+.vision .btn--ghost{color:#fff; border-color:rgba(255,255,255,.6)}
+.vision .btn--ghost:hover{background:rgba(255,255,255,.12)}
+.vision .tbd{background:rgba(255,255,255,.14); border-color:#F5C4B7; color:#FFD9CF}
+.vision__acts{display:flex; flex-wrap:wrap; gap:var(--s4); margin-top:var(--s6)}
+
+/* ---- reviews ---- */
+.quote{background:var(--white); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s6); display:flex; flex-direction:column; gap:var(--s4)}
+.quote blockquote{margin:0; font-size:1.08rem; font-style:italic; color:var(--charcoal)}
+.quote figcaption{font-size:.93rem; color:var(--muted)}
+
+/* ---- blog / contributions ---- */
+.post{background:var(--white); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s5); display:flex; flex-direction:column; gap:.5rem}
+.post .kind{font-size:.75rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--sage-deep)}
+.post h3{font-size:1.08rem; color:var(--teal)}
+.post p{font-size:.94rem; color:var(--muted)}
+
+/* ---- gallery ---- */
+.gal{display:grid; gap:var(--s4); grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); margin-top:var(--s7)}
+.gal div{aspect-ratio:1; border-radius:var(--r-md); border:2px dashed var(--sage-deep); background:var(--sage-wash); display:grid; place-items:center; text-align:center; padding:var(--s4); color:var(--sage-deep); font-weight:700; font-size:.92rem}
+
+/* ---- contact ---- */
+.contact{display:grid; gap:clamp(2rem,5vw,3.5rem); grid-template-columns:1fr}
+@media(min-width:880px){.contact{grid-template-columns:.9fr 1.1fr}}
+.channels{display:flex; flex-direction:column; gap:var(--s4)}
+.chan{background:var(--white); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s5); display:flex; gap:var(--s4); align-items:flex-start}
+.chan__ic{width:44px; height:44px; flex:none; border-radius:var(--r-sm); background:var(--sage-wash); color:var(--sage-deep); display:grid; place-items:center}
+.chan h3{font-size:1.02rem; color:var(--teal)}
+.chan p{font-size:.95rem; color:var(--muted); margin-top:.15rem}
+.chan a{color:var(--teal); font-weight:700}
+form{background:var(--white); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s6)}
+.field{display:flex; flex-direction:column; gap:.4rem; margin-bottom:var(--s4)}
+label{font-weight:700; font-size:.98rem}
+label .opt{font-weight:400; color:var(--muted)}
+input,textarea,select{
+  font-family:inherit; font-size:1rem; min-height:48px; padding:.7rem .9rem; background:var(--sunk);
+  border:1.5px solid #D8D3C8; border-radius:var(--r-sm); color:var(--charcoal); width:100%;
+}
+textarea{min-height:120px; resize:vertical}
+input:focus,textarea:focus,select:focus{outline:none; border-color:var(--teal); box-shadow:0 0 0 3px rgba(31,95,107,.18)}
+.hint{font-size:.9rem; color:var(--muted)}
+form .btn{width:100%; margin-top:var(--s3)}
+
+/* ---- footer ---- */
+.foot{background:var(--teal); color:#fff; padding-block:var(--s8) var(--s6); margin-top:var(--s9)}
+.foot a{color:#CFE6EA}
+.foot__grid{display:grid; gap:var(--s6); grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.foot h3{font-size:.98rem; margin-bottom:var(--s3); color:#fff}
+.foot ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.5rem; font-size:.95rem}
+.foot__bar{margin-top:var(--s7); padding-top:var(--s5); border-top:1px solid rgba(255,255,255,.2); font-size:.9rem; color:#CFE6EA; display:flex; flex-wrap:wrap; gap:var(--s4); justify-content:space-between}
+
+/* ---- reveal: visible at rest; JS only animates FROM hidden ---- */
+[data-reveal]{opacity:1}
+.js [data-reveal]{opacity:0; transform:translateY(20px); transition:opacity .5s ease-out, transform .5s ease-out}
+.js [data-reveal].in{opacity:1; transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important}
+  .js [data-reveal]{opacity:1; transform:none}
+}
+</style>
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to main content</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="head">
+  <div class="wrap head__in">
+    <a class="logo" href="#top">
+      <img src="../assets/hope-logo.png" alt="The Project hope" width="71" height="54"
+           onerror="this.remove();document.getElementById('logo-fb').hidden=false;">
+      <span class="logo__fb" id="logo-fb" hidden aria-hidden="true"><i class="l1">h</i><i class="l2">o</i><i class="l3">p</i><i class="l4">e</i></span>
+      <span class="logo__name">The Project hope</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu">Menu</button>
+    <nav class="nav" id="navMenu" aria-label="Main">
+      <a href="#top" aria-current="page">Home</a>
+      <a href="#why">Why us</a>
+      <a href="#training">Training</a>
+      <a href="#school">School</a>
+      <a href="#about">About</a>
+      <a href="#vision">Vision</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn--primary" href="#contact">Talk to us</a>
+    </nav>
+    <a class="btn btn--primary btn--head" href="#contact">Talk to us</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 1 · HERO -->
+  <section class="section hero">
+    <div class="wrap">
+      <p class="hero__kicker">Shahzad Town, Islamabad · Serving Islamabad &amp; Rawalpindi</p>
+      <h1>Where healing meets growth</h1>
+      <p class="lede hero__lede">A multidisciplinary centre for children with special needs — therapy, IBAO-approved professional training, and inclusive schooling, led by an internationally certified Behavior Analyst.</p>
+
+      <div class="fork">
+        <article class="path">
+          <p class="path__who">I'm a parent or caregiver</p>
+          <h3>Support for your child</h3>
+          <p>Applied Behaviour Analysis (ABA), speech therapy, occupational therapy and physiotherapy — planned around your child. Start with a conversation; no referral needed.</p>
+          <a class="btn btn--primary" href="#contact">Book a free call</a>
+        </article>
+        <article class="path path--pro">
+          <p class="path__who">I'm a professional</p>
+          <h3>IBA &amp; IBT certification</h3>
+          <p>Training delivered by an IBAO <strong>Approved Content Provider</strong> — with mentorship, supervision and CEUs from a certified supervisor.</p>
+          <a class="btn btn--ghost" href="#training">See training pathways</a>
+        </article>
+      </div>
+
+      <ul class="trust">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.9 8 10 4.6-1.1 8-5 8-10V6z"/></svg> IBAO Approved Content Provider</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M2 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2M17 8a3 3 0 1 0 0-6"/></svg> Certified mentor &amp; supervisor</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2Z"/><path d="M8 8h6M8 12h6"/></svg> CEU provider</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg> Free inclusive schooling</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2 · WHY CHOOSE US -->
+  <section class="section section--sunk" id="why">
+    <div class="wrap">
+      <p class="eyebrow">Why choose us</p>
+      <h2 data-reveal>What makes this centre different</h2>
+      <p class="lede mt1" data-reveal>Most centres do one of these things. Doing all of them together is the point — progress in therapy carries into the classroom, and the people delivering it are trained to an international standard here, not elsewhere.</p>
+      <div class="grid grid--tight" data-reveal-group>
+        <div class="mini"><h3>Internationally certified</h3><p>Led by an IBAO-certified International Behavior Analyst, not an unaccredited practitioner.</p></div>
+        <div class="mini"><h3>We train the trainers</h3><p>An IBAO Approved Content Provider for IBA and IBT — the standard of care in the region rises because of it.</p></div>
+        <div class="mini"><h3>Therapy and school together</h3><p>Skills learned in session are practised the same week in a real classroom.</p></div>
+        <div class="mini"><h3>Free inclusive schooling</h3><p>Neurotypical and special-needs children learn side by side, at no cost to families.</p></div>
+        <div class="mini"><h3>Evidence-informed</h3><p>ABA, FBA and behaviour intervention planning grounded in data, not intuition.</p></div>
+        <div class="mini"><h3>Families in the room</h3><p>Caregiver training is part of the plan — the research behind it is our founder's own.</p></div>
+        <div class="mini"><h3>Skills that generalise</h3><p>Goals are chosen for daily life: home, school, community — not just the therapy room.</p></div>
+        <div class="mini"><h3>Ethical practice</h3><p>Clear boundaries, honest expectations, and no promises we cannot keep.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · WHAT WE DO — professional training placed ahead of inclusive education -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <p class="eyebrow">What we do</p>
+      <h2 data-reveal>Three core areas</h2>
+      <div class="grid" data-reveal-group>
+        <article class="card">
+          <div class="card__plate"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-4.3-7-9.5A4.5 4.5 0 0 1 12 8a4.5 4.5 0 0 1 7 3.5C19 16.7 12 21 12 21Z"/></svg></div>
+          <h3>Child development &amp; therapy</h3>
+          <p>Applied Behaviour Analysis (ABA), speech and language therapy, occupational therapy and physiotherapy. Functional assessment, individualised goals, and caregiver training built in.</p>
+          <a class="more" href="#contact">See how therapy works</a>
+        </article>
+        <article class="card card--b" id="training">
+          <div class="card__plate"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5"/></svg></div>
+          <h3>Professional training &amp; certification</h3>
+          <p>IBA (270-hour) and IBT (40-hour) pathways delivered as an IBAO <strong>Approved Content Provider</strong>, with certified mentorship, supervision and continuing education units.</p>
+          <a class="more" href="#recognition">Explore the pathways</a>
+        </article>
+        <article class="card card--c" id="school">
+          <div class="card__plate"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8l9-4 9 4-9 4-9-4Z"/><path d="M7 11v4c0 1.5 2.2 3 5 3s5-1.5 5-3v-4"/></svg></div>
+          <h3>Inclusive education</h3>
+          <p>Free schooling where neurodivergent and neurotypical children learn in the same room, with individualised education plans and support built into the day.</p>
+          <a class="more" href="#vision">How free schooling works</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · INTERNATIONAL RECOGNITION -->
+  <section class="section section--wash" id="recognition">
+    <div class="wrap">
+      <p class="eyebrow">International recognition</p>
+      <h2 data-reveal>Certified by the IBAO</h2>
+      <p class="lede mt1" data-reveal>The International Behavior Analysis Organization (IBAO) certifies behaviour analysts internationally under the standard <em>Ethics, Education, Confidence</em>. Its credentials are portable across borders — which matters for anyone training here who may practise elsewhere.</p>
+
+      <div class="cred mt2" data-reveal>
+        <div class="cred__seal" aria-hidden="true"><span>Certified</span><b>IBA</b><span>IBAO</span></div>
+        <div>
+          <h3>International Behavior Analyst (IBA)</h3>
+          <p class="mt1"><strong>Muhammad Farooq E Azam Awan</strong> — Founder &amp; CEO, The Project hope.</p>
+          <ul class="cred__meta">
+            <li><dfn>Certification no.</dfn><b>IBA_072025_002612</b></li>
+            <li><dfn>Certifying body</dfn><b>IBAO</b></li>
+            <li><dfn>Issued</dfn><b>9 July 2025</b></li>
+            <li><dfn>Valid until</dfn><b>9 July 2027</b></li>
+          </ul>
+          <a class="cred__link" href="../assets/ibao-certificate.pdf" target="_blank" rel="noopener">
+            View the certificate (PDF)
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <h3 class="mt2" data-reveal style="color:var(--teal)">Authorisations held with the IBAO</h3>
+      <div class="auths" data-reveal-group>
+        <div class="auth"><h3>Approved Content Provider</h3><p>Authorised to deliver IBA and IBT training content.</p></div>
+        <div class="auth"><h3>Certified Supervisor</h3><p>Authorised to supervise candidates on both IBA and IBT pathways.</p></div>
+        <div class="auth"><h3>Certified Mentor</h3><p>Authorised to mentor IBA candidates.</p></div>
+        <div class="auth"><h3>CEU Provider</h3><p>Authorised to issue continuing education units.</p></div>
+      </div>
+
+      <p class="note mt2"><strong>Two things to verify before launch.</strong> Your CV lists the certificate number as <em>#154629434</em>, while the certificate PDF reads <em>IBA_072025_002612</em>. The number on the certificate is used here — please confirm which is correct. Second, if the IBAO publishes a public registry entry or verification link, add it: a number a visitor can check independently is worth far more than one they cannot. <span class="tbd">IBAO registry / verification URL</span></p>
+    </div>
+  </section>
+
+  <!-- 5 · ABOUT — where it all began -->
+  <section class="section" id="about">
+    <div class="wrap two two--narrow">
+      <div class="photo photo--portrait" data-reveal><span>Portrait of Muhammad Farooq E Azam Awan — save as <code>assets/farooq.jpg</code></span></div>
+      <div>
+        <p class="eyebrow">About</p>
+        <h2 data-reveal>Where it all began</h2>
+        <p class="lede mt1" data-reveal><span class="tbd">the founding story, in your own words — what you saw that made you start this</span></p>
+        <p class="mt2" data-reveal>Muhammad Farooq E Azam Awan is an internationally certified Behavior Analyst and clinical psychology practitioner. He founded The Project hope in August 2025 as a multidisciplinary centre for children with special needs, and leads its clinical teams, its training programmes, and its free inclusive school.</p>
+        <p class="mt1" data-reveal>His practice draws on Applied Behaviour Analysis alongside CBT, REBT and psychodynamic approaches, with functional behaviour assessment and data-driven intervention planning at its core. Before founding the centre he worked as an Assistant Applied Behavior Analyst at Shifa Integrated HealthCare Technologies, as a Special Educational Needs teacher at Beaconhouse School System, and as an ABA and psychology intern at Shifa International Hospital.</p>
+
+        <h3 class="mt2" data-reveal style="color:var(--teal)">Education</h3>
+        <ul class="ticks mt1" data-reveal-group>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>MS Clinical Psychology</strong> — SZABIST, Islamabad. Completed 2026. Thesis: <em>Family Involvement in ABA and Skill Generalization in Children: The Moderating Role of Caregiver Stress in Nuclear Families.</em></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>BS Psychology</strong> — COMSATS University Islamabad. Graduated February 2024.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Continuing education</strong> — Ethics, Supervision &amp; Cultural Competency (6 CEUs, IBAO); Clinical Care for Autistic Adults; AFIRM series, 31 evidence-based autism intervention modules.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · VISION & DONATIONS -->
+  <section class="section section--sage" id="vision">
+    <div class="wrap">
+      <div class="vision" data-reveal>
+        <p class="eyebrow" style="color:#BFD9C6">Our vision</p>
+        <h2>Free schooling, funded by people who believe in it</h2>
+        <p class="lede mt1" style="color:#DCEAEC">The Project hope runs inclusive education at no cost to families — neurodivergent and neurotypical children in the same classroom. Therapy fees and training income cover part of it. Donations cover the rest.</p>
+        <p class="mt2" style="color:#DCEAEC">A donation pays for a place, a therapy hour, or the materials a classroom runs on. <span class="tbd">what a specific amount buys — e.g. "PKR X funds one child's schooling for a month"</span></p>
+        <div class="vision__acts">
+          <a class="btn btn--primary" href="#contact">Talk to us about giving</a>
+          <a class="btn btn--ghost" href="#contact">Partner with us</a>
+        </div>
+        <p class="mt2" style="font-size:.95rem; color:#BFD9C6"><span class="tbd">donation method: bank account / Easypaisa / JazzCash, and whether donations are tax-deductible or the organisation is formally registered</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · REVIEWS -->
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <p class="eyebrow">Reviews</p>
+      <h2 data-reveal>What families and trainees say</h2>
+      <p class="lede mt1" data-reveal>Real names, real words, with written consent. Anonymous testimonials read as invented — and informed parents notice.</p>
+      <div class="grid" data-reveal-group>
+        <figure class="quote"><blockquote>“…”</blockquote><figcaption><span class="tbd">parent review — first name + child's age</span></figcaption></figure>
+        <figure class="quote"><blockquote>“…”</blockquote><figcaption><span class="tbd">trainee review — first name + which pathway (IBA/IBT)</span></figcaption></figure>
+        <figure class="quote"><blockquote>“…”</blockquote><figcaption><span class="tbd">third review, or a short case narrative with consent</span></figcaption></figure>
+      </div>
+      <p class="note mt2"><strong>Ship without this if it isn't ready.</strong> An empty reviews section is honest; a fabricated one is fraud and is trivially detectable. A short video testimonial carries more weight than any three written ones — worth asking one willing family.</p>
+    </div>
+  </section>
+
+  <!-- 8 · BLOG & CONTRIBUTIONS -->
+  <section class="section section--sunk" id="writing">
+    <div class="wrap">
+      <p class="eyebrow">Blog &amp; contributions</p>
+      <h2 data-reveal>Research, writing and professional contributions</h2>
+      <p class="lede mt1" data-reveal>Publishing what you know is how a training provider demonstrates it. This section also carries real search value for parents looking up terms they've just been given.</p>
+      <div class="grid" data-reveal-group>
+        <article class="post">
+          <p class="kind">Research</p>
+          <h3>Family involvement in ABA and skill generalisation</h3>
+          <p>MS thesis, SZABIST — the moderating role of caregiver stress in nuclear families. Quantitative, SPSS.</p>
+        </article>
+        <article class="post">
+          <p class="kind">Research</p>
+          <h3>Academic procrastination and social anxiety</h3>
+          <p>BS research project, COMSATS — among students with and without obesity.</p>
+        </article>
+        <article class="post">
+          <p class="kind">Article</p>
+          <h3><span class="tbd">first blog post — e.g. "What actually happens in an ABA session"</span></h3>
+          <p>Parent-facing explainers rank well and answer the questions families arrive with.</p>
+        </article>
+      </div>
+      <p class="note mt2"><strong>Worth deciding now.</strong> Are the theses published, under review, or unpublished? If published, link them — a citation is a stronger credential than a description. <span class="tbd">publication status &amp; links, plus any conference presentations</span></p>
+    </div>
+  </section>
+
+  <!-- 9 · HOW TO GET STARTED -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Getting started</p>
+      <h2 data-reveal>Four steps, no surprises</h2>
+      <p class="lede mt1" data-reveal>You do not need a diagnosis or a referral to begin.</p>
+      <div class="steps" data-reveal-group>
+        <div class="step"><div class="step__n">1</div><h3>Get in touch</h3><p>Call, WhatsApp, or send the form. <span class="tbd">confirm: is the first call free?</span></p></div>
+        <div class="step"><div class="step__n">2</div><h3>Talk it through</h3><p>We listen, and say honestly whether we're the right fit for your child.</p></div>
+        <div class="step"><div class="step__n">3</div><h3>Assessment</h3><p>A structured session with the relevant therapists. <span class="tbd">duration &amp; fee</span></p></div>
+        <div class="step"><div class="step__n">4</div><h3>Your plan</h3><p>An individualised plan with clear goals, reviewed regularly with you.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · GALLERY -->
+  <section class="section section--wash">
+    <div class="wrap">
+      <p class="eyebrow">Real people, real spaces</p>
+      <h2 data-reveal>Come and see for yourself</h2>
+      <p class="lede mt1" data-reveal>Photographs of the actual centre — never stock images.</p>
+      <div class="gal" data-reveal-group>
+        <div>Therapy room</div><div>Inclusive classroom</div><div>Sensory space</div>
+        <div>IBA / IBT training</div><div>The team</div><div>Learning materials</div>
+      </div>
+      <p class="note mt2"><strong>Consent first.</strong> Written consent is required for any identifiable child. Where you don't have it, photograph hands, materials or the room — never blur a face, it reads as concealment.</p>
+    </div>
+  </section>
+
+  <!-- 11 · CONTACT -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <p class="eyebrow">Get in touch</p>
+      <h2 data-reveal>Start with a conversation</h2>
+      <p class="lede mt1 mt2" data-reveal style="margin-bottom:2.5rem">Tell us about your child, ask about IBA or IBT training, or talk to us about supporting the school.</p>
+
+      <div class="contact">
+        <div class="channels">
+          <div class="chan">
+            <div class="chan__ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2h4l2 5-2.5 1.5a13 13 0 0 0 6 6L16 13z"/></svg></div>
+            <div>
+              <h3>WhatsApp</h3>
+              <p>Usually the quickest way to reach us.<br>
+              <a href="https://wa.me/923355443660?text=Hello%2C%20I%27d%20like%20to%20ask%20about%20" target="_blank" rel="noopener">+92 335 5443660</a><br>
+              <span class="tbd">confirm this number is on WhatsApp Business</span></p>
+            </div>
+          </div>
+          <div class="chan">
+            <div class="chan__ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></div>
+            <div>
+              <h3>Phone &amp; email</h3>
+              <p><a href="tel:+923355443660">+92 335 5443660</a><br>
+              <a href="mailto:mfarooqeazamawan@gmail.com">mfarooqeazamawan@gmail.com</a><br>
+              <span class="tbd">a centre email (info@…) reads more established than a personal Gmail</span></p>
+            </div>
+          </div>
+          <div class="chan">
+            <div class="chan__ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+            <div>
+              <h3>Visit us</h3>
+              <p>Shahzad Town, Islamabad<br><span class="tbd">full street address, map pin &amp; opening hours (PKT)</span></p>
+            </div>
+          </div>
+        </div>
+
+        <form novalidate>
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="topic">What's this about?</label>
+            <select id="topic" name="topic">
+              <option>Therapy for my child</option>
+              <option>A place at the inclusive school</option>
+              <option>IBA (270-hour) training</option>
+              <option>IBT (40-hour) training</option>
+              <option>Supervision or CEUs</option>
+              <option>Supporting the school</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+            <p class="hint">We'll call or WhatsApp you back on this number.</p>
+          </div>
+          <div class="field">
+            <label for="email">Email <span class="opt">(optional)</span></label>
+            <input id="email" name="email" type="email" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="msg">How can we help? <span class="opt">(optional)</span></label>
+            <textarea id="msg" name="msg"></textarea>
+            <p class="hint">A sentence is plenty. We'll ask the rest when we speak.</p>
+          </div>
+          <button class="btn btn--primary" type="submit">Send message</button>
+          <p class="hint mt1" style="text-align:center">We reply within <span class="tbd">response time</span>.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <h3>The Project hope</h3>
+        <p style="font-size:.95rem; color:#CFE6EA">A multidisciplinary centre for children with special needs — therapy, professional training and free inclusive education in Islamabad.</p>
+      </div>
+      <div><h3>For families</h3><ul><li><a href="#services">Child development &amp; therapy</a></li><li><a href="#school">Inclusive education</a></li><li><a href="#contact">Book a free call</a></li></ul></div>
+      <div><h3>For professionals</h3><ul><li><a href="#training">IBA — 270 hours</a></li><li><a href="#training">IBT — 40 hours</a></li><li><a href="#recognition">Supervision &amp; CEUs</a></li></ul></div>
+      <div><h3>Contact</h3><ul>
+        <li><a href="tel:+923355443660">+92 335 5443660</a></li>
+        <li><a href="mailto:mfarooqeazamawan@gmail.com">Email us</a></li>
+        <li><a href="https://www.linkedin.com/in/m-farooq-e-azam-awan-4107272b6" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li>Shahzad Town, Islamabad</li>
+      </ul></div>
+    </div>
+    <div class="foot__bar">
+      <span>© <span id="yr">2026</span> The Project hope</span>
+      <span>Prototype · not the live site</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Progressive enhancement: the page is fully readable without this script.
+   The .js class is what opts elements into starting hidden, so if JS never
+   runs, nothing is ever invisible. */
+document.documentElement.classList.add('js');
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ---- mobile menu ---- */
+(function () {
+  var toggle = document.getElementById('navToggle');
+  var menu = document.getElementById('navMenu');
+  function setOpen(open) {
+    menu.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.textContent = open ? 'Close' : 'Menu';
+  }
+  toggle.addEventListener('click', function () { setOpen(!menu.classList.contains('is-open')); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu.classList.contains('is-open')) { setOpen(false); toggle.focus(); }
+  });
+  menu.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+  matchMedia('(min-width: 1001px)').addEventListener('change', function () { setOpen(false); });
+})();
+
+var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (reduced) {
+  document.documentElement.classList.remove('js');
+} else {
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var host = e.target;
+      var kids = host.hasAttribute('data-reveal-group')
+        ? Array.prototype.slice.call(host.children, 0, 5) : [host];
+      kids.forEach(function (el, i) { setTimeout(function () { el.classList.add('in'); }, i * 70); });
+      if (host.hasAttribute('data-reveal-group')) {
+        Array.prototype.slice.call(host.children, 5).forEach(function (el) { el.classList.add('in'); });
+      }
+      io.unobserve(host);
+    });
+  }, { rootMargin: '0px 0px -12% 0px' });
+
+  document.querySelectorAll('[data-reveal],[data-reveal-group]').forEach(function (el) {
+    if (el.hasAttribute('data-reveal-group')) {
+      Array.prototype.forEach.call(el.children, function (c) { c.setAttribute('data-reveal', ''); });
+    }
+    io.observe(el);
+  });
+
+  /* Failsafe — content must never stay invisible because an animation failed. */
+  setTimeout(function () {
+    document.querySelectorAll('[data-reveal]:not(.in)').forEach(function (el) { el.classList.add('in'); });
+  }, 2500);
+
+  var bar = document.getElementById('progress'), ticking = false;
+  addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      var h = document.documentElement.scrollHeight - innerHeight;
+      bar.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')';
+      ticking = false;
+    });
+  }, { passive: true });
+}
+
+document.querySelector('form').addEventListener('submit', function (ev) {
+  ev.preventDefault();
+  alert('Prototype only — this form is not connected yet.');
+});
+</script>
+</body>
+</html>

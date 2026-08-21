@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "anthropic.claude-code",
+    "ritwickdey.liveserver",
+    "deque-systems.vscode-axe-linter",
+    "streetsidesoftware.code-spell-checker",
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "usernamehw.errorlens",
+    "yzhang.markdown-all-in-one"
+  ]
+}

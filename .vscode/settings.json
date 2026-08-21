@@ -1,0 +1,23 @@
+{
+  "editor.formatOnSave": true,
+  "editor.rulers": [100],
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.eol": "\n",
+
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.trimAutoWhitespace": false
+  },
+
+  "cSpell.words": [
+    "Awan", "Eazam", "Farooq", "Nastaliq", "Rawalpindi", "Shahzad",
+    "IBAO", "neurodivergent", "neurodiversity", "physiotherapy",
+    "gsap", "ScrollTrigger", "Velo", "Manrope", "srcdoc", "fetchpriority"
+  ],
+
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/assets/raw": true
+  }
+}

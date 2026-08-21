@@ -1,0 +1,16 @@
+# Netlify configuration.
+# There is no build step: the site is plain HTML, CSS and JS.
+
+[build]
+  publish = "."
+  command = ""
+
+[[redirects]]
+  from = "/home"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404

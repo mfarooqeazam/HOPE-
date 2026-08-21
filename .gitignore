@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+*.swp
+
+# Logs & reports
+*.log
+*.report.html
+.lighthouseci/
+
+# Local env
+.env
+.env.local
+
+# Raw unoptimised photography — originals live in cloud storage, not here
+assets/raw/
+
+# Personal source documents — kept out of the public repo.
+# Remove these two lines if you want them published.
+assets/Farooq_Academic_CV.pdf
+assets/ibao-certificate.pdf

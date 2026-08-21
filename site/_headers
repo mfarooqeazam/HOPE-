@@ -1,0 +1,24 @@
+# Netlify / Cloudflare Pages security headers.
+# The site collects contact details, so these are not optional.
+#
+# connect-src allows the Supabase REST endpoint that receives form submissions.
+# If you move to a different backend, update it here or the requests are
+# blocked in production while still working locally — a nasty class of bug.
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; connect-src 'self' https://*.supabase.co; form-action 'self' https:; frame-ancestors 'self'; base-uri 'self'; object-src 'none'
+
+/assets/css/*
+  Cache-Control: public, max-age=604800
+
+/assets/js/*
+  Cache-Control: public, max-age=604800
+
+/assets/img/*
+  Cache-Control: public, max-age=2592000
+
+/assets/docs/*
+  Cache-Control: public, max-age=604800

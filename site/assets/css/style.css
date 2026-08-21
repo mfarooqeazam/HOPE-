@@ -1,0 +1,570 @@
+/* ==========================================================================
+   The Project Hope — site stylesheet
+   Single file, no build step. Edit here; every page picks it up.
+
+   Contents
+     1. Tokens          design system variables
+     2. Reset & base    element defaults, typography
+     3. Accessibility   skip link, focus, reduced motion
+     4. Layout          wrappers, sections, grids
+     5. Header & nav
+     6. Buttons & links
+     7. Components      cards, credentials, forms, quotes
+     8. Page sections   hero, banner, vision, gallery, contact
+     9. Footer
+    10. Utilities
+
+   Rules that are not negotiable (see .claude/skills/hope-brand-system):
+     - Never put text on --coral, --sage or --gold. Fills only.
+     - Every colour pairing is contrast-verified. Recompute before adding one.
+     - Headings max out at font-weight 700; Times has no heavier cut.
+   ========================================================================== */
+
+/* 1. TOKENS ================================================================ */
+:root{
+  /* Ground — 70-80% of surface area */
+  --cream:#F9F7F2;
+  --sunk:#F2EFE7;
+  --white:#FFFFFF;
+
+  /* Ink */
+  --charcoal:#2D2D2D;          /* 12.86:1 on cream — AAA */
+  --muted:#5A5A5A;
+
+  /* Identity */
+  --teal:#1F5F6B;              /* 6.75:1 on cream */
+  --teal-deep:#164A54;
+  --teal-wash:#E8F0F1;
+
+  /* Growth */
+  --sage:#8FB996;              /* fill only — never text */
+  --sage-deep:#47724F;         /* 5.54:1 with white */
+  --sage-wash:#EDF3EE;
+
+  /* Action */
+  --coral:#E88D7A;             /* fill only — never text */
+  --coral-deep:#BC3B21;        /* 5.55:1 with white */
+  --coral-wash:#FBEDE9;
+
+  /* Certification — reserved for verifiable credentials */
+  --gold:#D4AF37;              /* fill only */
+  --gold-deep:#7E661B;         /* 5.16:1 on cream */
+
+  --line:#E2DDD1;
+  --error:#A8452F;
+
+  /* Times New Roman first; Tinos is metric-identical and covers Android,
+     which has no Times New Roman at all. */
+  --font:"Times New Roman",Tinos,"Liberation Serif",Times,serif;
+
+  --s3:.75rem; --s4:1rem; --s5:1.5rem; --s6:2rem;
+  --s7:3rem;  --s8:4rem; --s9:6rem;
+
+  --r-sm:8px; --r-md:14px; --r-lg:22px; --r-pill:999px;
+
+  --e1:0 1px 2px rgba(31,95,107,.06),0 2px 8px rgba(31,95,107,.05);
+  --e2:0 4px 12px rgba(31,95,107,.08),0 12px 28px rgba(31,95,107,.07);
+
+  --wrap:1140px;
+  --head-h:76px;
+}
+
+/* 2. RESET & BASE ========================================================== */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--charcoal);
+  font-family:var(--font);
+  /* Times has a small x-height, so the base starts a step above 1rem */
+  font-size:clamp(1.0625rem,1rem + .3vw,1.1875rem);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--font); font-weight:700; margin:0; text-wrap:balance}
+h1{font-size:clamp(2.4rem,1.5rem + 3.8vw,3.7rem); line-height:1.12}
+h2{font-size:clamp(1.85rem,1.25rem + 2.3vw,2.6rem); line-height:1.22; color:var(--teal)}
+h3{font-size:clamp(1.2rem,1.08rem + .55vw,1.45rem); line-height:1.32}
+h4{font-size:1.05rem; line-height:1.4}
+p{margin:0; max-width:65ch}
+img{max-width:100%; display:block}
+ul,ol{margin:0}
+code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var(--sunk); padding:.1em .35em; border-radius:4px}
+
+/* 3. ACCESSIBILITY ========================================================= */
+.skip{
+  position:absolute; left:-9999px; top:0; z-index:100;
+  background:var(--teal); color:#fff; padding:.75rem 1.25rem;
+  border-radius:0 0 var(--r-sm) 0; font-weight:700; text-decoration:none;
+}
+.skip:focus{left:0}
+:focus-visible{outline:3px solid var(--teal); outline-offset:2px; border-radius:2px}
+/* Sticky header must never cover the element you just jumped to (WCAG 2.4.11) */
+[id]{scroll-margin-top:calc(var(--head-h) + 1rem)}
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+  .js [data-reveal]{opacity:1 !important; transform:none !important}
+}
+
+/* 4. LAYOUT ================================================================ */
+.wrap{width:min(100% - 2.5rem,var(--wrap)); margin-inline:auto}
+.section{padding-block:clamp(3rem,7vw,6rem)}
+.section--sunk{background:var(--sunk)}
+.section--wash{background:var(--teal-wash)}
+.section--sage{background:var(--sage-wash)}
+.eyebrow{
+  font-size:.8125rem; font-weight:700; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--sage-deep); margin:0 0 var(--s3);
+}
+.lede{font-size:clamp(1.06rem,1.02rem + .35vw,1.3rem); color:var(--muted); line-height:1.6}
+
+.grid{display:grid; gap:var(--s5); grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); margin-top:var(--s7)}
+.grid--tight{gap:var(--s4); grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.two{display:grid; gap:clamp(2rem,5vw,4rem); grid-template-columns:1fr; align-items:start}
+@media(min-width:880px){
+  .two{grid-template-columns:1fr 1fr}
+  .two--narrow{grid-template-columns:.85fr 1.15fr}
+}
+
+/* 5. HEADER & NAV ========================================================== */
+.head{
+  position:sticky; top:0; z-index:50;
+  background:rgba(249,247,242,.94); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.head__in{display:flex; align-items:center; gap:var(--s5); min-height:var(--head-h); position:relative}
+.logo{text-decoration:none; margin-right:auto; display:flex; align-items:center; gap:.8rem; color:var(--teal)}
+.logo img{height:54px; width:auto; flex:none}
+.logo__name{font-weight:700; font-size:1.28rem; color:var(--teal); white-space:nowrap}
+@media(max-width:1000px){ .logo__name{display:none} }
+
+.nav{display:flex; gap:.1rem; align-items:center}
+.nav a{
+  position:relative; font-size:.98rem; color:var(--charcoal);
+  text-decoration:none; padding:.55rem .6rem; border-radius:var(--r-sm);
+}
+.nav a::after{
+  content:""; position:absolute; left:.6rem; right:.6rem; bottom:.3rem; height:2px;
+  background:var(--teal); transform:scaleX(0); transform-origin:left center;
+  transition:transform .2s ease-out;
+}
+.nav a:hover{color:var(--teal)}
+.nav a:hover::after{transform:scaleX(1)}
+.nav a[aria-current]{color:var(--teal); font-weight:700}
+.nav a[aria-current]::after{transform:scaleX(1)}
+
+.nav-toggle{
+  display:none; align-items:center; justify-content:center;
+  min-height:48px; min-width:48px; padding:0 .9rem;
+  border-radius:var(--r-sm); background:transparent; border:2px solid var(--teal);
+  color:var(--teal); font-family:var(--font); font-weight:700; font-size:1rem; cursor:pointer;
+}
+@media(min-width:1001px){ .nav .btn{display:none} }
+@media(max-width:1000px){
+  .nav-toggle{display:inline-flex}
+  .btn--head{display:none}
+  .nav{
+    display:none; position:absolute; left:0; right:0; top:100%;
+    flex-direction:column; align-items:stretch; gap:0;
+    background:var(--cream); border-bottom:1px solid var(--line);
+    box-shadow:var(--e2); padding:var(--s3);
+    max-height:calc(100dvh - var(--head-h)); overflow-y:auto;
+  }
+  .nav.is-open{display:flex}
+  .nav a{padding:.9rem 1rem; font-size:1.1rem; border-bottom:1px solid var(--line)}
+  .nav a::after{display:none}
+  .nav a[aria-current]{background:var(--teal-wash)}
+  .nav .btn{margin-top:var(--s3); border-bottom:0}
+}
+
+.progress{
+  position:fixed; inset:0 0 auto 0; height:3px; background:var(--coral-deep);
+  transform:scaleX(0); transform-origin:left center; z-index:60;
+}
+
+/* 6. BUTTONS & LINKS ======================================================= */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  min-height:48px; padding:.8rem 1.6rem; border-radius:var(--r-pill);
+  font-family:var(--font); font-weight:700; font-size:1rem;
+  text-decoration:none; border:2px solid transparent; cursor:pointer;
+  transition:background-color .2s,color .2s,transform .2s,box-shadow .2s;
+}
+.btn--primary{background:var(--teal); color:#fff; box-shadow:var(--e1)}
+.btn--primary:hover{background:var(--coral-deep); transform:translateY(-2px); box-shadow:var(--e2)}
+.btn--primary:active{transform:translateY(0)}
+.btn--ghost{background:transparent; color:var(--teal); border-color:var(--teal)}
+.btn--ghost:hover{background:var(--teal-wash)}
+.btn--wa{background:var(--sage-deep); color:#fff}
+.btn--wa:hover{background:var(--teal); transform:translateY(-2px)}
+.btn[disabled],.btn[aria-busy="true"]{opacity:.7; cursor:not-allowed; transform:none}
+
+.prose a{color:var(--teal); text-underline-offset:3px}
+.prose a:hover{color:var(--coral-deep)}
+
+/* 7. COMPONENTS ============================================================ */
+.card{
+  background:var(--white); border:1px solid var(--line); border-radius:var(--r-md);
+  padding:var(--s6); box-shadow:var(--e1);
+  display:flex; flex-direction:column; gap:var(--s3);
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+}
+.card:hover{transform:translateY(-6px); box-shadow:var(--e2); border-color:var(--teal)}
+.card__plate{width:52px; height:52px; border-radius:var(--r-md); background:var(--teal-wash); display:grid; place-items:center; color:var(--teal)}
+.card--b .card__plate{background:var(--sage-wash); color:var(--sage-deep)}
+.card--c .card__plate{background:var(--coral-wash); color:var(--coral-deep)}
+.card p{font-size:.98rem; color:var(--muted)}
+.card .more{font-weight:700; color:var(--teal); text-decoration:none; margin-top:auto; padding-top:var(--s3); display:inline-flex; gap:.4rem; align-items:center}
+.card .more:hover{color:var(--coral-deep)}
+.card .more::after{content:"\2192"; transition:transform .2s}
+.card .more:hover::after{transform:translateX(3px)}
+
+.mini{background:var(--white); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s5)}
+.mini h3{font-size:1.05rem; color:var(--teal); margin-bottom:.3rem}
+.mini p{font-size:.95rem; color:var(--muted)}
+
+.path{
+  background:var(--white); border:1px solid var(--line); border-radius:var(--r-md);
+  border-left:5px solid var(--teal); padding:var(--s6); box-shadow:var(--e1);
+  display:flex; flex-direction:column; gap:var(--s3);
+  transition:transform .2s,box-shadow .2s;
+}
+.path--pro{border-left-color:var(--sage-deep)}
+.path:hover{transform:translateY(-4px); box-shadow:var(--e2)}
+.path__who{font-size:.8rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--teal)}
+.path--pro .path__who{color:var(--sage-deep)}
+.path p{color:var(--muted); font-size:1rem}
+.path .btn{align-self:flex-start; margin-top:var(--s3)}
+
+/* Credential block — gold is reserved for verifiable certification */
+.cred{
+  background:var(--white); border:1px solid var(--line); border-top:4px solid var(--gold);
+  border-radius:var(--r-md); padding:clamp(1.5rem,4vw,2.5rem); box-shadow:var(--e1);
+  display:grid; gap:clamp(1.5rem,4vw,2.5rem); grid-template-columns:1fr; align-items:center;
+}
+@media(min-width:760px){.cred{grid-template-columns:auto 1fr}}
+.cred__seal{
+  width:120px; height:120px; border-radius:50%; background:#FDF8E8;
+  border:2px solid var(--gold); display:grid; place-items:center; text-align:center;
+  color:var(--gold-deep); font-weight:700; line-height:1.15; justify-self:start;
+}
+.cred__seal b{display:block; font-size:1.7rem}
+.cred__seal span{font-size:.62rem; letter-spacing:.08em; text-transform:uppercase}
+.cred h3{color:var(--teal)}
+.cred__meta{list-style:none; margin:1.1rem 0 0; padding:0; display:grid; gap:.45rem; grid-template-columns:1fr; font-size:.95rem}
+@media(min-width:520px){.cred__meta{grid-template-columns:1fr 1fr; gap:.5rem 1.5rem}}
+.cred__meta li{display:flex; gap:.5rem; flex-wrap:wrap}
+.cred__meta dfn{font-style:normal; color:var(--muted); min-width:8.5em}
+.cred__meta b{font-variant-numeric:tabular-nums}
+.cred__link{display:inline-flex; align-items:center; gap:.45rem; margin-top:1.1rem; color:var(--teal); font-weight:700; text-decoration:underline; text-underline-offset:3px}
+.cred__link:hover{color:var(--coral-deep)}
+
+.auths{display:grid; gap:var(--s4); grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin-top:var(--s6)}
+.auth{background:var(--white); border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:var(--r-sm); padding:var(--s5)}
+.auth h3{font-size:1.02rem; color:var(--gold-deep); margin-bottom:.2rem}
+.auth p{font-size:.93rem; color:var(--muted)}
+
+.ticks{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:var(--s3)}
+.ticks li{display:flex; gap:.7rem; align-items:flex-start}
+.ticks svg{flex:none; width:22px; height:22px; color:var(--sage-deep); margin-top:.28em}
+
+.steps{display:grid; gap:var(--s5); grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); margin-top:var(--s7)}
+.step{background:var(--white); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s5)}
+.step__n{width:40px; height:40px; border-radius:50%; background:var(--teal); color:#fff; display:grid; place-items:center; font-weight:700; margin-bottom:var(--s3)}
+.step h3{font-size:1.05rem; color:var(--teal); margin-bottom:.3rem}
+.step p{font-size:.95rem; color:var(--muted)}
+
+.quote{background:var(--white); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s6); display:flex; flex-direction:column; gap:var(--s4)}
+.quote blockquote{margin:0; font-size:1.08rem; font-style:italic}
+.quote figcaption{font-size:.93rem; color:var(--muted)}
+
+.post{background:var(--white); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s5); display:flex; flex-direction:column; gap:.5rem}
+.post .kind{font-size:.75rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--sage-deep)}
+.post h3{font-size:1.08rem; color:var(--teal)}
+.post p{font-size:.94rem; color:var(--muted)}
+
+/* Placeholder marker — this site never fabricates facts */
+.tbd{
+  display:inline-block; border:1.5px dashed var(--coral-deep); border-radius:var(--r-sm);
+  background:var(--coral-wash); color:var(--coral-deep); padding:.05em .5em;
+  font-weight:700; font-size:.85em; line-height:1.4;
+}
+.tbd::before{content:"needs content: "; font-weight:400}
+.note{border-left:4px solid var(--gold); background:#FDF8E8; border-radius:0 var(--r-sm) var(--r-sm) 0; padding:var(--s4) var(--s5); font-size:.95rem; color:#5C4A12; max-width:70ch}
+.note strong{color:var(--gold-deep)}
+
+/* 8. PAGE SECTIONS ========================================================= */
+.hero{padding-block:clamp(2.5rem,6vw,4.5rem) clamp(2.5rem,5vw,3.5rem)}
+.hero h1{max-width:17ch}
+.hero__lede{margin-top:var(--s5); max-width:58ch}
+.fork{display:grid; gap:var(--s5); grid-template-columns:1fr; margin-top:clamp(2rem,4vw,3rem)}
+@media(min-width:820px){.fork{grid-template-columns:1fr 1fr}}
+
+.trust{display:flex; flex-wrap:wrap; gap:var(--s3) var(--s6); margin-top:clamp(2rem,4vw,3rem); padding-top:var(--s5); border-top:1px solid var(--line); list-style:none}
+.trust li{display:flex; align-items:center; gap:.55rem; font-weight:700; font-size:.95rem; color:var(--teal)}
+.trust svg{flex:none; width:20px; height:20px; color:var(--gold-deep)}
+
+/* Page banner for inner pages */
+.banner{background:var(--teal-wash); border-bottom:1px solid var(--line); padding-block:clamp(2.25rem,5vw,3.5rem)}
+.banner h1{font-size:clamp(2rem,1.3rem + 2.8vw,3rem); color:var(--teal)}
+.banner p{margin-top:var(--s4)}
+.crumbs{font-size:.9rem; color:var(--muted); margin-bottom:var(--s4)}
+.crumbs a{color:var(--teal)}
+
+.photo{
+  aspect-ratio:4/3; border-radius:var(--r-md); border:2px dashed var(--teal);
+  background:var(--teal-wash); display:grid; place-items:center; text-align:center;
+  padding:var(--s5); color:var(--teal);
+}
+.photo--portrait{aspect-ratio:3/4}
+.photo span{font-weight:700; max-width:28ch}
+
+.vision{background:var(--teal); color:#fff; border-radius:var(--r-lg); padding:clamp(1.75rem,5vw,3.5rem)}
+.vision h2{color:#fff}
+.vision p{color:#DCEAEC}
+.vision .eyebrow{color:#BFD9C6}
+.vision .btn--primary{background:#fff; color:var(--teal)}
+.vision .btn--primary:hover{background:var(--coral-deep); color:#fff}
+.vision .btn--ghost{color:#fff; border-color:rgba(255,255,255,.6)}
+.vision .btn--ghost:hover{background:rgba(255,255,255,.12)}
+.vision .tbd{background:rgba(0,0,0,.30); border-color:#F5C4B7; color:#FFD9CF}
+.vision__acts{display:flex; flex-wrap:wrap; gap:var(--s4); margin-top:var(--s6)}
+
+.gal{display:grid; gap:var(--s4); grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); margin-top:var(--s7)}
+.gal div{aspect-ratio:1; border-radius:var(--r-md); border:2px dashed var(--sage-deep); background:var(--sage-wash); display:grid; place-items:center; text-align:center; padding:var(--s4); color:var(--sage-deep); font-weight:700; font-size:.92rem}
+
+.contact{display:grid; gap:clamp(2rem,5vw,3.5rem); grid-template-columns:1fr}
+@media(min-width:880px){.contact{grid-template-columns:.9fr 1.1fr}}
+.channels{display:flex; flex-direction:column; gap:var(--s4)}
+.chan{background:var(--white); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s5); display:flex; gap:var(--s4); align-items:flex-start}
+.chan__ic{width:44px; height:44px; flex:none; border-radius:var(--r-sm); background:var(--sage-wash); color:var(--sage-deep); display:grid; place-items:center}
+.chan h3{font-size:1.02rem; color:var(--teal)}
+.chan p{font-size:.95rem; color:var(--muted); margin-top:.15rem}
+.chan a{color:var(--teal); font-weight:700}
+
+/* Forms — visible labels always; placeholders are not labels */
+form.enquiry{background:var(--white); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s6)}
+.field{display:flex; flex-direction:column; gap:.4rem; margin-bottom:var(--s4)}
+label{font-weight:700; font-size:.98rem}
+label .opt{font-weight:400; color:var(--muted)}
+input,textarea,select{
+  font-family:inherit; font-size:1rem; min-height:48px; padding:.7rem .9rem;
+  background:var(--sunk); border:1.5px solid #D8D3C8; border-radius:var(--r-sm);
+  color:var(--charcoal); width:100%;
+}
+textarea{min-height:120px; resize:vertical}
+input:focus,textarea:focus,select:focus{outline:none; border-color:var(--teal); box-shadow:0 0 0 3px rgba(31,95,107,.18)}
+input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--error); background:var(--coral-wash)}
+.hint{font-size:.9rem; color:var(--muted)}
+/* Errors are text, never colour alone, and never a shake animation */
+.err{font-size:.9rem; color:var(--error); font-weight:700}
+.err:empty{display:none}
+.form-status{margin-top:var(--s4); padding:var(--s4); border-radius:var(--r-sm); font-weight:700}
+.form-status:empty{display:none; padding:0}
+.form-status--ok{background:var(--sage-wash); color:var(--sage-deep); border:1px solid var(--sage-deep)}
+.form-status--bad{background:var(--coral-wash); color:var(--error); border:1px solid var(--error)}
+form.enquiry .btn{width:100%; margin-top:var(--s3)}
+/* Honeypot — hidden from people, visible to naive bots */
+.hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
+
+/* 9. FOOTER ================================================================ */
+.foot{background:var(--teal); color:#fff; padding-block:var(--s8) var(--s6); margin-top:var(--s9)}
+.foot a{color:#CFE6EA}
+.foot__grid{display:grid; gap:var(--s6); grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.foot h3{font-size:.98rem; margin-bottom:var(--s3); color:#fff}
+.foot ul{list-style:none; padding:0; display:flex; flex-direction:column; gap:.5rem; font-size:.95rem}
+.foot p{font-size:.95rem; color:#CFE6EA}
+.foot__bar{margin-top:var(--s7); padding-top:var(--s5); border-top:1px solid rgba(255,255,255,.2); font-size:.9rem; color:#CFE6EA; display:flex; flex-wrap:wrap; gap:var(--s4); justify-content:space-between}
+
+/* 10. UTILITIES ============================================================ */
+.mt1{margin-top:1rem} .mt2{margin-top:2rem} .mt3{margin-top:3rem}
+.center{text-align:center}
+.stack > * + *{margin-top:var(--s4)}
+
+/* Reveal: visible at rest. JS opts elements into starting hidden, so if the
+   script never runs nothing is ever invisible. */
+[data-reveal]{opacity:1}
+.js [data-reveal]{opacity:0; transform:translateY(20px); transition:opacity .5s ease-out, transform .5s ease-out}
+.js [data-reveal].in{opacity:1; transform:none}
+
+/* 11. HELPER CLASSES ======================================================= */
+/* These replace inline styles so the pages pass html-validate and so a
+   Content-Security-Policy without 'unsafe-inline' for style would still work. */
+.mx-auto{margin-inline:auto}
+.mb2{margin-bottom:1.5rem}
+.t-teal{color:var(--teal)}
+.h-sub{font-size:1.45rem}
+.h-form{font-size:1.5rem}
+.fs-sm{font-size:.95rem}
+.map{aspect-ratio:16/7}
+.foot__bar--bare{margin-top:0; border-top:0; padding-top:0}
+
+/* 12. VIEW TRANSITIONS ===================================================== */
+/* Cross-document page transitions, native and framework-free. Chromium and
+   Safari 18.2+ honour this; everything else simply navigates normally, so it
+   is pure progressive enhancement.
+
+   Deliberately a CROSS-FADE ONLY — no slide, no scale. Movement between pages
+   is the part that causes vestibular problems; a change in opacity does not.
+   Kept short (220ms) so it never feels like waiting. */
+@view-transition { navigation: auto; }
+
+::view-transition-old(root),
+::view-transition-new(root){
+  animation-duration:.22s;
+  animation-timing-function:ease;
+}
+
+/* The header is visually identical across pages, so hold it still rather than
+   cross-fading it with the rest — otherwise it appears to flicker. */
+.head{ view-transition-name:site-header; }
+
+@media (prefers-reduced-motion: reduce){
+  @view-transition { navigation: none; }
+}
+
+/* 13. REGISTRATION FORMS =================================================== */
+fieldset{
+  border:1px solid var(--line); border-radius:var(--r-sm);
+  padding:var(--s5); margin:0 0 var(--s5);
+}
+legend{
+  font-weight:700; font-size:.98rem; padding:0 .5rem; color:var(--teal);
+}
+.choices{display:grid; gap:.6rem; grid-template-columns:1fr}
+@media(min-width:520px){.choices{grid-template-columns:1fr 1fr}}
+.choice{
+  display:flex; align-items:flex-start; gap:.6rem;
+  padding:.7rem .8rem; border:1.5px solid #D8D3C8; border-radius:var(--r-sm);
+  background:var(--sunk); cursor:pointer; min-height:48px;
+  transition:border-color .15s, background-color .15s;
+}
+.choice:hover{border-color:var(--teal)}
+.choice input{
+  width:20px; height:20px; min-height:0; flex:none; margin-top:.15rem;
+  accent-color:var(--teal); padding:0;
+}
+.choice span{font-size:.97rem; line-height:1.4}
+.choice:has(input:checked){border-color:var(--teal); background:var(--teal-wash)}
+.choice:has(input:focus-visible){outline:3px solid var(--teal); outline-offset:2px}
+
+.consent{
+  display:flex; align-items:flex-start; gap:.7rem;
+  padding:var(--s4); border:1.5px solid var(--line); border-radius:var(--r-sm);
+  background:var(--sunk); margin-bottom:var(--s4);
+}
+.consent input{width:20px; height:20px; min-height:0; flex:none; margin-top:.2rem; accent-color:var(--teal); padding:0}
+.consent label{font-weight:400; font-size:.95rem; line-height:1.5}
+
+/* Two registration tracks on one page, kept visually distinct so a parent and
+   a prospective trainee never feel they are reading each other's form. */
+.track{
+  background:var(--white); border:1px solid var(--line);
+  border-top:5px solid var(--teal); border-radius:var(--r-md);
+  padding:clamp(1.5rem,4vw,2.5rem); box-shadow:var(--e1);
+}
+.track--pro{border-top-color:var(--sage-deep)}
+.track > h2{font-size:clamp(1.5rem,1.2rem + 1vw,1.9rem)}
+.track .enquiry{background:transparent; border:0; padding:0; margin-top:var(--s5)}
+.track-nav{display:flex; flex-wrap:wrap; gap:var(--s4); margin-top:var(--s6)}
+
+/* 14. MOTION CRAFT ========================================================= */
+/* Added depth without breaking the budget: every effect below is user- or
+   scroll-initiated, moves <=14px, runs once, and animates only transform,
+   opacity or background-size. Nothing loops. Nothing moves on its own. */
+
+/* --- headline word reveal ------------------------------------------------
+   Words rise and fade in sequence. This is where the typographic personality
+   lives, and it costs nothing in layout because the words are inline-block
+   and never reflow. JS sets the per-word delay; the cap is 8 words so the
+   line always finishes inside ~350ms. */
+.js [data-split] .w{
+  display:inline-block;
+  opacity:0;
+  transform:translateY(14px);
+  transition:opacity .42s cubic-bezier(.2,.7,.3,1), transform .42s cubic-bezier(.2,.7,.3,1);
+  will-change:transform,opacity;
+}
+.js [data-split].in .w{opacity:1; transform:none; will-change:auto}
+
+/* --- button fill sweep ---------------------------------------------------
+   The hover colour wipes across instead of switching flatly. Done with
+   background-size so there is no extra element and no stacking-context risk;
+   the end state is identical to before, so contrast is unchanged. */
+.btn--primary{
+  background-image:linear-gradient(var(--coral-deep),var(--coral-deep));
+  background-repeat:no-repeat;
+  background-size:0% 100%;
+  transition:background-size .3s cubic-bezier(.2,.7,.3,1), transform .2s, box-shadow .2s, color .2s;
+}
+.btn--primary:hover,.btn--primary:focus-visible{background-size:100% 100%}
+.btn--ghost{
+  background-image:linear-gradient(var(--teal-wash),var(--teal-wash));
+  background-repeat:no-repeat;
+  background-size:0% 100%;
+  transition:background-size .3s cubic-bezier(.2,.7,.3,1), transform .2s, box-shadow .2s;
+}
+.btn--ghost:hover,.btn--ghost:focus-visible{background-size:100% 100%}
+
+/* --- card interior response ---------------------------------------------- */
+.card__plate{transition:transform .25s cubic-bezier(.2,.7,.3,1), background-color .25s}
+.card:hover .card__plate{transform:translateY(-3px)}
+.card:hover .card__plate{background:var(--teal); color:#fff}
+.card--b:hover .card__plate{background:var(--sage-deep); color:#fff}
+.card--c:hover .card__plate{background:var(--coral-deep); color:#fff}
+
+/* --- process connector ---------------------------------------------------
+   The one scroll-scrubbed element on the site. It is honest motion: the line
+   maps directly to scroll position rather than moving of its own accord, and
+   it encodes something true — the steps are a sequence.
+   Only drawn when the steps sit in a row; on a stacked mobile layout a
+   horizontal connector would be meaningless. */
+.steps{position:relative}
+.steps__line{display:none}
+@media(min-width:900px){
+  .steps__line{
+    display:block; position:absolute; left:6%; right:6%; top:44px; height:2px;
+    background:var(--teal); opacity:.35; transform:scaleX(0);
+    transform-origin:left center; z-index:0; pointer-events:none;
+  }
+  .step{position:relative; z-index:1}
+}
+
+/* --- header entrance ----------------------------------------------------- */
+@keyframes hope-head-in{from{opacity:0; transform:translateY(-6px)} to{opacity:1; transform:none}}
+.js .head__in > *{animation:hope-head-in .45s cubic-bezier(.2,.7,.3,1) both}
+.js .head__in > *:nth-child(2){animation-delay:.06s}
+.js .head__in > *:nth-child(3){animation-delay:.12s}
+
+/* --- trust strip --------------------------------------------------------- */
+.trust li{transition:transform .2s cubic-bezier(.2,.7,.3,1)}
+.trust li:hover{transform:translateY(-2px)}
+
+/* --- in-page links ------------------------------------------------------- */
+.prose a,.chan a,.cred__link{
+  background-image:linear-gradient(currentColor,currentColor);
+  background-repeat:no-repeat;
+  background-position:0 100%;
+  background-size:0% 1.5px;
+  transition:background-size .25s cubic-bezier(.2,.7,.3,1), color .2s;
+  text-decoration:none;
+}
+.prose a:hover,.chan a:hover,.cred__link:hover{background-size:100% 1.5px}
+
+/* Everything above is switched off wholesale by the reduced-motion block in
+   section 3, which zeroes all animation and transition durations. */
+@media (prefers-reduced-motion: reduce){
+  .js [data-split] .w{opacity:1 !important; transform:none !important}
+  .steps__line{transform:scaleX(1) !important}
+}

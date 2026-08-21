@@ -1,0 +1,35 @@
+{
+  "name": "the-project-hope",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website for The Project Hope — a multidisciplinary centre for children with special needs in Islamabad.",
+  "scripts": {
+    "dev": "serve site -l 3000",
+    "check:html": "html-validate \"site/**/*.html\"",
+    "check:a11y": "axe http://localhost:3000 --exit",
+    "check:perf": "lighthouse http://localhost:3000 --preset=desktop --view",
+    "check:mobile": "lighthouse http://localhost:3000 --view",
+    "format": "prettier --write \"site/**/*.{html,css,js}\"",
+    "format:check": "prettier --check \"site/**/*.{html,css,js}\"",
+    "check:types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@axe-core/cli": "^4.10.2",
+    "chromedriver": "^151.0.5",
+    "html-validate": "^9.7.1",
+    "lighthouse": "^12.8.2",
+    "prettier": "^3.6.2",
+    "serve": "^14.2.5",
+    "sharp-cli": "^5.2.0",
+    "typescript": "^7.0.2"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": false,
+    "htmlWhitespaceSensitivity": "ignore"
+  },
+  "allowScripts": {
+    "sharp@0.34.5": true,
+    "chromedriver@151.0.5": true
+  }
+}

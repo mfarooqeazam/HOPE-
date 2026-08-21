@@ -1,0 +1,25 @@
+{
+  "//": "Type-checks the plain .js files with no build step and no output. TypeScript is used purely as a checker here: `npm run check:types`.",
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "site/assets/js/**/*.js",
+    "types/**/*.d.ts"
+  ]
+}
