@@ -26,3 +26,6 @@ assets/raw/
 # Remove these two lines if you want them published.
 assets/Farooq_Academic_CV.pdf
 assets/ibao-certificate.pdf
+
+# Stray lighthouse stdout artefact
+-
