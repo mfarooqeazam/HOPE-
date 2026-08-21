@@ -76,7 +76,7 @@ create table if not exists public.registrations (
 
   -- Training track only
   programme         text check (programme is null or programme in ('IBA','IBT','supervision','ceu')),
-  current_role      text,
+  job_role          text,               -- NOT `current_role`: that is a reserved SQL word
   prior_experience  text,
 
   -- Shared
@@ -116,6 +116,11 @@ create policy "anon can submit registrations"
   on public.registrations for insert
   to anon
   with check (true);
+
+-- Table privileges. Supabase normally grants these automatically, but stating
+-- them makes the schema self-contained. INSERT only — never SELECT.
+grant insert on public.enquiries     to anon;
+grant insert on public.registrations to anon;
 
 -- No SELECT policy is defined for anon, so reads are denied by default.
 -- This is deliberate. Do not add one.
