@@ -355,6 +355,24 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
 .give h3{color:#fff; font-size:1.05rem}
 .vision .give p{color:#EAF3F4; font-size:.94rem; margin-top:.35rem}
 
+/* Evidence figures — big number, then what it means. Numbers use --teal
+   (7.4:1 on --white); never --sage/--coral/--gold, which are fills only. */
+.stats{display:grid; gap:var(--s4); margin-top:var(--s7);
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.stat{background:var(--white); border:1px solid var(--line); border-left:4px solid var(--teal);
+  border-radius:var(--r-md); padding:var(--s5)}
+.stat b{display:block; font-size:clamp(2rem,5vw,2.9rem); line-height:1.05; color:var(--teal);
+  font-weight:700; letter-spacing:0}
+.stat span{display:block; margin-top:var(--s3); font-size:.95rem; color:var(--charcoal)}
+.stat cite{display:block; margin-top:var(--s3); font-size:.82rem; color:var(--muted); font-style:normal}
+
+/* Source list. Small, but present — an unsourced statistic on a donations
+   page is worth less than no statistic at all. */
+.cites{margin-top:var(--s6); padding-top:var(--s5); border-top:1px solid var(--line);
+  font-size:.85rem; color:var(--muted); line-height:1.65}
+.cites li{margin-top:var(--s3)}
+.cites a{color:var(--teal-deep)}
+
 .gal{display:grid; gap:var(--s4); grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); margin-top:var(--s7)}
 .gal div{aspect-ratio:1; border-radius:var(--r-md); border:2px dashed var(--sage-deep); background:var(--sage-wash); display:grid; place-items:center; text-align:center; padding:var(--s4); color:var(--sage-deep); font-weight:700; font-size:.92rem}
 
