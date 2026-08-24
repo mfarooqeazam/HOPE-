@@ -774,9 +774,17 @@ legend{
 
    aria-hidden: it is decoration. Everything it conveys is said in the
    headline underneath it. */
+/* Two columns on desktop: words left, artwork right, both centred against
+   each other. On narrow screens the art drops below the copy — it is
+   decoration, so it should never push the headline off the first screen. */
+.hero__grid{display:grid; gap:clamp(1.75rem,4vw,3.25rem);
+  grid-template-columns:1fr; align-items:center}
+@media(min-width:940px){
+  .hero__grid{grid-template-columns:minmax(0,1fr) minmax(0,.95fr)}
+}
 .kids{
-  position:relative; width:min(100%,460px); aspect-ratio:796 / 143;
-  margin:0 0 clamp(1.25rem,3vw,2rem);
+  position:relative; width:100%; max-width:540px; aspect-ratio:793 / 143;
+  margin:0; justify-self:center;
 }
 .kid{
   position:absolute; inset:0;
@@ -793,18 +801,24 @@ legend{
   filter:drop-shadow(0 0 7px rgba(71,114,79,.55)) saturate(1.25) brightness(.94);
   transform:translateY(-2px);
 }
-.kid:nth-child(1){clip-path:inset(0 91.080% 0 0.000%)}
-.kid:nth-child(2){clip-path:inset(0 84.925% 0 8.920%)}
-.kid:nth-child(3){clip-path:inset(0 77.136% 0 15.075%)}
-.kid:nth-child(4){clip-path:inset(0 69.598% 0 22.864%)}
-.kid:nth-child(5){clip-path:inset(0 59.799% 0 30.402%)}
-.kid:nth-child(6){clip-path:inset(0 49.749% 0 40.201%)}
-.kid:nth-child(7){clip-path:inset(0 43.342% 0 50.251%)}
-.kid:nth-child(8){clip-path:inset(0 31.281% 0 56.658%)}
-.kid:nth-child(9){clip-path:inset(0 18.090% 0 68.719%)}
-.kid:nth-child(10){clip-path:inset(0 11.307% 0 81.910%)}
-.kid:nth-child(11){clip-path:inset(0 6.533% 0 88.693%)}
-.kid:nth-child(12){clip-path:inset(0 0.126% 0 93.467%)}
+
+/* One strip per child. Each extends 0.35% past its right boundary so
+   sub-pixel rounding cannot leave a hairline seam between neighbours; the
+   overlap is invisible because every layer paints the same image in the
+   same place. The last strip is not extended - there is nothing to its
+   right to cover. */
+.kid:nth-child(1){clip-path:inset(0 90.697% 0 0.000%)}
+.kid:nth-child(2){clip-path:inset(0 84.518% 0 8.953%)}
+.kid:nth-child(3){clip-path:inset(0 76.699% 0 15.132%)}
+.kid:nth-child(4){clip-path:inset(0 69.133% 0 22.951%)}
+.kid:nth-child(5){clip-path:inset(0 59.297% 0 30.517%)}
+.kid:nth-child(6){clip-path:inset(0 49.209% 0 40.353%)}
+.kid:nth-child(7){clip-path:inset(0 42.777% 0 50.441%)}
+.kid:nth-child(8){clip-path:inset(0 30.671% 0 56.873%)}
+.kid:nth-child(9){clip-path:inset(0 17.431% 0 68.979%)}
+.kid:nth-child(10){clip-path:inset(0 10.621% 0 82.219%)}
+.kid:nth-child(11){clip-path:inset(0 5.829% 0 89.029%)}
+.kid:nth-child(12){clip-path:inset(0 0.000% 0 93.821%)}
 @media (prefers-reduced-motion: reduce){
   .kid{transition:none}
   .kid:hover{transform:none}

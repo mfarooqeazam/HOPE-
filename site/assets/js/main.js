@@ -114,42 +114,90 @@
   }
 
 
-  /* ---- scroll reveals --------------------------------------------------- */
-  if (!reduced && "IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        var host = /** @type {HTMLElement} */ (entry.target);
-        var isGroup = host.hasAttribute("data-reveal-group");
-        var kids = isGroup
-          ? /** @type {HTMLElement[]} */ (Array.prototype.slice.call(host.children, 0, 5))
-          : [host];
+  /* ---- scroll reveals ----------------------------------------------------
+     Sections replay. Each one fades and rises every time it comes back into
+     view, not just the first time, because a transition you can only ever
+     see once is a transition most visitors never see at all.
 
-        kids.forEach(function (el, i) {
-          setTimeout(function () { el.classList.add("in"); }, i * 70);
-        });
-        if (isGroup) {
-          Array.prototype.slice.call(host.children, 5).forEach(function (el) {
-            /** @type {HTMLElement} */ (el).classList.add("in");
+     Replaying is the reason the old 2.5s failsafe had to go: it added .in to
+     every section on the page two and a half seconds after load, so by the
+     time anyone scrolled there was nothing left to animate. The failsafe now
+     only rescues what is actually on screen; anything below the fold is the
+     observer's job, and the observer is feature-detected.
+
+     Elements outside a section still reveal once and stay revealed. */
+  if (!reduced && "IntersectionObserver" in window) {
+
+    /** @param {Element} host @param {boolean} on */
+    function setGroup(host, on) {
+      var isGroup = host.hasAttribute("data-reveal-group");
+      var items = isGroup
+        ? Array.prototype.slice.call(host.children)
+        : [host];
+      items.forEach(function (el, i) {
+        var node = /** @type {HTMLElement} */ (el);
+        if (!on) { node.classList.remove("in"); return; }
+        if (i < 5) setTimeout(function () { node.classList.add("in"); }, i * 70);
+        else node.classList.add("in");
+      });
+    }
+
+    /* Sections: toggled, so they play again on every pass. The bottom margin
+       delays the entrance slightly; the generous top margin means a section
+       only resets once it is well clear of the viewport, never while any of
+       it is still readable. */
+    var secIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var sec = /** @type {HTMLElement} */ (entry.target);
+        if (entry.isIntersecting) {
+          sec.classList.add("in");
+          all("[data-reveal],[data-reveal-group]", sec).forEach(function (el) {
+            setGroup(el, true);
+          });
+        } else {
+          sec.classList.remove("in");
+          all("[data-reveal],[data-reveal-group]", sec).forEach(function (el) {
+            setGroup(el, false);
           });
         }
-        io.unobserve(host);
+      });
+    }, { rootMargin: "10% 0px -10% 0px" });
+
+    all("[data-sec]").forEach(function (el) {
+      all("[data-reveal-group]", el).forEach(function (g) {
+        Array.prototype.forEach.call(g.children, function (c) {
+          /** @type {HTMLElement} */ (c).setAttribute("data-reveal", "");
+        });
+      });
+      secIO.observe(el);
+    });
+
+    /* Anything not inside a replaying section reveals once and stays. */
+    var onceIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        setGroup(entry.target, true);
+        onceIO.unobserve(entry.target);
       });
     }, { rootMargin: "0px 0px -12% 0px" });
 
-    all("[data-reveal],[data-reveal-group],[data-sec]").forEach(function (el) {
+    all("[data-reveal],[data-reveal-group]").forEach(function (el) {
+      if (el.closest("[data-sec]")) return;
       if (el.hasAttribute("data-reveal-group")) {
         Array.prototype.forEach.call(el.children, function (c) {
           /** @type {HTMLElement} */ (c).setAttribute("data-reveal", "");
         });
       }
-      io.observe(el);
+      onceIO.observe(el);
     });
 
-    /* Failsafe — content must never stay invisible because motion failed */
+    /* Failsafe, scoped to what is on screen now. Content must never sit
+       invisible because motion failed, but rescuing the whole page here is
+       what broke the replay in the first place. */
     setTimeout(function () {
       all("[data-reveal]:not(.in),[data-sec]:not(.in)").forEach(function (el) {
-        el.classList.add("in");
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add("in");
       });
     }, 2500);
   } else {
