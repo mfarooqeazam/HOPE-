@@ -699,6 +699,18 @@ legend{
 .reach__land path.t2{fill:var(--t2); stroke:#F1F8F2; stroke-width:.8; stroke-dasharray:2.4 1.6}
 .reach__land path.t3{fill:var(--t3); stroke:#FFFAEC; stroke-width:.8; stroke-dasharray:.5 1.4; stroke-linecap:round}
 
+/* Dots stand in for countries too small to draw at this scale — Singapore,
+   Malta, Bahrain, the Caribbean territories. Without them a highlighted
+   country would simply be invisible. */
+.reach__land circle.dot{stroke:#0B1E22; stroke-width:.6}
+.reach__land circle.dot.t1{fill:var(--t1)}
+.reach__land circle.dot.t2{fill:var(--t2)}
+.reach__land circle.dot.t3{fill:var(--t3)}
+.reach__land circle.dot{transition:filter .22s ease}
+.reach__land.hide-1 circle.dot.t1,
+.reach__land.hide-2 circle.dot.t2,
+.reach__land.hide-3 circle.dot.t3{fill:var(--land); opacity:.55}
+
 /* Hover/focus lift. Transform only, and only while pointed at. */
 .reach__land path.t1,.reach__land path.t2,.reach__land path.t3{
   transition:filter .22s ease, opacity .22s ease;
@@ -736,3 +748,17 @@ legend{
   .js .reach__land{opacity:1; transition:none}
   .reach__land path.is-on{filter:none; opacity:.75}
 }
+
+/* Country lists. Closed by default when long — the browser skips layout for
+   closed <details> content, and 108 chips at once is unreadable anyway. */
+.reach__more summary{cursor:pointer; font-weight:700; color:#CBE0E4;
+  padding:.35rem 0; font-size:.92rem}
+.reach__more summary:hover,.reach__more summary:focus-visible{color:#fff}
+.reach__more[open] summary{margin-bottom:.35rem}
+
+/* Condensed founder block: a small portrait beside a short summary, rather
+   than a portrait-height column beside three lists. The depth lives on the
+   About page; the home page only needs to say who he is. */
+.two--tight{align-items:center; grid-template-columns:1fr}
+@media(min-width:760px){.two--tight{grid-template-columns:minmax(0,.42fr) minmax(0,1fr)}}
+.photo--small{aspect-ratio:1; max-width:270px; width:100%}
