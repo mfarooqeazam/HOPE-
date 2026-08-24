@@ -29,3 +29,7 @@ assets/ibao-certificate.pdf
 
 # Stray lighthouse stdout artefact
 -
+
+# Python
+__pycache__/
+*.pyc
