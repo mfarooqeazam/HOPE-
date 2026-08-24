@@ -99,6 +99,21 @@
     });
   }
 
+  /* ---- section entrance --------------------------------------------------
+     Marks every section below the fold so it fades and rises into view. The
+     attribute is set from JS, never in the HTML, so a page without scripting
+     hides nothing. Hero and trust band are skipped: both are already on
+     screen at load, and animating them would only delay the first paint. */
+  if (!reduced) {
+    all("main > section").forEach(function (sec) {
+      if (sec.classList.contains("hero") ||
+          sec.classList.contains("band") ||
+          sec.classList.contains("banner")) return;
+      sec.setAttribute("data-sec", "");
+    });
+  }
+
+
   /* ---- scroll reveals --------------------------------------------------- */
   if (!reduced && "IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
@@ -122,7 +137,7 @@
       });
     }, { rootMargin: "0px 0px -12% 0px" });
 
-    all("[data-reveal],[data-reveal-group]").forEach(function (el) {
+    all("[data-reveal],[data-reveal-group],[data-sec]").forEach(function (el) {
       if (el.hasAttribute("data-reveal-group")) {
         Array.prototype.forEach.call(el.children, function (c) {
           /** @type {HTMLElement} */ (c).setAttribute("data-reveal", "");
@@ -133,7 +148,9 @@
 
     /* Failsafe — content must never stay invisible because motion failed */
     setTimeout(function () {
-      all("[data-reveal]:not(.in)").forEach(function (el) { el.classList.add("in"); });
+      all("[data-reveal]:not(.in),[data-sec]:not(.in)").forEach(function (el) {
+        el.classList.add("in");
+      });
     }, 2500);
   } else {
     document.documentElement.classList.remove("js");

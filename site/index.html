@@ -13,10 +13,11 @@
 <meta property="og:description" content="Therapy, IBAO-approved professional training and free inclusive education in Islamabad.">
 <meta property="og:image" content="https://example.com/assets/img/hope-logo.png">
 
-<link rel="icon" href="assets/img/hope-logo.png">
+<link rel="icon" href="assets/img/hope-logo-sm.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400&display=swap">
+<link rel="preload" as="image" href="assets/img/children.webp" type="image/webp">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body id="top">
@@ -26,7 +27,7 @@
 <header class="head">
   <div class="wrap head__in">
     <a class="logo" href="index.html">
-      <img src="assets/img/hope-logo.png" alt="The Project Hope" width="71" height="54">
+      <img src="assets/img/hope-logo-sm.png" alt="The Project Hope" width="71" height="54" fetchpriority="high">
       <span class="logo__name">The Project Hope</span>
     </a>
     <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu">Menu</button>
@@ -48,6 +49,20 @@
 
   <section class="section hero">
     <div class="wrap">
+      <div class="kids" aria-hidden="true">
+        <span class="kid"></span>
+        <span class="kid"></span>
+        <span class="kid"></span>
+        <span class="kid"></span>
+        <span class="kid"></span>
+        <span class="kid"></span>
+        <span class="kid"></span>
+        <span class="kid"></span>
+        <span class="kid"></span>
+        <span class="kid"></span>
+        <span class="kid"></span>
+        <span class="kid"></span>
+      </div>
       <p class="eyebrow">The Project Hope &mdash; serving worldwide</p>
       <h1>Where healing meets growth</h1>
       <p class="lede hero__lede">A centre for children with special needs, led by an IBAO-certified International Behavior Analyst.</p>

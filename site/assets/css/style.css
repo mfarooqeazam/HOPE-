@@ -762,3 +762,69 @@ legend{
 .two--tight{align-items:center; grid-template-columns:1fr}
 @media(min-width:760px){.two--tight{grid-template-columns:minmax(0,.42fr) minmax(0,1fr)}}
 .photo--small{aspect-ratio:1; max-width:270px; width:100%}
+
+/* 16. CHILDREN BAND ========================================================
+   The silhouette artwork that opens the hero. Kept small and pale on
+   purpose — it introduces the page, it does not shout at it.
+
+   Twelve overlapping layers all paint the same image and each is clipped to
+   one child's vertical strip, so together they reassemble the artwork
+   exactly. clip-path also clips hit-testing, which is what gives a per-child
+   hover without slicing the file into twelve images or tracing it to paths.
+
+   aria-hidden: it is decoration. Everything it conveys is said in the
+   headline underneath it. */
+.kids{
+  position:relative; width:min(100%,460px); aspect-ratio:796 / 143;
+  margin:0 0 clamp(1.25rem,3vw,2rem);
+}
+.kid{
+  position:absolute; inset:0;
+  background:url("../img/children.png") center/100% 100% no-repeat;
+  transition:filter .28s ease, transform .28s cubic-bezier(.2,.7,.3,1);
+}
+@supports (background-image:image-set(url("../img/children.webp") type("image/webp"))){
+  .kid{background-image:image-set(url("../img/children.webp") type("image/webp"),
+                                  url("../img/children.png") type("image/png"))}
+}
+/* A lift of 2px and a soft sage halo. Small enough to read as response
+   rather than movement. */
+.kid:hover{
+  filter:drop-shadow(0 0 7px rgba(71,114,79,.55)) saturate(1.25) brightness(.94);
+  transform:translateY(-2px);
+}
+.kid:nth-child(1){clip-path:inset(0 91.080% 0 0.000%)}
+.kid:nth-child(2){clip-path:inset(0 84.925% 0 8.920%)}
+.kid:nth-child(3){clip-path:inset(0 77.136% 0 15.075%)}
+.kid:nth-child(4){clip-path:inset(0 69.598% 0 22.864%)}
+.kid:nth-child(5){clip-path:inset(0 59.799% 0 30.402%)}
+.kid:nth-child(6){clip-path:inset(0 49.749% 0 40.201%)}
+.kid:nth-child(7){clip-path:inset(0 43.342% 0 50.251%)}
+.kid:nth-child(8){clip-path:inset(0 31.281% 0 56.658%)}
+.kid:nth-child(9){clip-path:inset(0 18.090% 0 68.719%)}
+.kid:nth-child(10){clip-path:inset(0 11.307% 0 81.910%)}
+.kid:nth-child(11){clip-path:inset(0 6.533% 0 88.693%)}
+.kid:nth-child(12){clip-path:inset(0 0.126% 0 93.467%)}
+@media (prefers-reduced-motion: reduce){
+  .kid{transition:none}
+  .kid:hover{transform:none}
+}
+
+/* 17. SECTION ENTRANCE =====================================================
+   Every section below the fold arrives with a short fade and a 22px rise as
+   it is scrolled to. Transform and opacity only — both composited, so this
+   costs no layout, which matters on a page this long.
+
+   [data-sec] is set by the script, so with JS off nothing is ever hidden.
+   The hero and the credentials band are excluded: they are already on screen
+   when the page loads, and animating them would just delay first paint. */
+.js [data-sec]{
+  opacity:0; transform:translateY(22px);
+  transition:opacity .55s cubic-bezier(.2,.7,.3,1),
+             transform .55s cubic-bezier(.2,.7,.3,1);
+}
+.js [data-sec].in{opacity:1; transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  .js [data-sec]{opacity:1 !important; transform:none !important; transition:none}
+}
