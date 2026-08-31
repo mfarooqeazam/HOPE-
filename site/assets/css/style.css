@@ -88,7 +88,14 @@
   --e1:0 1px 2px rgba(23,79,89,.06),0 2px 8px rgba(23,79,89,.05);
   --e2:0 4px 12px rgba(23,79,89,.08),0 12px 28px rgba(23,79,89,.07);
 
-  --wrap:1140px;
+  /* The handoff specifies min(100% - 40px, 1140px), and its artboards are
+     1200px wide — so in the design a 1140px container fills the frame almost
+     edge to edge. On a real 1600-1920px display the same number leaves very
+     wide empty margins, which is not what the design looks like. Widened so
+     the proportions match the intent rather than the literal value.
+     Line length is unaffected: measure is capped separately on .lede and
+     body copy, so text never runs longer than it should. */
+  --wrap:1320px;
   --head-h:76px;
 }
 
@@ -254,10 +261,17 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
 .card--b .card__plate{background:var(--sage-wash); color:var(--sage-deep)}
 .card--c .card__plate{background:var(--coral-wash); color:var(--coral-deep)}
 .card p{font-size:.98rem; color:var(--muted)}
-.card .more{font-weight:700; color:var(--teal); text-decoration:none; margin-top:auto; padding-top:var(--s3); display:inline-flex; gap:.4rem; align-items:center}
-.card .more:hover{color:var(--gold-link-hover)}
-.card .more::after{content:"\2192"; transition:transform .2s}
-.card .more:hover::after{transform:translateX(3px)}
+/* Forward link. Was scoped to .card; the doors and the Why-it-matters index
+   use it too, so it is now a standalone component. Without this the links in
+   those sections fell back to the browser's default blue. */
+.more{font-weight:700; color:var(--teal); text-decoration:none; padding-top:var(--s3);
+  display:inline-flex; gap:.4rem; align-items:center}
+.card .more{margin-top:auto}
+.door--sage .more{color:var(--sage-deep)}
+.door--gold .more{color:var(--gold-deep)}
+.more:hover,.more:focus-visible{color:var(--gold-link-hover)}
+.more::after{content:"\2192"; transition:transform .2s}
+.more:hover::after,.more:focus-visible::after{transform:translateX(3px)}
 
 .mini{background:var(--white); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s5)}
 .mini h3{font-size:1.05rem; color:var(--teal); margin-bottom:.3rem}
@@ -909,3 +923,68 @@ legend{
 .pointer .eyebrow{color:var(--gold-on-teal)}
 .btn--gold{background:var(--gold); color:var(--teal-deep); border-color:var(--gold)}
 .btn--gold:hover,.btn--gold:focus-visible{background:var(--white); border-color:var(--white); color:var(--teal-deep)}
+
+/* 19. HOME — DOORS, TILES, PILLS, PORTRAIT =================================
+   The three-door row, the vision stat tiles and the volunteer pills, from
+   the handoff's Home screen. */
+.doors{display:grid; gap:var(--s5); grid-template-columns:1fr; margin-top:var(--s7)}
+@media(min-width:820px){.doors{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.door{
+  background:var(--white); border:1px solid var(--line); border-radius:16px;
+  overflow:hidden; display:flex; flex-direction:column;
+  transition:transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s ease, border-color .25s ease;
+}
+.door:hover{transform:translateY(-4px); box-shadow:var(--e2); border-color:var(--teal)}
+.door--sage:hover{border-color:var(--sage-deep)}
+.door--gold:hover{border-color:var(--gold-deep)}
+/* 16:10 frame. A marked placeholder until real photographs arrive — the
+   handoff's 31 images are Unsplash comps and the project rule is no stock
+   photography of children. */
+.door__img{
+  aspect-ratio:16/10; display:grid; place-items:center; text-align:center;
+  padding:var(--s4); background:var(--teal-wash); color:var(--teal);
+  border-bottom:2px dashed var(--teal); font-size:.86rem; font-weight:700;
+}
+.door--sage .door__img{background:var(--sage-wash); color:var(--sage-deep); border-bottom-color:var(--sage-deep)}
+.door--gold .door__img{background:#FAF6EE; color:var(--gold-deep); border-bottom-color:var(--gold-deep)}  /* 4.52:1 — #F6F0E2 gave only 4.29 */
+.door__body{padding:26px; display:flex; flex-direction:column; gap:var(--s3); flex:1}
+.door__who{
+  font-size:.78rem; font-weight:700; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--teal); margin:0;
+}
+.door--sage .door__who{color:var(--sage-deep)}
+.door--gold .door__who{color:var(--gold-deep)}
+.door h3{font-size:1.25rem}
+.door p{color:var(--muted); font-size:.98rem; flex:1}
+.door .more{margin-top:auto}
+
+/* Vision stat tiles — white, 3px top rule alternating teal and gold. */
+/* 2x2, as the handoff draws it — auto-fit gave a 3+1 row at this width. */
+.tiles{
+  display:grid; gap:var(--s4); list-style:none; margin:0; padding:0;
+  grid-template-columns:1fr;
+}
+@media(min-width:520px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tile{
+  background:var(--white); border:1px solid var(--line);
+  border-top:3px solid var(--teal); border-radius:var(--r-md); padding:var(--s5);
+}
+.tile--gold{border-top-color:var(--gold)}
+.tile b{display:block; font-size:clamp(1.7rem,4vw,2.3rem); line-height:1.05; color:var(--teal); font-weight:700}
+.tile--gold b{color:var(--gold-deep)}
+.tile span{display:block; margin-top:var(--s3); font-size:.92rem; color:var(--charcoal)}
+
+/* Volunteer route pills — labels, not links. */
+.pills{display:flex; flex-wrap:wrap; gap:.5rem; list-style:none; margin:0; padding:0}
+.pills li{
+  border:1px solid var(--line); border-radius:var(--r-pill);
+  padding:.4rem .9rem; font-size:.9rem; font-weight:700; color:var(--teal);
+  background:var(--white);
+}
+
+/* Founder portrait — the one genuinely real photograph on the site. */
+.portrait{display:block; max-width:320px; width:100%}
+.portrait img{
+  display:block; width:100%; height:auto; border-radius:18px;
+  border:1px solid var(--line);
+}
