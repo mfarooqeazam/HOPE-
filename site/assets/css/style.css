@@ -1173,3 +1173,23 @@ legend{
   font-weight:700; letter-spacing:.1em; text-transform:uppercase;
   color:var(--muted);
 }
+
+/* 24. TOUCH TARGETS ========================================================
+   WCAG 2.2 SC 2.5.8 asks for a 24x24 CSS-pixel minimum on pointer targets.
+   axe does not test this rule by default, so these three were passing the
+   automated audit while failing the criterion — found by measuring every
+   interactive element at 390px.
+
+   Inline links inside running prose are exempt under the criterion, so body
+   copy is deliberately left alone. */
+
+/* Consent and choice checkboxes were 20x20. */
+.consent input[type="checkbox"],
+.choice input[type="checkbox"]{width:24px; height:24px}
+
+/* Footer bar links sat at 16px tall. Padding lifts the hit area without
+   moving anything visually. */
+.foot__bar a{display:inline-block; padding-block:4px}
+
+/* The scroll cue was 22px tall. */
+.cue{min-height:24px; align-items:center}
