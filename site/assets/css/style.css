@@ -667,10 +667,15 @@ legend{
    ========================================================================== */
 .reach{background:var(--cream)}
 
+/* Full-bleed, per the handoff. Done by placing the frame outside .wrap in
+   the markup rather than with 100vw and a negative margin: on Windows the
+   scrollbar makes 100vw wider than the document and you get a horizontal
+   scroll on every page. */
 .reach__frame{
-  position:relative; width:100%; margin-top:var(--s7);
-  background:var(--cream); border:1px solid var(--line);
-  border-radius:var(--r-lg); overflow:hidden;
+  position:relative; width:100%; margin-block:var(--s7);
+  background:var(--cream);
+  border-block:1px solid var(--line);
+  overflow:hidden;
 }
 .reach__svg{display:block; width:100%; height:auto; aspect-ratio:1000 / 406}
 
@@ -859,3 +864,48 @@ legend{
 @media (prefers-reduced-motion: reduce){
   .js [data-sec]{opacity:1 !important; transform:none !important; transition:none}
 }
+
+/* 18. WHY IT MATTERS ========================================================
+   The two-card index at the top of the page, and the deep banner it sits
+   under. Both are specific to this page; nothing else uses them. */
+.banner--deep{background:var(--teal); border-bottom:0}
+.banner--deep h1{color:var(--white)}
+.banner--deep .lede{color:#CBE0E4}
+.banner--deep .crumbs{color:var(--stone-muted)}
+.banner--deep .crumbs a{color:var(--gold-on-teal)}
+
+.grid--two{grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+
+.idx{
+  background:var(--white); border:1px solid var(--line);
+  border-top:3px solid var(--teal); border-radius:var(--r-md);
+  padding:clamp(1.5rem,3vw,2rem);
+}
+.idx--gold{border-top-color:var(--gold)}
+.idx__n{
+  font-size:.8125rem; font-weight:700; letter-spacing:.16em;
+  color:var(--sage-deep); margin:0 0 var(--s3);
+}
+.idx--gold .idx__n{color:var(--gold-deep)}
+.idx p{color:var(--muted); margin-top:var(--s3)}
+.idx .more{margin-top:var(--s4)}
+
+/* Volunteer terms — a definition list read as label/value rows. */
+.terms{display:grid; gap:0; margin:0}
+.terms > div{
+  display:grid; gap:var(--s3); padding:var(--s4) 0;
+  border-bottom:1px solid var(--line); grid-template-columns:1fr;
+}
+@media(min-width:640px){.terms > div{grid-template-columns:minmax(0,.4fr) minmax(0,1fr); align-items:baseline}}
+.terms dt{font-weight:700; color:var(--teal); margin:0}
+.terms dd{margin:0; color:var(--charcoal)}
+.lbl{font-weight:700; margin:0 0 var(--s3)}
+
+/* Pointer band — a teal strip with a gold hairline that sends the reader to
+   the argument rather than restating it. Used on School and Therapy. */
+.pointer{background:var(--teal); border-block:1px solid var(--gold)}
+.pointer h2{color:var(--white)}
+.pointer .lede{color:#CBE0E4}
+.pointer .eyebrow{color:var(--gold-on-teal)}
+.btn--gold{background:var(--gold); color:var(--teal-deep); border-color:var(--gold)}
+.btn--gold:hover,.btn--gold:focus-visible{background:var(--white); border-color:var(--white); color:var(--teal-deep)}

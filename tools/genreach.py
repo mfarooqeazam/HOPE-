@@ -150,7 +150,9 @@ def build(countries):
       <h2 data-reveal>In person in Pakistan. Online almost anywhere.</h2>
       <p class="lede mt1" data-reveal>Therapy, behavioural and educational support, IEPs and BMPs, IBA and IBT training, supervision and professional development are all delivered online. The countries picked out below are where that has already happened, or where an IBAO credential is already recognised.</p>
 
-      <div class="reach__frame" data-map-frame>
+    </div>
+
+    <div class="reach__frame" data-map-frame>
         <svg class="reach__svg" data-map-svg viewBox="0 0 1000 406" xmlns="http://www.w3.org/2000/svg"
              role="group" aria-label="%s">
           <g data-land>
@@ -171,8 +173,9 @@ def build(countries):
             <div class="reach__panel-body" data-panel-body></div>
           </div>
         </div>
-      </div>
+    </div>
 
+    <div class="wrap">
       <div class="reach__filters">
 %s
         <span class="reach__hint">Hover or tab to a country &middot; Enter to pin &middot; Esc to clear</span>

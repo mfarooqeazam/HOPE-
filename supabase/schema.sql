@@ -59,7 +59,7 @@ create table if not exists public.registrations (
   id                uuid primary key default gen_random_uuid(),
   created_at        timestamptz not null default now(),
 
-  kind              text not null check (kind in ('family', 'training')),
+  kind              text not null check (kind in ('family', 'training', 'volunteer')),
 
   -- Contact (both kinds)
   full_name         text not null,
@@ -77,6 +77,10 @@ create table if not exists public.registrations (
   -- Training track only
   programme         text check (programme is null or programme in ('IBA','IBT','supervision','ceu')),
   job_role          text,               -- NOT `current_role`: that is a reserved SQL word
+
+  -- Volunteer track only
+  volunteer_as      text check (volunteer_as is null or volunteer_as in
+                    ('individual','student_professional','company','remote')),
   prior_experience  text,
 
   -- Shared
