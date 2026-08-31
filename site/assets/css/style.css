@@ -182,7 +182,7 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
 .logo{text-decoration:none; margin-right:auto; display:flex; align-items:center; gap:.8rem; color:var(--teal)}
 .logo img{height:54px; width:auto; flex:none}
 .logo__name{font-weight:700; font-size:1.28rem; color:var(--teal); white-space:nowrap}
-@media(max-width:1000px){ .logo__name{display:none} }
+@media(max-width:1180px){ .logo__name{display:none} }
 
 .nav{display:flex; gap:.1rem; align-items:center}
 .nav a{
@@ -206,7 +206,10 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
   color:var(--teal); font-family:var(--font); font-weight:700; font-size:1rem; cursor:pointer;
 }
 @media(min-width:1001px){ .nav .btn{display:none} }
-@media(max-width:1000px){
+/* The drawer used to take over at 1000px. With nine nav items the inline row
+   wraps to two lines between about 1000 and 1180px, which looks like a bug,
+   so the drawer now takes over earlier. */
+@media(max-width:1180px){
   .nav-toggle{display:inline-flex}
   .btn--head{display:none}
   .nav{
@@ -1322,3 +1325,12 @@ legend{
 }
 .result__item h3{font-size:1.08rem; color:var(--teal)}
 .result__item p{margin-top:var(--s3); color:var(--charcoal)}
+
+/* Map embed. A fixed ratio so the third-party frame cannot shift the page as
+   it loads, and lazy so it is not fetched until scrolled to. */
+.mapwrap{
+  position:relative; aspect-ratio:16/9; overflow:hidden;
+  border:1px solid var(--line); border-radius:18px; background:var(--sunk);
+}
+@media(max-width:640px){.mapwrap{aspect-ratio:4/3}}
+.mapwrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
