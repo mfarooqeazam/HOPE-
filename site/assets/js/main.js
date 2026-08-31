@@ -401,6 +401,52 @@
 
   all("form.enquiry").forEach(function (f) { initForm(/** @type {HTMLFormElement} */ (f)); });
 
+  /* ---- hero growth motif -------------------------------------------------
+     Hovering or focusing one strand dims the others and names what it means.
+     Enhancement only: with scripting off the illustration is still complete
+     and still labelled, you simply cannot isolate a strand. */
+  (function growth() {
+    const figEl = /** @type {HTMLElement|null} */ (document.querySelector(".growth"));
+    if (!figEl) return;
+    const noteEl = figEl.querySelector("[data-growth-note]");
+    if (!noteEl) return;
+    /* Re-bound so the null narrowing carries into the handlers below. */
+    const fig = figEl, note = noteEl;
+    const REST = note.textContent || "";
+
+    /** @type {Object<string,string>} */
+    var TEXT = {
+      therapy: "Therapy \u2014 ABA, speech and language, occupational therapy and physiotherapy, planned together rather than in parallel.",
+      education: "Education \u2014 an inclusive classroom and individualised education plans, so a skill learned in session is practised the same week.",
+      family: "Family \u2014 caregivers taught the strategies, not just told the outcome. What happens between sessions is what makes a skill stick.",
+      training: "Training \u2014 IBA and IBT pathways, supervision and CEUs, so the standard of care here does not depend on who can afford to travel."
+    };
+
+    var parts = all("[data-arc]", fig);
+
+    /** @param {string|null} key */
+    function set(key) {
+      fig.classList.toggle("is-on", !!key);
+      parts.forEach(function (el) {
+        el.classList.toggle("on", !!key && el.getAttribute("data-arc") === key);
+      });
+      note.textContent = key && TEXT[key] ? TEXT[key] : REST;
+    }
+
+    parts.forEach(function (el) {
+      var key = el.getAttribute("data-arc");
+      if (!key) return;
+      el.addEventListener("mouseenter", function () { set(key); });
+      el.addEventListener("focus", function () { set(key); });
+      el.addEventListener("mouseleave", function () { set(null); });
+      el.addEventListener("blur", function () { set(null); });
+      if (el.tagName.toLowerCase() === "button") {
+        el.addEventListener("click", function () { set(key); });
+      }
+    });
+    fig.addEventListener("mouseleave", function () { set(null); });
+  })();
+
   /* ---- first steps guide -------------------------------------------------
      Maps what a parent describes onto the services this centre actually
      offers. It is deliberately NOT a screener: nothing is scored, no risk

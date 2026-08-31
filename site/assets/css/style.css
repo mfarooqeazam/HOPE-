@@ -193,11 +193,16 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
   .head__in{
     display:grid; grid-template-columns:auto 1fr auto;
     grid-template-areas:"logo . cta" "nav nav nav";
-    row-gap:.15rem; padding-block:.6rem .1rem;
+    row-gap:.55rem; padding-block:.85rem 0;
   }
   .head__in > .logo{grid-area:logo}
   .head__in > .btn--head{grid-area:cta; justify-self:end}
-  .head__in > .nav{grid-area:nav}
+  /* A hairline between the two rows so the nav reads as its own band rather
+     than as text floating under the logo. */
+  .head__in > .nav{
+    grid-area:nav; border-top:1px solid var(--line);
+    padding-top:.15rem; margin-top:.1rem;
+  }
 }
 .logo{text-decoration:none; margin-right:auto; display:flex; align-items:center; gap:.8rem; color:var(--teal)}
 .logo img{height:54px; width:auto; flex:none}
@@ -206,9 +211,17 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
 
 .nav{display:flex; gap:.1rem; align-items:center}
 @media(min-width:1181px){
-  .nav{gap:0; justify-content:space-between; width:100%; padding-bottom:.35rem}
-  .nav a{font-size:.94rem; padding:.5rem .45rem; white-space:nowrap}
-  .nav a::after{left:.45rem; right:.45rem}
+  .nav{gap:0; justify-content:space-between; width:100%; padding-bottom:.15rem}
+  .nav a{
+    font-size:.92rem; padding:.62rem .45rem .55rem; white-space:nowrap;
+    letter-spacing:.005em;
+  }
+  .nav a::after{left:.45rem; right:.45rem; bottom:.18rem}
+  /* The active item gets the gold rule, matching the credential accent used
+     everywhere else for "this is the verified one". */
+  /* --gold is 2.12:1 on the header ground, below the 3:1 a state indicator
+     needs. --gold-deep is 4.59:1 and still reads as gold. */
+  .nav a[aria-current]::after{background:var(--gold-deep)}
 }
 .nav a{
   position:relative; font-size:.98rem; color:var(--charcoal);
@@ -1406,3 +1419,69 @@ legend{
 .card--b .svc__body h4{color:var(--sage-deep)}
 .card--c .svc__body h4{color:var(--gold-deep)}
 @media (prefers-reduced-motion: reduce){ .svc summary::after{transition:none} }
+
+/* 31. HERO GROWTH MOTIF ====================================================
+   Replaces the silhouette band. Four strands — therapy, education, family,
+   training — rise from one root and meet in a single canopy, which is the
+   argument the whole site makes, drawn rather than stated.
+
+   Built in SVG rather than sourced: it is on-palette, weighs nothing, stays
+   sharp at any size, and needs no photograph of a child. */
+.growth{margin:0; width:100%; max-width:520px; justify-self:center}
+.growth__svg{display:block; width:100%; height:auto; overflow:visible}
+
+.growth__ground{stroke:var(--line); stroke-width:2; fill:none; stroke-linecap:round}
+.growth__stem{stroke:var(--sage-deep); stroke-width:3; fill:none; stroke-linecap:round}
+
+.growth__arc{
+  fill:none; stroke-width:2.5; stroke-linecap:round;
+  opacity:.55; transition:opacity .3s ease, stroke-width .3s ease;
+}
+.growth__arc[data-arc="therapy"]{stroke:var(--teal)}
+.growth__arc[data-arc="education"]{stroke:var(--sage-deep)}
+.growth__arc[data-arc="family"]{stroke:var(--coral-deep)}
+.growth__arc[data-arc="training"]{stroke:var(--gold-deep)}
+
+.growth__leaf{
+  opacity:.5; transition:opacity .3s ease, transform .3s cubic-bezier(.2,.7,.3,1);
+  transform-box:fill-box; transform-origin:center;
+}
+.growth__leaf[data-arc="therapy"]{fill:var(--teal)}
+.growth__leaf[data-arc="education"]{fill:var(--sage)}
+.growth__leaf[data-arc="family"]{fill:var(--coral)}
+.growth__leaf[data-arc="training"]{fill:var(--gold)}
+.growth__core{fill:var(--cream); stroke:var(--teal); stroke-width:2.5; opacity:.9}
+
+/* Focus or hover a strand and the rest step back. Opacity only — nothing
+   moves more than a hair, and nothing loops. */
+.growth.is-on .growth__arc,
+.growth.is-on .growth__leaf{opacity:.14}
+.growth.is-on .growth__arc.on{opacity:1; stroke-width:3.5}
+.growth.is-on .growth__leaf.on{opacity:.85; transform:scale(1.06)}
+
+.growth__cap{margin-top:var(--s5)}
+.growth__key{
+  display:flex; flex-wrap:wrap; gap:.35rem var(--s4);
+  list-style:none; margin:0; padding:0; justify-content:center;
+}
+.growth__key button{
+  display:inline-flex; align-items:center; gap:.45rem; min-height:32px;
+  background:none; border:0; padding:.25rem .1rem; cursor:pointer;
+  font-family:var(--font); font-size:.9rem; color:var(--muted);
+  border-bottom:1.5px solid transparent;
+}
+.growth__key button:hover,.growth__key button:focus-visible{color:var(--teal); border-bottom-color:var(--teal)}
+.growth__sw{width:11px; height:11px; border-radius:50%; flex:none}
+.growth__sw--therapy{background:var(--teal)}
+.growth__sw--education{background:var(--sage-mid)}
+.growth__sw--family{background:var(--coral)}
+.growth__sw--training{background:var(--gold)}
+.growth__note{
+  margin-top:var(--s3); text-align:center; font-size:.86rem; color:var(--muted);
+  min-height:2.6em;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .growth__arc,.growth__leaf{transition:none}
+  .growth.is-on .growth__leaf.on{transform:none}
+}
