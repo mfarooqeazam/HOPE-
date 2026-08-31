@@ -440,7 +440,16 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
 .cites li{margin-top:var(--s3)}
 .cites a{color:var(--teal-deep)}
 
-.gal{display:grid; gap:var(--s4); grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); margin-top:var(--s7)}
+/* The handoff's 5-cell asymmetric gallery: a tall feature cell on the left
+   spanning both rows, then a 2x2 of smaller frames. Collapses to two
+   columns, then one, on narrow screens. */
+.gal{display:grid; gap:var(--s4); margin-top:var(--s7); grid-template-columns:1fr}
+@media(min-width:600px){.gal{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:900px){
+  .gal{grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);
+       grid-auto-rows:190px}
+  .gal > *:first-child{grid-row:span 2}
+}
 .gal div{aspect-ratio:1; border-radius:var(--r-md); border:2px dashed var(--sage-deep); background:var(--sage-wash); display:grid; place-items:center; text-align:center; padding:var(--s4); color:var(--sage-deep); font-weight:700; font-size:.92rem}
 
 .contact{display:grid; gap:clamp(2rem,5vw,3.5rem); grid-template-columns:1fr}
@@ -488,7 +497,12 @@ form.enquiry .btn{width:100%; margin-top:var(--s3)}
 
 /* 10. UTILITIES ============================================================ */
 .mt1{margin-top:1rem} .mt2{margin-top:2rem} .mt3{margin-top:3rem}
+/* Centring a block is not enough on its own: p has max-width:65ch, so a
+   centred paragraph is a narrow box pinned to the left edge and anything
+   inside it — a button, especially — centres within that box rather than on
+   the page. Auto-margin every direct child so .center actually centres. */
 .center{text-align:center}
+.center > *{margin-inline:auto}
 .stack > * + *{margin-top:var(--s4)}
 
 /* Reveal: visible at rest. JS opts elements into starting hidden, so if the
@@ -987,4 +1001,111 @@ legend{
 .portrait img{
   display:block; width:100%; height:auto; border-radius:18px;
   border:1px solid var(--line);
+}
+
+/* 20. PHOTO FRAMES =========================================================
+   Images sit in a fixed-ratio frame so the page never reflows as they load;
+   every one carries width/height or an aspect-ratio, and CLS stays at 0.
+
+   .frame--comp marks a placeholder. These are the handoff's Unsplash comps,
+   downloaded so the site can be seen as designed — they are NOT photographs
+   of this centre, and the project rule is no stock photography of children.
+   The badge is deliberately visible: remove the class, not the marker, when
+   real photography replaces them. See assets/img/comps/CREDITS.md. */
+.frame{position:relative; overflow:hidden; border-radius:18px; background:var(--sunk)}
+.frame[data-ratio="16/10"]{aspect-ratio:16/10}
+.frame img,.door__img img,.photo img,.gal img{
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+.frame--comp{position:relative}
+.frame--comp::after{
+  content:"placeholder"; position:absolute; left:8px; bottom:8px;
+  font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  background:rgba(15,59,67,.88); color:#fff; padding:3px 7px; border-radius:4px;
+  pointer-events:none;
+}
+/* The frames these replace were dashed placeholder boxes; with a photograph
+   in them the dashes and the centred label are no longer wanted. */
+/* flex:none matters: .door is a column flex container, and without it the
+   image frame can be stretched past its aspect ratio when the grid equalises
+   card heights — which made one door's photo twice the height of its
+   neighbours'. */
+.door__img.frame--comp,.photo.frame--comp{
+  border:0; border-bottom:0; padding:0; display:block; background:var(--sunk);
+  overflow:hidden; flex:none;
+}
+.door__img.frame--comp{aspect-ratio:16/10}
+.photo.frame--comp{aspect-ratio:4/3; border-radius:18px; overflow:hidden}
+.gal .frame--comp{aspect-ratio:auto; height:100%; min-height:190px; border:0; padding:0; border-radius:var(--r-md); overflow:hidden}
+
+/* 21. MOTION, SECOND PASS ==================================================
+   Richer interaction without leaving the budget: everything here is user- or
+   scroll-initiated, moves 14px or less, and animates only transform, opacity,
+   background-size or fill. Nothing loops, pins, parallaxes or autoplays.
+
+   GSAP is in package.json but is deliberately not shipped. It is 72KB, and
+   the things it is good at — timeline scrubbing, pinning, parallax — are the
+   things this audience's motion budget rules out. Every effect below is a
+   CSS transition the browser composites on its own thread. */
+
+/* Photographs settle rather than snap: a 1.5% scale is well under 14px at
+   any frame size on this page, and it only ever runs on hover. */
+.frame--comp img,.door__img img,.gal .frame--comp img{
+  transition:transform .5s cubic-bezier(.2,.7,.3,1);
+}
+.door:hover .door__img img,
+.gal .frame--comp:hover img,
+.photo.frame--comp:hover img{transform:scale(1.015)}
+
+/* Eyebrow rule draws in with the section it labels. */
+.eyebrow{position:relative; padding-bottom:.45rem}
+.eyebrow::after{
+  content:""; position:absolute; left:0; bottom:0; height:2px; width:34px;
+  background:currentColor; opacity:.45;
+  transform:scaleX(0); transform-origin:left center;
+  transition:transform .5s cubic-bezier(.2,.7,.3,1) .1s;
+}
+.js [data-sec].in .eyebrow::after,
+.js [data-reveal].in .eyebrow::after,
+.eyebrow:first-child::after{transform:scaleX(1)}
+
+/* Stat tiles and doors lift on hover, like the cards already do. */
+.tile{transition:transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s ease}
+.tile:hover{transform:translateY(-3px); box-shadow:var(--e2)}
+.pills li{transition:transform .2s cubic-bezier(.2,.7,.3,1), border-color .2s ease}
+.pills li:hover{transform:translateY(-2px); border-color:var(--teal)}
+
+/* Credential card: the seal turns up a fraction after the card. */
+.cred{transition:transform .3s cubic-bezier(.2,.7,.3,1), box-shadow .3s ease}
+.cred:hover{transform:translateY(-2px); box-shadow:var(--e2)}
+
+/* Trust strip items arrive in sequence rather than all at once. Delay is
+   capped at four steps so the strip is always complete inside ~260ms. */
+.js .band .trust li{opacity:0; transform:translateY(8px);
+  transition:opacity .45s ease-out, transform .45s cubic-bezier(.2,.7,.3,1)}
+.js .band.in .trust li{opacity:1; transform:none}
+.js .band .trust li:nth-child(2){transition-delay:.06s}
+.js .band .trust li:nth-child(3){transition-delay:.12s}
+.js .band .trust li:nth-child(4){transition-delay:.18s}
+
+/* The header gains a hairline shadow once the page has moved. */
+.head{transition:box-shadow .25s ease}
+.head.is-stuck{box-shadow:0 1px 0 var(--line),0 6px 18px rgba(23,79,89,.06)}
+
+/* Ghost buttons fill from the left like the primary ones do. */
+.btn--ghost{
+  background-image:linear-gradient(var(--teal-wash),var(--teal-wash));
+  background-repeat:no-repeat; background-size:0% 100%;
+  transition:background-size .3s cubic-bezier(.2,.7,.3,1),
+             transform .2s cubic-bezier(.2,.7,.3,1), border-color .2s ease;
+}
+.btn--ghost:hover,.btn--ghost:focus-visible{background-size:100% 100%; transform:translateY(-2px)}
+
+@media (prefers-reduced-motion: reduce){
+  .frame--comp img,.door__img img,.gal .frame--comp img,
+  .tile,.pills li,.cred,.head,.btn--ghost{transition:none}
+  .door:hover .door__img img,.gal .frame--comp:hover img,
+  .photo.frame--comp:hover img{transform:none}
+  .eyebrow::after{transform:scaleX(1); transition:none}
+  .js .band .trust li{opacity:1; transform:none; transition:none}
 }

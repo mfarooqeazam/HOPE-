@@ -208,6 +208,7 @@
      Both are scrubbed, i.e. they map directly to scroll position rather than
      moving on their own. One shared rAF-throttled listener does both, so
      there is only ever one scroll handler on the page. */
+  var head = document.querySelector(".head");
   var bar = document.getElementById("progress");
   var steps = document.querySelector(".steps");
   /** @type {HTMLElement|null} */
@@ -226,6 +227,7 @@
       if (ticking) return;
       ticking = true;
       window.requestAnimationFrame(function () {
+        if (head) head.classList.toggle("is-stuck", window.scrollY > 8);
         if (bar) {
           var h = document.documentElement.scrollHeight - window.innerHeight;
           bar.style.transform = "scaleX(" + (h > 0 ? window.scrollY / h : 0) + ")";
