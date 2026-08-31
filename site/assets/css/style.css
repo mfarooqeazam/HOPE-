@@ -1147,3 +1147,29 @@ legend{
 .founder-brief{display:grid; gap:var(--s5)}
 .founder-brief .prose{max-width:76ch}
 .founder-brief .cred{max-width:640px}
+
+/* 23. FOUNDER STORY ========================================================
+   Editorial column. Narrower measure than the rest of the site because this
+   is the longest continuous read on it — roughly 62 characters a line, which
+   is where sustained prose stays comfortable. */
+/* Centred, not left-pinned: at 1320px a left-aligned 68ch column leaves the
+   whole right half of the section empty. Long-form prose is the one place a
+   centred measure is the editorial convention rather than a compromise. */
+.story{max-width:68ch; margin-inline:auto}
+.story p{max-width:none}
+
+/* Pull quote. Gold rule on the left, generous space around it; the quote is
+   the one place the page slows down. */
+.pull{
+  margin:clamp(2.25rem,5vw,3.25rem) 0; padding:0 0 0 clamp(1.25rem,3vw,2rem);
+  border-left:3px solid var(--gold);
+}
+.pull p{
+  margin:0; font-size:clamp(1.25rem,1.05rem + .9vw,1.7rem); line-height:1.4;
+  color:var(--teal); font-style:italic; max-width:34ch;
+}
+.pull cite{
+  display:block; margin-top:var(--s4); font-style:normal; font-size:.86rem;
+  font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted);
+}
