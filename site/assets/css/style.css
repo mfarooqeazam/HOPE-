@@ -695,14 +695,12 @@ legend{
    ========================================================================== */
 .reach{background:var(--cream)}
 
-/* Full-bleed, per the handoff. Done by placing the frame outside .wrap in
-   the markup rather than with 100vw and a negative margin: on Windows the
-   scrollbar makes 100vw wider than the document and you get a horizontal
-   scroll on every page. */
+/* Contained, as the design draws it: a bordered, rounded frame sitting
+   inside the page container rather than bleeding to the window edges. */
 .reach__frame{
-  position:relative; width:100%; margin-block:var(--s7);
+  position:relative; width:100%; margin-block:var(--s6);
   background:var(--cream);
-  border-block:1px solid var(--line);
+  border:1px solid var(--line); border-radius:var(--r-lg);
   overflow:hidden;
 }
 .reach__svg{display:block; width:100%; height:auto; aspect-ratio:1000 / 406}
@@ -1193,3 +1191,45 @@ legend{
 
 /* The scroll cue was 22px tall. */
 .cue{min-height:24px; align-items:center}
+
+/* 25. REACH HEAD, FIGURES AND COVERAGE COLUMNS =============================
+   The layout around the map, from the design. The map component itself is
+   untouched — this is only what sits above and below it. */
+.reach__head{display:grid; gap:clamp(1.5rem,4vw,3rem); grid-template-columns:1fr}
+@media(min-width:900px){
+  .reach__head{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); align-items:start}
+}
+.reach__figures{
+  display:grid; gap:var(--s5); list-style:none; margin:0; padding:0;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+@media(max-width:520px){.reach__figures{grid-template-columns:1fr}}
+.reach__figures b{
+  display:block; font-size:clamp(2rem,1.4rem + 2.4vw,3rem); line-height:1;
+  color:var(--teal); font-weight:700;
+}
+.reach__figures span{
+  display:block; margin-top:var(--s3); font-size:.86rem; line-height:1.35;
+  color:var(--muted);
+}
+
+.reach__cols{
+  display:grid; gap:var(--s5) var(--s6); margin-top:var(--s6);
+  padding-top:var(--s5); border-top:1px solid var(--line);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,215px),1fr));
+}
+.reach__col h3{font-size:1rem; color:var(--teal)}
+.reach__sub{margin:.25rem 0 0; font-size:.82rem; color:var(--muted); line-height:1.4}
+.reach__names{list-style:none; margin:var(--s4) 0 0; padding:0;
+  display:flex; flex-direction:column; gap:.3rem; font-size:.92rem}
+.reach__names li{color:var(--charcoal)}
+/* Country names stay clickable — they pin the country on the map — but read
+   as text rather than as buttons, which is how the design prints them. */
+.reach__name{
+  background:none; border:0; padding:2px 0; margin:0; font:inherit;
+  color:var(--charcoal); cursor:pointer; text-align:left; min-height:24px;
+  border-bottom:1px solid transparent;
+}
+.reach__name:hover,.reach__name:focus-visible{color:var(--teal); border-bottom-color:var(--teal)}
+.reach__name[aria-current="true"]{color:var(--teal); font-weight:700; border-bottom-color:var(--teal)}
+.reach__plus{color:var(--muted); font-size:.82rem}

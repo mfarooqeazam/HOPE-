@@ -131,28 +131,72 @@ def build(countries):
         'aria-pressed="%s">%s</button>' % (fid, "true" if fid == "all" else "false", esc(lbl))
         for fid, lbl in FILTERS)
 
-    lists = []
-    for key, title in LAYERS:
-        names = sorted(c["n"] for c in countries if c[key])
-        items = "".join(
-            '<li><button class="reach__chip" type="button" data-go="%s">%s</button></li>'
-            % (esc(n), esc(n)) for n in names)
-        lists.append(
-            '      <details class="reach__more">\n'
-            '        <summary>%s — %d %s</summary>\n'
-            '        <ul class="reach__chips">%s</ul>\n'
-            '      </details>' % (esc(title), len(names),
-                                  "country" if len(names) == 1 else "countries", items))
+    # Four coverage columns, printed under the map exactly as the design has
+    # them. The names are read from the same parsed data as the geometry, so
+    # the list and the map can never disagree.
+    COLS = [
+        ("ip", "In person", "The centre, the school, on-site therapy"),
+        ("tr", "Online training", "IBA and IBT, online"),
+        ("th", "Therapy only", "Online therapy and IEPs"),
+    ]
+    tr_names = set(c["n"] for c in countries if c["tr"])
+    th_names = set(c["n"] for c in countries if c["th"])
+
+    cols = []
+    for key, title, sub in COLS:
+        # Pakistan is in person; it should not also appear in the online
+        # columns. Each country is named once, under the service it leads with.
+        names = sorted(c["n"] for c in countries
+                       if c[key] and not (key != "ip" and c["ip"]))
+        items = []
+        for n in names:
+            if key == "th" and n in tr_names:
+                continue                       # already named under training
+            extra = ""
+            if key == "tr" and n in th_names:
+                extra = ' <span class="reach__plus">+ therapy</span>'
+            items.append(
+                '<li><button class="reach__name" type="button" data-go="%s">%s</button>%s</li>'
+                % (esc(n), esc(n), extra))
+        cols.append(
+            '        <div class="reach__col">\n'
+            '          <h3>%s</h3>\n'
+            '          <p class="reach__sub">%s</p>\n'
+            '          <ul class="reach__names">%s</ul>\n'
+            '        </div>' % (esc(title), esc(sub), "".join(items)))
+
+    # IBAO is context rather than a delivery list, so it gets a count. Naming
+    # 97 countries here would bury the ten that actually matter.
+    ib_total = sum(1 for c in countries if c["ib"])
+    cols.append(
+        '        <div class="reach__col">\n'
+        '          <h3>IBAO global reach</h3>\n'
+        '          <p class="reach__sub">Context, not The Project Hope delivery</p>\n'
+        '          <ul class="reach__names"><li>%d countries mapped</li>'
+        '<li>119 reported by IBAO</li></ul>\n'
+        '          <p class="reach__sub mt1">Candidates and certificants &mdash; select '
+        '<strong>IBAO</strong> on the map to isolate the layer.</p>\n'
+        '        </div>' % ib_total)
+
+    lists = ['      <div class="reach__cols">\n' + "\n".join(cols) + '\n      </div>']
 
     return '''  <section class="section reach" id="reach">
     <div class="wrap">
-      <p class="eyebrow">Where the work reaches</p>
-      <h2 data-reveal>In person in Pakistan. Online almost anywhere.</h2>
-      <p class="lede mt1" data-reveal>Therapy, behavioural and educational support, IEPs and BMPs, IBA and IBT training, supervision and professional development are all delivered online. The countries picked out below are where that has already happened, or where an IBAO credential is already recognised.</p>
+      <div class="reach__head">
+        <div>
+          <p class="eyebrow">Our reach</p>
+          <h2 data-reveal>From Pakistan to the world.</h2>
+          <p class="lede mt1" data-reveal>In-person care in Pakistan. Online therapy, behavioural and educational support, and professional training across borders &mdash; the countries picked out below are where the work has already happened.</p>
+          <p class="mt2 fs-sm" data-reveal>IBAO has candidates and certificants in 119 countries. A portable credential is what makes cross-border training possible &mdash; it is not an IBAO office.</p>
+        </div>
+        <ul class="reach__figures" data-reveal-group>
+          <li><b>1</b><span>country in person</span></li>
+          <li><b>10</b><span>countries served online</span></li>
+          <li><b>119</b><span>countries where IBAO certification is recognised</span></li>
+        </ul>
+      </div>
 
-    </div>
-
-    <div class="reach__frame" data-map-frame>
+      <div class="reach__frame" data-map-frame>
         <svg class="reach__svg" data-map-svg viewBox="0 0 1000 406" xmlns="http://www.w3.org/2000/svg"
              role="group" aria-label="%s">
           <g data-land>
@@ -173,9 +217,8 @@ def build(countries):
             <div class="reach__panel-body" data-panel-body></div>
           </div>
         </div>
-    </div>
+      </div>
 
-    <div class="wrap">
       <div class="reach__filters">
 %s
         <span class="reach__hint">Hover or tab to a country &middot; Enter to pin &middot; Esc to clear</span>

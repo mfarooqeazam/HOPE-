@@ -461,7 +461,7 @@
     const rule = /** @type {HTMLElement|null} */ (panel.querySelector("[data-panel-rule]"));
     const nameEl = /** @type {HTMLElement|null} */ (panel.querySelector("[data-panel-name]"));
     const bodyEl = /** @type {HTMLElement|null} */ (panel.querySelector("[data-panel-body]"));
-    const chips = all(".reach__chip");
+    const chips = all(".reach__name");
     if (!nameEl || !bodyEl) return;
 
     /* Re-bound after the guards. Function declarations are hoisted, so the
