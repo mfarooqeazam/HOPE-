@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400&display=swap">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#DDD8CE;font-family:'Times New Roman',Tinos,'Liberation Serif',Times,serif}
+a{color:#174F59}
+a:hover{color:#A8873F}
+</style>
+</helmet>
+
+<div style="padding:40px 44px 80px;display:flex;flex-direction:column;gap:52px">
+
+  <div style="max-width:80ch;display:flex;flex-direction:column;gap:12px">
+    <p style="margin:0;font:700 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:#6B6459">HOPE — Home Of Potential and Education · nine pages</p>
+    <h1 style="margin:0;font-weight:700;font-size:38px;line-height:1.12;color:#1F2A2C">The site, in quiet luxury</h1>
+    <p style="margin:0;font:400 14px/1.6 system-ui,sans-serif;color:#4A4741;max-width:74ch">Every page opens on the <strong>#174F59</strong> hero with a gold eyebrow and reversed Times, then drops into light paper for the body — cards, photography, generous white space. The reach map is a rebuilt interactive component and lives on the home page only. Inner pages get a shorter version of the same hero so the rhythm holds without the home page's drama being repeated seven times.</p>
+  </div>
+
+  <div data-screen-label="Home" style="display:flex;flex-direction:column;gap:10px">
+    <p style="margin:0;font:700 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:#6B6459">01 · Home</p>
+    <div style="width:1200px;background:#FAF8F3;color:#252A29;font-size:19px;line-height:1.65;border:1px solid rgba(0,0,0,.1);border-radius:8px;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.09)">
+      <dc-import name="HopeHeaderV3" current="Home" hint-size="100%,77px"></dc-import>
+
+      <section style="background:#174F59">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto;display:grid;gap:52px;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:center;padding-block:84px">
+          <div>
+            <p style="font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C8A96B;margin:0 0 18px">Islamabad · serving worldwide</p>
+            <h1 style="font-weight:700;font-size:70px;line-height:1.04;margin:0;max-width:14ch;color:#fff;text-wrap:balance">Where healing meets growth</h1>
+            <p style="font-size:21px;color:#E9E6DE;line-height:1.55;max-width:44ch;margin:26px 0 0">A multidisciplinary centre for children with special needs — therapy, professional training, and an inclusive school. Therapy or a school place is funded outright for families who cannot meet the fee.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:36px">
+              <a href="#" style="display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:15px 30px;border-radius:999px;font-weight:700;font-size:17px;text-decoration:none;background:#fff;color:#174F59;background-image:linear-gradient(#C8A96B,#C8A96B);background-repeat:no-repeat;background-size:0% 100%;transition:background-size .32s cubic-bezier(.2,.7,.3,1),transform .2s" style-hover="background-size:100% 100%;transform:translateY(-2px)">Start with a conversation</a>
+              <a href="#" style="display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:15px 30px;border-radius:999px;font-weight:700;font-size:17px;text-decoration:none;border:2px solid rgba(255,255,255,.55);color:#fff;background-image:linear-gradient(rgba(255,255,255,.13),rgba(255,255,255,.13));background-repeat:no-repeat;background-size:0% 100%;transition:background-size .32s cubic-bezier(.2,.7,.3,1)" style-hover="background-size:100% 100%">Message on WhatsApp</a>
+            </div>
+            <p style="margin:28px 0 0;font-size:15.5px;color:#CFCABE;max-width:46ch">The first conversation costs nothing — including if the answer turns out to be that we are not the right service for your child.</p>
+          </div>
+          <div style="position:relative;width:100%;aspect-ratio:4/5;border-radius:18px;overflow:hidden"><image-slot id="h-hero" src="https://images.unsplash.com/photo-1770096679844-57ca92c2b64b?auto=format&fit=crop&w=1400&q=75" credit="Photo by AMONWAT DUMKRUT on Unsplash" credit-href="https://unsplash.com/photos/children-drawing-with-a-teacher-at-a-table-9Fi8p2qOPNo" placeholder="Hero — a professional and children mid-activity, wide, space at left for the headline"></image-slot></div>
+        </div>
+      </section>
+
+      <section style="background:#fff;border-bottom:1px solid #E9E6DE;padding-block:20px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto;display:flex;flex-wrap:wrap;gap:12px 40px;justify-content:space-between">
+          <span style="display:flex;align-items:center;gap:9px;font-weight:700;font-size:15.2px;color:#174F59;transition:transform .2s cubic-bezier(.2,.7,.3,1)" style-hover="transform:translateY(-2px)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;width:20px;height:20px;color:#8A6D2F"><path d="M12 2 4 6v6c0 5 3.4 8.9 8 10 4.6-1.1 8-5 8-10V6z"></path></svg>IBAO Approved Content Provider</span>
+          <span style="display:flex;align-items:center;gap:9px;font-weight:700;font-size:15.2px;color:#174F59;transition:transform .2s cubic-bezier(.2,.7,.3,1)" style-hover="transform:translateY(-2px)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;width:20px;height:20px;color:#8A6D2F"><circle cx="9" cy="8" r="3"></circle><path d="M2 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2M17 8a3 3 0 1 0 0-6"></path></svg>Certified mentor &amp; supervisor</span>
+          <span style="display:flex;align-items:center;gap:9px;font-weight:700;font-size:15.2px;color:#174F59;transition:transform .2s cubic-bezier(.2,.7,.3,1)" style-hover="transform:translateY(-2px)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;width:20px;height:20px;color:#8A6D2F"><path d="M4 19V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2Z"></path><path d="M8 8h6M8 12h6"></path></svg>CEU provider</span>
+          <span style="display:flex;align-items:center;gap:9px;font-weight:700;font-size:15.2px;color:#174F59;transition:transform .2s cubic-bezier(.2,.7,.3,1)" style-hover="transform:translateY(-2px)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;width:20px;height:20px;color:#8A6D2F"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>Funded places for families in need</span>
+        </div>
+      </section>
+
+      <section style="padding-block:88px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <div data-reveal style="max-width:52ch">
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">Three ways in</p>
+            <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Where would you like to start?</h2>
+          </div>
+          <div style="display:grid;gap:20px;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:44px">
+            <article data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 12px 28px rgba(31,95,107,.1);border-color:#174F59">
+              <div style="position:relative;width:100%;aspect-ratio:16/10"><image-slot id="h-d1" shape="rect" src="https://images.unsplash.com/photo-1541692641319-981cc79ee10a?auto=format&fit=crop&w=900&q=75" credit="Photo by La-Rel Easter on Unsplash" credit-href="https://unsplash.com/photos/person-piling-blocks-KuCGlBXjH_o" placeholder="Therapy — hands and materials at a shared task"></image-slot></div>
+              <div style="padding:26px;display:flex;flex-direction:column;gap:10px;flex:1">
+                <p style="margin:0;font-size:12.8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#174F59">For families</p>
+                <h3 style="font-weight:700;font-size:24px;line-height:1.28;margin:0">Therapy for your child</h3>
+                <p style="margin:0;font-size:16px;color:#5C6260">ABA, speech and language, occupational therapy and physiotherapy — four disciplines planned together rather than in parallel. No diagnosis or referral needed to start.</p>
+                <a href="#" style="margin-top:auto;padding-top:14px;font-weight:700;font-size:16px;color:#174F59;text-decoration:none">See how therapy works →</a>
+              </div>
+            </article>
+            <article data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 12px 28px rgba(31,95,107,.1);border-color:#6E8A73">
+              <div style="position:relative;width:100%;aspect-ratio:16/10"><image-slot id="h-d2" shape="rect" src="https://images.unsplash.com/photo-1728138127500-fb73c1313f76?auto=format&fit=crop&w=900&q=75" credit="Photo by Birleşim Özel Eğitim Rehabilitasyon Merkezi on Unsplash" credit-href="https://unsplash.com/photos/a-group-of-people-sitting-around-a-table-in-a-room-sjSOXEV_kmY" placeholder="Training — an IBA/IBT cohort at work"></image-slot></div>
+              <div style="padding:26px;display:flex;flex-direction:column;gap:10px;flex:1">
+                <p style="margin:0;font-size:12.8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#6E8A73">For professionals</p>
+                <h3 style="font-weight:700;font-size:24px;line-height:1.28;margin:0">IBA &amp; IBT certification</h3>
+                <p style="margin:0;font-size:16px;color:#5C6260">The 270-hour IBA and 40-hour IBT pathways, delivered by an IBAO Approved Content Provider, with supervision, mentorship and CEUs signed by a certified supervisor.</p>
+                <a href="#" style="margin-top:auto;padding-top:14px;font-weight:700;font-size:16px;color:#6E8A73;text-decoration:none">See training pathways →</a>
+              </div>
+            </article>
+            <article data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 12px 28px rgba(31,95,107,.1);border-color:#8A6D2F">
+              <div style="position:relative;width:100%;aspect-ratio:16/10"><image-slot id="h-d3" shape="rect" src="https://images.unsplash.com/photo-1771765754567-e7b5bbf6a3b3?auto=format&fit=crop&w=900&q=75" credit="Photo by Ahmadreza Rezaie on Unsplash" credit-href="https://unsplash.com/photos/children-learning-with-a-teacher-in-a-classroom-bIBc_jsNVOw" placeholder="School — the inclusive classroom"></image-slot></div>
+              <div style="padding:26px;display:flex;flex-direction:column;gap:10px;flex:1">
+                <p style="margin:0;font-size:12.8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8A6D2F">Funded places</p>
+                <h3 style="font-weight:700;font-size:24px;line-height:1.28;margin:0">The inclusive school</h3>
+                <p style="margin:0;font-size:16px;color:#5C6260">Neurodivergent and neurotypical children in the same classroom, with therapy inside the school day. Places are funded for families assessed as unable to meet the fee.</p>
+                <a href="#" style="margin-top:auto;padding-top:14px;font-weight:700;font-size:16px;color:#8A6D2F;text-decoration:none">See how the school works →</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section style="padding-block:80px 0;background:#fff;border-top:1px solid #E9E6DE">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <div data-reveal style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap">
+            <div style="max-width:56ch">
+              <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">Our reach</p>
+              <h2 style="font-weight:700;font-size:44px;line-height:1.14;color:#174F59;margin:0;text-wrap:balance">From Pakistan to the world.</h2>
+              <p style="font-size:19px;color:#5C6260;line-height:1.6;margin:18px 0 0">In-person care in Pakistan. Online therapy, behavioural and educational support, and professional training across borders — ten countries are already served that way, and the rest of the world can be.</p>
+              <p style="font-size:15px;color:#5C6260;line-height:1.55;margin:14px 0 0;padding-left:14px;border-left:2px solid #C8A96B">IBAO has candidates and certificants in 119 countries. A portable credential is what makes cross-border training possible — it is not a HOPE or IBAO office.</p>
+            </div>
+            <div style="display:flex;gap:0;flex-wrap:wrap;padding-bottom:4px">
+              <div style="padding-right:30px"><b style="display:block;font-size:44px;line-height:1;color:#174F59;font-weight:700;font-variant-numeric:tabular-nums">1</b><span style="display:block;margin-top:6px;font-size:14.5px;color:#5C6260;max-width:14ch">country in person</span></div>
+              <div style="padding-inline:30px;border-left:1px solid #E9E6DE"><b style="display:block;font-size:44px;line-height:1;color:#174F59;font-weight:700;font-variant-numeric:tabular-nums">10</b><span style="display:block;margin-top:6px;font-size:14.5px;color:#5C6260;max-width:14ch">countries served online</span></div>
+              <div style="padding-left:30px;border-left:1px solid #E9E6DE"><b style="display:block;font-size:44px;line-height:1;color:#8A6D2F;font-weight:700;font-variant-numeric:tabular-nums">119</b><span style="display:block;margin-top:6px;font-size:14.5px;color:#5C6260;max-width:16ch">countries where IBAO certification is recognised</span></div>
+            </div>
+          </div>
+          <dc-import name="HopeReachMap" hint-size="100%,560px"></dc-import>
+
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto;padding-bottom:80px">
+          <div data-reveal style="display:grid;gap:36px;grid-template-columns:repeat(4,minmax(0,1fr));padding-top:40px;border-top:1px solid #E9E6DE">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;padding-bottom:9px;border-bottom:1px solid #E9E6DE"><span style="width:8px;height:8px;border-radius:50%;flex:none;background:#174F59"></span><h3 style="font-weight:700;font-size:12.5px;line-height:1.3;margin:0;letter-spacing:.11em;text-transform:uppercase;color:#5C6260">In person</h3></div>
+              <p style="margin:10px 0 0;font-size:13px;color:#5C6260">The centre, the school, on-site therapy</p>
+              <ul style="list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:5px">
+                <li style="font-size:15.5px;color:#252A29">Pakistan</li>
+              </ul>
+            </div>
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;padding-bottom:9px;border-bottom:1px solid #E9E6DE"><span style="width:8px;height:8px;border-radius:50%;flex:none;background:#91A995"></span><h3 style="font-weight:700;font-size:12.5px;line-height:1.3;margin:0;letter-spacing:.11em;text-transform:uppercase;color:#5C6260">Online training</h3></div>
+              <p style="margin:10px 0 0;font-size:13px;color:#5C6260">IBA and IBT, online</p>
+              <ul style="list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:5px">
+                <li style="font-size:15.5px;color:#252A29">Saudi Arabia <span style="font-size:13px;color:#5C6260">+ therapy</span></li>
+                <li style="font-size:15.5px;color:#252A29">United Arab Emirates <span style="font-size:13px;color:#5C6260">+ therapy</span></li>
+                <li style="font-size:15.5px;color:#252A29">Oman</li>
+                <li style="font-size:15.5px;color:#252A29">Bangladesh</li>
+                <li style="font-size:15.5px;color:#252A29">India</li>
+                <li style="font-size:15.5px;color:#252A29">Nepal</li>
+              </ul>
+            </div>
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;padding-bottom:9px;border-bottom:1px solid #E9E6DE"><span style="width:8px;height:8px;border-radius:50%;flex:none;background:#C97868"></span><h3 style="font-weight:700;font-size:12.5px;line-height:1.3;margin:0;letter-spacing:.11em;text-transform:uppercase;color:#5C6260">Therapy only</h3></div>
+              <p style="margin:10px 0 0;font-size:13px;color:#5C6260">Online therapy and IEPs</p>
+              <ul style="list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:5px">
+                <li style="font-size:15.5px;color:#252A29">Qatar</li>
+                <li style="font-size:15.5px;color:#252A29">United Kingdom</li>
+                <li style="font-size:15.5px;color:#252A29">Australia</li>
+                <li style="font-size:15.5px;color:#252A29">Canada</li>
+              </ul>
+            </div>
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;padding-bottom:9px;border-bottom:1px solid #E9E6DE"><span style="width:8px;height:8px;border-radius:50%;flex:none;background:#C8A96B"></span><h3 style="font-weight:700;font-size:12.5px;line-height:1.3;margin:0;letter-spacing:.11em;text-transform:uppercase;color:#5C6260">IBAO global reach</h3></div>
+              <p style="margin:10px 0 0;font-size:13px;color:#5C6260">Context, not HOPE delivery</p>
+              <ul style="list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:5px">
+                <li style="font-size:15.5px;color:#252A29">97 countries mapped</li>
+                <li style="font-size:15.5px;color:#252A29">119 reported by IBAO</li>
+                <li style="font-size:13.5px;color:#5C6260;line-height:1.45;margin-top:2px">Candidates and certificants — select IBAO on the map to isolate the layer.</li>
+              </ul>
+            </div>
+          </div>
+          <p data-reveal style="margin:30px 0 0;font-size:14px;line-height:1.6;color:#5C6260;max-width:84ch">Hover any country to see how it is served, or use a filter to isolate one service. Each country appears once, under the service it actually receives. Everywhere left in pale stone can be served online on the same terms — that is the point of a portable credential.</p>
+        </div>
+      </section>
+
+      <section style="padding-block:72px;background:#EAF0F0;border-block:1px solid #E9E6DE">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto;display:grid;gap:48px;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);align-items:center">
+          <div data-reveal>
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">Our vision</p>
+            <h2 style="font-weight:700;font-size:38px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Help should not depend on what a family can pay</h2>
+            <p style="font-size:19px;color:#5C6260;line-height:1.6;margin:18px 0 0;max-width:52ch">A number of places here are funded rather than charged for — therapy or schooling, whichever the child needs, awarded on need. And starting sooner matters more than most families are ever told.</p>
+            <a href="#" data-reveal style="margin-top:24px;display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:16.5px;text-decoration:none;background:#174F59;color:#fff;background-image:linear-gradient(#C8A96B,#C8A96B);background-repeat:no-repeat;background-size:0% 100%;transition:background-size .32s cubic-bezier(.2,.7,.3,1)" style-hover="background-size:100% 100%">Why it matters →</a>
+          </div>
+          <div data-reveal style="display:grid;gap:14px;grid-template-columns:repeat(2,minmax(0,1fr))">
+            <div style="background:#fff;border:1px solid #E9E6DE;border-top:3px solid #174F59;border-radius:12px;padding:20px">
+              <b style="display:block;font-size:28px;line-height:1;color:#174F59;font-weight:700">1 in 31</b>
+              <span style="display:block;margin-top:9px;font-size:14.5px;color:#5C6260;line-height:1.45">children identified with autism — common, not rare</span>
+            </div>
+            <div style="background:#fff;border:1px solid #E9E6DE;border-top:3px solid #C8A96B;border-radius:12px;padding:20px">
+              <b style="display:block;font-size:28px;line-height:1;color:#174F59;font-weight:700">Age 2</b>
+              <span style="display:block;margin-top:9px;font-size:14.5px;color:#5C6260;line-height:1.45">when it can be identified — most wait years longer</span>
+            </div>
+            <div style="background:#fff;border:1px solid #E9E6DE;border-top:3px solid #C8A96B;border-radius:12px;padding:20px">
+              <b style="display:block;font-size:28px;line-height:1;color:#174F59;font-weight:700">2×</b>
+              <span style="display:block;margin-top:9px;font-size:14.5px;color:#5C6260;line-height:1.45">the minimum wage, for a month of therapy at the needed intensity</span>
+            </div>
+            <div style="background:#fff;border:1px solid #E9E6DE;border-top:3px solid #174F59;border-radius:12px;padding:20px">
+              <b style="display:block;font-size:28px;line-height:1;color:#174F59;font-weight:700">21%</b>
+              <span style="display:block;margin-top:9px;font-size:14.5px;color:#5C6260;line-height:1.45">of families who stopped had actually met their goals</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="padding-block:88px;background:#EFF2EE;border-bottom:1px solid #E9E6DE">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto;display:grid;gap:56px;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);align-items:center">
+          <div data-reveal>
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">Lend a hand</p>
+            <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Every funded place still costs someone</h2>
+            <p style="font-size:19px;color:#5C6260;line-height:1.6;margin:20px 0 0;max-width:52ch">Someone still does the work, and a good deal of it is done by volunteers — at camps, in the classroom, in old age homes, and alongside the adults we support. This is mental health work broadly, not autism alone, and you do not need a clinical background.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:22px">
+              <span style="display:inline-flex;align-items:center;padding:7px 15px;border-radius:999px;border:1px solid #C3D0C5;background:#fff;font-size:15px;font-weight:700;color:#3E5A44">Individuals</span>
+              <span style="display:inline-flex;align-items:center;padding:7px 15px;border-radius:999px;border:1px solid #C3D0C5;background:#fff;font-size:15px;font-weight:700;color:#3E5A44">Students &amp; professionals</span>
+              <span style="display:inline-flex;align-items:center;padding:7px 15px;border-radius:999px;border:1px solid #C3D0C5;background:#fff;font-size:15px;font-weight:700;color:#3E5A44">Companies &amp; CSR</span>
+              <span style="display:inline-flex;align-items:center;padding:7px 15px;border-radius:999px;border:1px solid #C3D0C5;background:#fff;font-size:15px;font-weight:700;color:#3E5A44">Remote help</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:26px">
+              <a href="#" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:16.5px;text-decoration:none;background:#6E8A73;color:#fff;background-image:linear-gradient(#3E5A44,#3E5A44);background-repeat:no-repeat;background-size:0% 100%;transition:background-size .3s cubic-bezier(.2,.7,.3,1)" style-hover="background-size:100% 100%">Volunteer with us</a>
+              <a href="#" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:16.5px;text-decoration:none;border:2px solid #6E8A73;color:#6E8A73">Partner as a company</a>
+            </div>
+          </div>
+          <div style="display:grid;gap:12px;grid-template-columns:1fr 1fr;grid-template-rows:150px 150px">
+            <div data-reveal style="position:relative;grid-row:span 2;min-width:0"><image-slot id="h-v1" shape="rounded" radius="14" src="https://images.unsplash.com/photo-1708687045030-26702e62fc65?auto=format&fit=crop&w=700&q=75" credit="Photo by Ortopediatri Çocuk Ortopedi Akademisi on Unsplash" credit-href="https://unsplash.com/photos/a-woman-is-giving-a-boy-a-high-five-iKCuym5Kt5o" placeholder="Funded therapy — a moment of achievement"></image-slot></div>
+            <div data-reveal style="position:relative;min-width:0"><image-slot id="h-v2" shape="rounded" radius="14" src="https://images.unsplash.com/photo-1761208663763-c4d30657c910?auto=format&fit=crop&w=700&q=75" credit="Photo by Rewired Digital on Unsplash" credit-href="https://unsplash.com/photos/children-playing-with-toys-in-a-bright-room-4UFIg9htJgE" placeholder="Free camps — open play sessions"></image-slot></div>
+            <div data-reveal style="position:relative;min-width:0"><image-slot id="h-v3" shape="rounded" radius="14" src="https://images.unsplash.com/photo-1709127347884-a106974ef58d?auto=format&fit=crop&w=700&q=75" credit="Photo by Ortopediatri Çocuk Ortopedi Akademisi on Unsplash" credit-href="https://unsplash.com/photos/a-woman-sitting-next-to-a-little-girl-on-a-bench-uEcEYQ43xhI" placeholder="Free advice — the first conversation"></image-slot></div>
+          </div>
+        </div>
+      </section>
+
+      <section style="padding-block:88px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto;display:grid;gap:56px;grid-template-columns:minmax(0,.42fr) minmax(0,1fr);align-items:center">
+          <div data-reveal style="position:relative;width:100%;aspect-ratio:4/5;border-radius:18px;overflow:hidden"><image-slot id="h-founder" shape="rect" src="site/assets/img/farooq.png" placeholder="Portrait — Muhammad Farooq E Azam Awan"></image-slot></div>
+          <div data-reveal>
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">The founder</p>
+            <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Muhammad Farooq E Azam Awan</h2>
+            <p style="margin:22px 0 0;max-width:58ch;font-size:18px">IBAO-certified International Behavior Analyst, and an Approved Content Provider, certified supervisor, mentor and CEU provider for the IBAO. MS Clinical Psychology (SZABIST) and BS Psychology (COMSATS), with earlier work at Shifa International Hospital and Beaconhouse.</p>
+            <div style="margin-top:28px;background:#fff;border:1px solid #E9E6DE;border-top:4px solid #C8A96B;border-radius:14px;padding:26px 28px;display:flex;gap:28px;align-items:center;max-width:620px">
+              <div style="width:96px;height:96px;flex:none;border-radius:50%;background:#F7F1E3;border:2px solid #C8A96B;display:grid;place-items:center;text-align:center;color:#8A6D2F;font-weight:700;line-height:1.15"><span style="font-size:9px;letter-spacing:.08em;text-transform:uppercase">Certified</span><b style="display:block;font-size:24px">IBA</b><span style="font-size:9px;letter-spacing:.08em;text-transform:uppercase">IBAO</span></div>
+              <div style="display:grid;gap:5px;font-size:15.2px">
+                <span style="display:flex;gap:8px"><span style="color:#5C6260;min-width:9em">Certification no.</span><b style="font-variant-numeric:tabular-nums">IBA_072025_002612</b></span>
+                <span style="display:flex;gap:8px"><span style="color:#5C6260;min-width:9em">Issued</span><b>9 July 2025</b></span>
+                <span style="display:flex;gap:8px"><span style="color:#5C6260;min-width:9em">Valid until</span><b>9 July 2027</b></span>
+                <a href="#" style="margin-top:6px;font-weight:700;color:#174F59;text-decoration:none">View the certificate (PDF) ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="padding-block:88px;background:#F4F1EA;border-top:1px solid #E9E6DE">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <div data-reveal style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+            <div>
+              <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">Real people, real spaces</p>
+              <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Inside the centre</h2>
+            </div>
+            <a href="#" style="font-weight:700;font-size:16.5px;color:#174F59;text-decoration:none">Arrange a visit ↗</a>
+          </div>
+          <div style="display:grid;gap:14px;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);grid-template-rows:170px 170px;margin-top:40px">
+            <div data-reveal style="position:relative;grid-row:span 2;min-width:0"><image-slot id="h-g1" shape="rounded" radius="14" src="https://images.unsplash.com/photo-1605627079912-97c3810a11a4?auto=format&fit=crop&w=800&q=75" credit="Photo by Compagnons on Unsplash" credit-href="https://unsplash.com/photos/child-drawing-on-paper-at-table-TJxotQTUr8o" placeholder="Inside the centre — a working table"></image-slot></div>
+            <div data-reveal style="position:relative;min-width:0"><image-slot id="h-g2" shape="rounded" radius="14" src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=700&q=75" credit="Photo by CDC on Unsplash" credit-href="https://unsplash.com/photos/boy-in-green-sweater-writing-on-white-paper-GDokEYnOfnE" placeholder="Inside the centre — learning in progress"></image-slot></div>
+            <div data-reveal style="position:relative;min-width:0"><image-slot id="h-g3" shape="rounded" radius="14" src="https://images.unsplash.com/photo-1629822908853-b1d2a39ece98?auto=format&fit=crop&w=700&q=75" credit="Photo by Ana Klipper on Unsplash" credit-href="https://unsplash.com/photos/person-with-paint-on-his-hands-LUYBpL5jfUA" placeholder="Inside the centre — sensory and messy play"></image-slot></div>
+            <div data-reveal style="position:relative;min-width:0"><image-slot id="h-g4" shape="rounded" radius="14" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=700&q=75" credit="Photo by Element5 Digital on Unsplash" credit-href="https://unsplash.com/photos/red-apple-fruit-on-four-pyle-books-OyCl7Y4y0Bk" placeholder="Inside the centre — learning materials"></image-slot></div>
+            <div data-reveal style="position:relative;min-width:0"><image-slot id="h-g5" shape="rounded" radius="14" src="https://images.unsplash.com/photo-1613950190144-4f2a84c75e8c?auto=format&fit=crop&w=700&q=75" credit="Photo by Taylor Heery on Unsplash" credit-href="https://unsplash.com/photos/child-making-rainbow-paper-craft-g7dUm6lRvtQ" placeholder="Inside the centre — making and craft"></image-slot></div>
+          </div>
+        </div>
+      </section>
+
+      <dc-import name="HopeFooterV3" hint-size="100%,420px"></dc-import>
+    </div>
+  </div>
+
+  <div data-screen-label="Therapy" style="display:flex;flex-direction:column;gap:10px">
+    <p style="margin:0;font:700 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:#6B6459">02 · Therapy</p>
+    <div style="width:1200px;background:#FAF8F3;color:#252A29;font-size:19px;line-height:1.65;border:1px solid rgba(0,0,0,.1);border-radius:8px;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.09)">
+      <dc-import name="HopeHeaderV3" current="Therapy" hint-size="100%,77px"></dc-import>
+      <section style="background:#174F59;padding-block:64px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <p style="font-size:14.4px;color:#CFCABE;margin:0 0 16px"><a href="#" style="color:#91A995">Home</a> › Therapy</p>
+          <h1 style="font-weight:700;font-size:54px;line-height:1.08;margin:0;color:#fff;max-width:20ch;text-wrap:balance">Therapy for your child</h1>
+          <p style="font-size:20.5px;color:#E9E6DE;line-height:1.55;max-width:58ch;margin:20px 0 0">Four disciplines under one roof, planned together rather than in parallel. You do not need a diagnosis or a referral to start.</p>
+        </div>
+      </section>
+      <section style="padding-block:88px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <div data-reveal style="max-width:52ch">
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">What we offer</p>
+            <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Four kinds of therapy</h2>
+          </div>
+          <div style="display:grid;gap:20px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:44px">
+            <article data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:16px;overflow:hidden;display:flex;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 12px 28px rgba(31,95,107,.1);border-color:#174F59">
+              <div style="position:relative;width:180px;flex:none"><image-slot id="t-1" shape="rect" src="https://images.unsplash.com/photo-1537655780520-1e392ead81f2?auto=format&fit=crop&w=800&q=75" credit="Photo by Marisa Howenstine on Unsplash" credit-href="https://unsplash.com/photos/two-toddler-playing-letter-cubes-Cq9slNxV8YU" placeholder="ABA — natural skill-building with materials"></image-slot></div>
+              <div style="padding:26px;display:flex;flex-direction:column;gap:10px;min-width:0">
+                <h3 style="font-weight:700;font-size:22px;line-height:1.28;margin:0">Applied Behaviour Analysis</h3>
+                <p style="margin:0;font-size:15.7px;color:#5C6260">A structured, data-led approach to building communication, social and daily-living skills. We begin with a functional behaviour assessment to understand what a behaviour achieves for your child, then build a plan around it.</p>
+                <p style="margin:0;font-size:15.7px;color:#5C6260"><strong style="color:#252A29">Often helps with:</strong> communication, following routines, managing transitions, self-care.</p>
+              </div>
+            </article>
+            <article data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:16px;overflow:hidden;display:flex;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 12px 28px rgba(31,95,107,.1);border-color:#174F59">
+              <div style="position:relative;width:180px;flex:none"><image-slot id="t-2" shape="rect" src="https://images.unsplash.com/photo-1758273241260-f49172d876e3?auto=format&fit=crop&w=800&q=75" credit="Photo by Vitaly Gariev on Unsplash" credit-href="https://unsplash.com/photos/a-young-girl-talks-to-a-therapist-on-a-couch-ObIW_W6jnXg" placeholder="Speech and language — a real exchange"></image-slot></div>
+              <div style="padding:26px;display:flex;flex-direction:column;gap:10px;min-width:0">
+                <h3 style="font-weight:700;font-size:22px;line-height:1.28;margin:0">Speech &amp; language therapy</h3>
+                <p style="margin:0;font-size:15.7px;color:#5C6260">Support for understanding and using language — spoken, gestural, or through communication aids. Communication is not only speech, and a child who cannot yet speak is not a child without something to say.</p>
+                <p style="margin:0;font-size:15.7px;color:#5C6260"><strong style="color:#252A29">Often helps with:</strong> expressive and receptive language, articulation, social communication.</p>
+              </div>
+            </article>
+            <article data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:16px;overflow:hidden;display:flex;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 12px 28px rgba(31,95,107,.1);border-color:#174F59">
+              <div style="position:relative;width:180px;flex:none"><image-slot id="t-3" shape="rect" src="https://images.unsplash.com/photo-1560785496-3c9d27877182?auto=format&fit=crop&w=800&q=75" credit="Photo by Annie Spratt on Unsplash" credit-href="https://unsplash.com/photos/boy-writing-ORDz1m1-q0I" placeholder="Occupational therapy — fine motor and handwriting work"></image-slot></div>
+              <div style="padding:26px;display:flex;flex-direction:column;gap:10px;min-width:0">
+                <h3 style="font-weight:700;font-size:22px;line-height:1.28;margin:0">Occupational therapy</h3>
+                <p style="margin:0;font-size:15.7px;color:#5C6260">Work on the practical skills a day is made of — fine motor control, handwriting, dressing, feeding — and on sensory processing, where everyday input can feel overwhelming or insufficient.</p>
+                <p style="margin:0;font-size:15.7px;color:#5C6260"><strong style="color:#252A29">Often helps with:</strong> fine motor skills, sensory regulation, independence in daily routines.</p>
+              </div>
+            </article>
+            <article data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:16px;overflow:hidden;display:flex;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 12px 28px rgba(31,95,107,.1);border-color:#174F59">
+              <div style="position:relative;width:180px;flex:none"><image-slot id="t-4" shape="rect" src="https://images.unsplash.com/photo-1708687045004-a3e3c4420e6d?auto=format&fit=crop&w=800&q=75" credit="Photo by Ortopediatri Çocuk Ortopedi Akademisi on Unsplash" credit-href="https://unsplash.com/photos/a-young-boy-in-a-wheelchair-holding-a-stuffed-animal-8JjW4xVwQqc" placeholder="Physiotherapy — movement, mobility and physical confidence"></image-slot></div>
+              <div style="padding:26px;display:flex;flex-direction:column;gap:10px;min-width:0">
+                <h3 style="font-weight:700;font-size:22px;line-height:1.28;margin:0">Physiotherapy</h3>
+                <p style="margin:0;font-size:15.7px;color:#5C6260">Movement, strength, balance and posture, worked on in ways that fit into ordinary life rather than staying in the treatment room.</p>
+                <p style="margin:0;font-size:15.7px;color:#5C6260"><strong style="color:#252A29">Often helps with:</strong> gross motor skills, mobility, coordination, physical confidence.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section style="padding-block:88px;background:#EAF0F0;border-block:1px solid #E9E6DE">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto;display:grid;gap:60px;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);align-items:center">
+          <div data-reveal>
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">What to expect</p>
+            <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Your first session</h2>
+            <p style="margin:22px 0 0;max-width:56ch;font-size:18px">The first appointment is an assessment, not a treatment session. We spend it understanding your child and hearing from you — you know things about your child that no assessment will surface.</p>
+            <ul style="list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:12px">
+              <li style="display:flex;gap:11.2px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:22px;height:22px;color:#6E8A73;margin-top:.28em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:16.5px">We talk through your concerns and what a good outcome would look like for your family.</span></li>
+              <li style="display:flex;gap:11.2px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:22px;height:22px;color:#6E8A73;margin-top:.28em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:16.5px">The relevant therapist works with your child — often through play, so it rarely feels like a test.</span></li>
+              <li style="display:flex;gap:11.2px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:22px;height:22px;color:#6E8A73;margin-top:.28em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:16.5px">You are welcome to stay in the room. Many children settle faster that way.</span></li>
+              <li style="display:flex;gap:11.2px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:22px;height:22px;color:#6E8A73;margin-top:.28em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:16.5px">We tell you honestly whether we are the right service. If we are not, we say so.</span></li>
+            </ul>
+          </div>
+          <div data-reveal style="position:relative;width:100%;aspect-ratio:4/5;border-radius:18px;overflow:hidden"><image-slot id="t-first" shape="rect" src="https://images.unsplash.com/photo-1685362158423-abf004b858d2?auto=format&fit=crop&w=1000&q=75" credit="Photo by Kateryna Hliznitsova on Unsplash" credit-href="https://unsplash.com/photos/a-woman-and-a-child-playing-on-a-rocking-chair-hB9DS4-Vgh4" placeholder="Your first session — assessment through play, parent present"></image-slot></div>
+        </div>
+      </section>
+      <section style="padding-block:88px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <div data-reveal style="max-width:52ch">
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">How we work</p>
+            <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Principles behind the plan</h2>
+          </div>
+          <div style="display:grid;gap:16px;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:44px">
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:24px;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s" style-hover="transform:translateY(-4px);box-shadow:0 4px 12px rgba(31,95,107,.08)"><h3 style="font-weight:700;font-size:18px;line-height:1.3;margin:0 0 6px;color:#174F59">Individualised goals</h3><p style="margin:0;font-size:15.5px;color:#5C6260">Targets are set for your child and reviewed as they change — never copied from a template.</p></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:24px;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s" style-hover="transform:translateY(-4px);box-shadow:0 4px 12px rgba(31,95,107,.08)"><h3 style="font-weight:700;font-size:18px;line-height:1.3;margin:0 0 6px;color:#174F59">Skills that generalise</h3><p style="margin:0;font-size:15.5px;color:#5C6260">A skill that only appears in the therapy room is not yet a skill. We plan for home and school.</p></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:24px;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s" style-hover="transform:translateY(-4px);box-shadow:0 4px 12px rgba(31,95,107,.08)"><h3 style="font-weight:700;font-size:18px;line-height:1.3;margin:0 0 6px;color:#174F59">Caregiver training</h3><p style="margin:0;font-size:15.5px;color:#5C6260">You are taught the strategies too. Family involvement is the subject of our founder's own research.</p></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:24px;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s" style-hover="transform:translateY(-4px);box-shadow:0 4px 12px rgba(31,95,107,.08)"><h3 style="font-weight:700;font-size:18px;line-height:1.3;margin:0 0 6px;color:#174F59">Data-led review</h3><p style="margin:0;font-size:15.5px;color:#5C6260">Progress is measured, so a plan that is not working gets changed rather than repeated.</p></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:24px;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s" style-hover="transform:translateY(-4px);box-shadow:0 4px 12px rgba(31,95,107,.08)"><h3 style="font-weight:700;font-size:18px;line-height:1.3;margin:0 0 6px;color:#174F59">One team</h3><p style="margin:0;font-size:15.5px;color:#5C6260">Therapists and teachers plan together, so goals reinforce rather than compete.</p></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:24px;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s" style-hover="transform:translateY(-4px);box-shadow:0 4px 12px rgba(31,95,107,.08)"><h3 style="font-weight:700;font-size:18px;line-height:1.3;margin:0 0 6px;color:#174F59">Honest expectations</h3><p style="margin:0;font-size:15.5px;color:#5C6260">We do not promise recovery or cure. We tell you what we can reasonably work towards.</p></div>
+          </div>
+        </div>
+      </section>
+        <section style="padding-block:64px;background:#174F59;color:#E9E6DE">
+          <div style="width:min(100% - 40px,1140px);margin-inline:auto;display:grid;gap:40px;grid-template-columns:minmax(0,1fr) auto;align-items:center">
+            <div data-reveal style="max-width:64ch;padding-top:20px;border-top:2px solid #C8A96B">
+              <p style="font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#C8A96B;margin:0 0 12px">Why now</p>
+              <h2 style="font-weight:700;font-size:30px;line-height:1.24;color:#fff;margin:0;max-width:36ch;text-wrap:balance">A year of waiting is not a year paused</h2>
+              <p style="font-size:18px;color:#E9E6DE;line-height:1.6;margin:16px 0 0;max-width:60ch">Development does not hold still while a child waits for a place, a diagnosis, or the money — it carries on, just along a different path. Autism can be identified from around age&nbsp;2, and most children are diagnosed years later.</p>
+            </div>
+            <a href="#" data-reveal style="justify-self:end;display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:16.5px;text-decoration:none;background:#fff;color:#174F59;white-space:nowrap;background-image:linear-gradient(#C8A96B,#C8A96B);background-repeat:no-repeat;background-size:0% 100%;transition:background-size .32s cubic-bezier(.2,.7,.3,1)" style-hover="background-size:100% 100%">Why acting early matters →</a>
+          </div>
+        </section>
+
+      <section style="padding-block:76px;background:#F4F1EA;border-top:1px solid #E9E6DE">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto;text-align:center">
+          <h2 style="font-weight:700;font-size:38px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Start with a conversation</h2>
+          <p style="font-size:19px;color:#5C6260;line-height:1.55;max-width:56ch;margin:16px auto 0">Tell us a little about your child. We will tell you honestly whether we can help.</p>
+          <a href="#" style="margin-top:26px;display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:16.5px;text-decoration:none;background:#174F59;color:#fff;background-image:linear-gradient(#C97868,#C97868);background-repeat:no-repeat;background-size:0% 100%;transition:background-size .3s cubic-bezier(.2,.7,.3,1),color .3s" style-hover="background-size:100% 100%;color:#252A29">Book a free call</a>
+        </div>
+      </section>
+      <dc-import name="HopeFooterV3" hint-size="100%,420px"></dc-import>
+    </div>
+  </div>
+
+  <div data-screen-label="Training" style="display:flex;flex-direction:column;gap:10px">
+    <p style="margin:0;font:700 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:#6B6459">03 · Training</p>
+    <div style="width:1200px;background:#FAF8F3;color:#252A29;font-size:19px;line-height:1.65;border:1px solid rgba(0,0,0,.1);border-radius:8px;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.09)">
+      <dc-import name="HopeHeaderV3" current="Training" hint-size="100%,77px"></dc-import>
+      <section style="background:#174F59;padding-block:64px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <p style="font-size:14.4px;color:#CFCABE;margin:0 0 16px"><a href="#" style="color:#91A995">Home</a> › Training</p>
+          <h1 style="font-weight:700;font-size:54px;line-height:1.08;margin:0;color:#fff;max-width:20ch;text-wrap:balance">IBA &amp; IBT certification</h1>
+          <p style="font-size:20.5px;color:#E9E6DE;line-height:1.55;max-width:60ch;margin:20px 0 0">Behaviour analysis training delivered in Islamabad as an IBAO <strong style="color:#fff">Approved Content Provider</strong>, with mentorship, supervision and continuing education units from a certified supervisor.</p>
+        </div>
+      </section>
+      <section style="padding-block:88px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <div data-reveal style="max-width:54ch">
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">Pathways</p>
+            <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Two routes, depending on where you are</h2>
+          </div>
+          <div style="display:grid;gap:20px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:44px">
+            <article data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 12px 28px rgba(31,95,107,.1);border-color:#6E8A73">
+              <div style="position:relative;width:100%;aspect-ratio:21/9"><image-slot id="tr-1" shape="rect" src="https://images.unsplash.com/photo-1565350831386-8c52421af9fa?auto=format&fit=crop&w=800&q=75" credit="Photo by Van Tay Media on Unsplash" credit-href="https://unsplash.com/photos/meeting-of-people-TOBRTuE_uXA" placeholder="IBT, 40 hours — small-group professional learning"></image-slot></div>
+              <div style="padding:28px;display:flex;flex-direction:column;gap:12px;flex:1">
+                <p style="margin:0;font-size:12.8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#6E8A73">Entry route · 40 hours</p>
+                <h3 style="font-weight:700;font-size:24px;line-height:1.28;margin:0">IBT — International Behavior Technician</h3>
+                <p style="margin:0;font-size:16px;color:#5C6260">For people beginning in behaviour analysis: teaching assistants, shadow teachers, therapy assistants, and parents who want a formal grounding.</p>
+                <ul style="list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:10px">
+                  <li style="display:flex;gap:10px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:20px;height:20px;color:#6E8A73;margin-top:.3em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15.7px">Foundations of behaviour analysis, measurement and ethics</span></li>
+                  <li style="display:flex;gap:10px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:20px;height:20px;color:#6E8A73;margin-top:.3em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15.7px">Supervised practice with real feedback</span></li>
+                </ul>
+                <a href="#" style="margin-top:auto;padding-top:14px;font-weight:700;font-size:16px;color:#6E8A73;text-decoration:none">Ask about IBT →</a>
+              </div>
+            </article>
+            <article data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 12px 28px rgba(31,95,107,.1);border-color:#174F59">
+              <div style="position:relative;width:100%;aspect-ratio:21/9"><image-slot id="tr-2" shape="rect" src="https://images.unsplash.com/photo-1758273241090-b7d744465ce6?auto=format&fit=crop&w=800&q=75" credit="Photo by Vitaly Gariev on Unsplash" credit-href="https://unsplash.com/photos/girl-lying-on-couch-during-therapy-session-with-counselor-rNSQ-EuBi6o" placeholder="IBA, 270 hours — supervision and case discussion"></image-slot></div>
+              <div style="padding:28px;display:flex;flex-direction:column;gap:12px;flex:1">
+                <p style="margin:0;font-size:12.8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#174F59">Full certification · 270 hours</p>
+                <h3 style="font-weight:700;font-size:24px;line-height:1.28;margin:0">IBA — International Behavior Analyst</h3>
+                <p style="margin:0;font-size:16px;color:#5C6260">For those intending to practise as behaviour analysts and to supervise others.</p>
+                <ul style="list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:10px">
+                  <li style="display:flex;gap:10px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:20px;height:20px;color:#174F59;margin-top:.3em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15.7px">Assessment, intervention design, and data-based decision making</span></li>
+                  <li style="display:flex;gap:10px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:20px;height:20px;color:#174F59;margin-top:.3em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15.7px">Ethics, supervision and cultural competency</span></li>
+                  <li style="display:flex;gap:10px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:20px;height:20px;color:#174F59;margin-top:.3em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:15.7px">Mentorship from a certified IBA mentor</span></li>
+                </ul>
+                <a href="#" style="margin-top:auto;padding-top:14px;font-weight:700;font-size:16px;color:#174F59;text-decoration:none">Ask about IBA →</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section style="padding-block:88px;background:#EAF0F0;border-block:1px solid #E9E6DE">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <div data-reveal style="max-width:56ch">
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8A6D2F;margin:0 0 14px">Who delivers it</p>
+            <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Certified by the IBAO</h2>
+            <p style="font-size:19px;color:#5C6260;line-height:1.6;margin:20px 0 0">Content from an Approved Content Provider counts towards your certification, and hours signed by a Certified Supervisor are the hours the IBAO will accept. That distinction matters here more than anywhere else on this site.</p>
+          </div>
+          <div style="display:grid;gap:16px;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:40px">
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-left:4px solid #C8A96B;border-radius:10px;padding:24px"><h3 style="font-weight:700;font-size:16.3px;line-height:1.3;margin:0 0 5px;color:#8A6D2F">Approved Content Provider</h3><p style="margin:0;font-size:14.9px;color:#5C6260">Authorised to deliver IBA and IBT training content.</p></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-left:4px solid #C8A96B;border-radius:10px;padding:24px"><h3 style="font-weight:700;font-size:16.3px;line-height:1.3;margin:0 0 5px;color:#8A6D2F">Certified Supervisor</h3><p style="margin:0;font-size:14.9px;color:#5C6260">For candidates on both pathways.</p></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-left:4px solid #C8A96B;border-radius:10px;padding:24px"><h3 style="font-weight:700;font-size:16.3px;line-height:1.3;margin:0 0 5px;color:#8A6D2F">Certified Mentor</h3><p style="margin:0;font-size:14.9px;color:#5C6260">For IBA candidates.</p></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-left:4px solid #C8A96B;border-radius:10px;padding:24px"><h3 style="font-weight:700;font-size:16.3px;line-height:1.3;margin:0 0 5px;color:#8A6D2F">CEU Provider</h3><p style="margin:0;font-size:14.9px;color:#5C6260">Authorised to issue continuing education units.</p></div>
+          </div>
+          <p data-reveal style="margin:28px 0 0;font-size:16.5px"><a href="#" style="font-weight:700;color:#174F59;text-decoration:none">View the certificate (PDF) ↗</a> — certificate IBA_072025_002612, issued to Muhammad Farooq E Azam Awan.</p>
+        </div>
+      </section>
+      <section style="padding-block:76px;background:#F4F1EA">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto;text-align:center">
+          <h2 style="font-weight:700;font-size:38px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Ask about the next intake</h2>
+          <p style="font-size:19px;color:#5C6260;line-height:1.55;max-width:56ch;margin:16px auto 0">Tell us which pathway interests you and where you are in your career.</p>
+          <a href="#" style="margin-top:26px;display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:16.5px;text-decoration:none;background:#174F59;color:#fff;background-image:linear-gradient(#C97868,#C97868);background-repeat:no-repeat;background-size:0% 100%;transition:background-size .3s cubic-bezier(.2,.7,.3,1),color .3s" style-hover="background-size:100% 100%;color:#252A29">Ask about training</a>
+        </div>
+      </section>
+      <dc-import name="HopeFooterV3" hint-size="100%,420px"></dc-import>
+    </div>
+  </div>
+
+  <div data-screen-label="School" style="display:flex;flex-direction:column;gap:10px">
+    <p style="margin:0;font:700 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:#6B6459">04 · School</p>
+    <div style="width:1200px;background:#FAF8F3;color:#252A29;font-size:19px;line-height:1.65;border:1px solid rgba(0,0,0,.1);border-radius:8px;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.09)">
+      <dc-import name="HopeHeaderV3" current="School" hint-size="100%,77px"></dc-import>
+      <section style="background:#174F59;padding-block:64px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <p style="font-size:14.4px;color:#CFCABE;margin:0 0 16px"><a href="#" style="color:#91A995">Home</a> › School</p>
+          <h1 style="font-weight:700;font-size:54px;line-height:1.08;margin:0;color:#fff;max-width:22ch;text-wrap:balance">An inclusive school, funded for families who need it</h1>
+          <p style="font-size:20.5px;color:#E9E6DE;line-height:1.55;max-width:60ch;margin:20px 0 0">Neurodivergent and neurotypical children learning in the same classroom — because separating them teaches both groups the wrong lesson.</p>
+        </div>
+      </section>
+      <section style="padding-block:88px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto;display:grid;gap:60px;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);align-items:center">
+          <div data-reveal>
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">The model</p>
+            <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">How inclusion actually works here</h2>
+            <p style="margin:22px 0 0;max-width:56ch;font-size:18px">Inclusion is not simply placing a disabled child in a mainstream room and hoping. It means the room is built so that more than one kind of learner belongs in it from the start.</p>
+            <ul style="list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:12px">
+              <li style="display:flex;gap:11.2px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:22px;height:22px;color:#6E8A73;margin-top:.28em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:16.5px"><strong>Individualised education plans.</strong> Each child has goals of their own; the class does not move at one speed.</span></li>
+              <li style="display:flex;gap:11.2px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:22px;height:22px;color:#6E8A73;margin-top:.28em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:16.5px"><strong>Therapy inside the school day.</strong> A skill worked on in the morning gets practised in the classroom the same week.</span></li>
+              <li style="display:flex;gap:11.2px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:22px;height:22px;color:#6E8A73;margin-top:.28em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:16.5px"><strong>Staff trained in behaviour analysis.</strong> The teaching team is trained on site, to an international standard.</span></li>
+              <li style="display:flex;gap:11.2px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:22px;height:22px;color:#6E8A73;margin-top:.28em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:16.5px"><strong>Both groups gain.</strong> Neurotypical children who grow up alongside disabled peers do not have to learn inclusion later as an abstraction.</span></li>
+            </ul>
+          </div>
+          <div data-reveal style="position:relative;width:100%;aspect-ratio:4/5;border-radius:18px;overflow:hidden"><image-slot id="s-model" shape="rect" src="https://images.unsplash.com/photo-1673280401347-b26a0639b957?auto=format&fit=crop&w=1100&q=75" credit="Photo by Joshua Onadipe on Unsplash" credit-href="https://unsplash.com/photos/a-group-of-children-wearing-red-and-white-hats-0egim8vGFwQ" placeholder="The inclusive classroom — children together"></image-slot></div>
+        </div>
+      </section>
+      <section style="padding-block:88px;background:#EAF0F0;border-block:1px solid #E9E6DE">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <div data-reveal style="max-width:54ch">
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">Admissions</p>
+            <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Joining the school</h2>
+            <p style="font-size:19px;color:#5C6260;line-height:1.6;margin:18px 0 0">Places are funded rather than charged for, and awarded on need. What we establish first is whether the setting suits your child; the financial assessment is a separate, private conversation.</p>
+          </div>
+          <div style="display:grid;gap:20px;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:40px">
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:24px"><div style="width:40px;height:40px;border-radius:50%;background:#174F59;color:#fff;display:grid;place-items:center;font-weight:700;margin-bottom:14px">1</div><h3 style="font-weight:700;font-size:17.5px;line-height:1.3;margin:0 0 5px;color:#174F59">Get in touch</h3><p style="margin:0;font-size:15.2px;color:#5C6260">Call or WhatsApp and tell us about your child.</p></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:24px"><div style="width:40px;height:40px;border-radius:50%;background:#174F59;color:#fff;display:grid;place-items:center;font-weight:700;margin-bottom:14px">2</div><h3 style="font-weight:700;font-size:17.5px;line-height:1.3;margin:0 0 5px;color:#174F59">Visit</h3><p style="margin:0;font-size:15.2px;color:#5C6260">Come and see the classroom while it is running. Bring your child if you would like.</p></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:24px"><div style="width:40px;height:40px;border-radius:50%;background:#174F59;color:#fff;display:grid;place-items:center;font-weight:700;margin-bottom:14px">3</div><h3 style="font-weight:700;font-size:17.5px;line-height:1.3;margin:0 0 5px;color:#174F59">Assessment</h3><p style="margin:0;font-size:15.2px;color:#5C6260">We look at learning needs, what support would be required, and — separately and privately — whether the place should be funded.</p></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:24px"><div style="width:40px;height:40px;border-radius:50%;background:#174F59;color:#fff;display:grid;place-items:center;font-weight:700;margin-bottom:14px">4</div><h3 style="font-weight:700;font-size:17.5px;line-height:1.3;margin:0 0 5px;color:#174F59">Start</h3><p style="margin:0;font-size:15.2px;color:#5C6260">An individualised education plan is agreed with you before the first day.</p></div>
+          </div>
+        </div>
+      </section>
+        <section style="padding-block:64px;background:#174F59;color:#E9E6DE">
+          <div style="width:min(100% - 40px,1140px);margin-inline:auto;display:grid;gap:40px;grid-template-columns:minmax(0,1fr) auto;align-items:center">
+            <div data-reveal style="max-width:64ch;padding-top:20px;border-top:2px solid #C8A96B">
+              <p style="font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#C8A96B;margin:0 0 12px">Why places are funded</p>
+              <h2 style="font-weight:700;font-size:30px;line-height:1.24;color:#fff;margin:0;max-width:36ch;text-wrap:balance">Therapy is not a luxury. It is only priced like one.</h2>
+              <p style="font-size:18px;color:#E9E6DE;line-height:1.6;margin:16px 0 0;max-width:60ch">A month of therapy at the cheapest rate in Islamabad costs four-fifths of a full minimum-wage income. At the intensity many children need, roughly twice it. That is the gap funded places exist to close.</p>
+            </div>
+            <a href="#" data-reveal style="justify-self:end;display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:16.5px;text-decoration:none;background:#fff;color:#174F59;white-space:nowrap;background-image:linear-gradient(#C8A96B,#C8A96B);background-repeat:no-repeat;background-size:0% 100%;transition:background-size .32s cubic-bezier(.2,.7,.3,1)" style-hover="background-size:100% 100%">Read the numbers →</a>
+          </div>
+        </section>
+      <section style="padding-block:76px;background:#174F59;color:#E9E6DE">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto;text-align:center">
+          <h2 style="font-weight:700;font-size:38px;line-height:1.18;color:#fff;margin:0;text-wrap:balance">Keep a place open</h2>
+          <p style="font-size:19px;color:#E9E6DE;line-height:1.55;max-width:60ch;margin:16px auto 0">Therapy fees and training income cover part of the cost. Donations cover the rest — a funded place is one child who does not have to stop.</p>
+          <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:26px">
+            <a href="#" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:16.5px;text-decoration:none;background:#fff;color:#174F59;background-image:linear-gradient(#C8A96B,#C8A96B);background-repeat:no-repeat;background-size:0% 100%;transition:background-size .32s cubic-bezier(.2,.7,.3,1)" style-hover="background-size:100% 100%">Support a place</a>
+            <a href="#" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:16.5px;text-decoration:none;border:2px solid rgba(255,255,255,.55);color:#fff">Enquire about admission</a>
+          </div>
+        </div>
+      </section>
+      <dc-import name="HopeFooterV3" hint-size="100%,420px"></dc-import>
+    </div>
+  </div>
+
+  <div data-screen-label="Why it matters" style="display:flex;flex-direction:column;gap:10px">
+    <p style="margin:0;font:700 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:#6B6459">05 · Why it matters — new page</p>
+    <div style="width:1200px;background:#FAF8F3;color:#252A29;font-size:19px;line-height:1.65;border:1px solid rgba(0,0,0,.1);border-radius:8px;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.09)">
+      <dc-import name="HopeHeaderV3" current="Why it matters" hint-size="100%,77px"></dc-import>
+      <section style="background:#174F59;color:#E9E6DE;padding-block:76px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <p style="font-size:14.4px;color:#CFCABE;margin:0 0 16px"><a href="#" style="color:#91A995">Home</a> › Why it matters</p>
+          <h1 style="font-weight:700;font-size:54px;line-height:1.08;margin:0;color:#fff;max-width:24ch;text-wrap:balance">Two things worth knowing before you decide</h1>
+          <p style="font-size:20.5px;color:#E9E6DE;line-height:1.55;max-width:62ch;margin:20px 0 0">Why starting sooner matters, and why a number of places here are funded rather than charged for. Neither is a sales argument — they are the two facts that shaped how this centre works.</p>
+        </div>
+      </section>
+      <section style="padding-block:56px;background:#F4F1EA;border-bottom:1px solid #E9E6DE">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto;display:grid;gap:24px;grid-template-columns:repeat(2,minmax(0,1fr))">
+          <a href="#" style="display:flex;flex-direction:column;gap:8px;padding:24px;background:#fff;border:1px solid #E9E6DE;border-left:4px solid #174F59;border-radius:14px;text-decoration:none;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s" style-hover="transform:translateY(-4px);box-shadow:0 4px 12px rgba(23,79,89,.08)">
+            <span style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8A6D2F">01</span>
+            <span style="font-weight:700;font-size:22px;line-height:1.26;color:#174F59">Why now</span>
+            <span style="font-size:16px;color:#5C6260">What a year of waiting actually costs — and what the evidence says about starting sooner.</span>
+          </a>
+          <a href="#" style="display:flex;flex-direction:column;gap:8px;padding:24px;background:#fff;border:1px solid #E9E6DE;border-left:4px solid #C8A96B;border-radius:14px;text-decoration:none;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s" style-hover="transform:translateY(-4px);box-shadow:0 4px 12px rgba(23,79,89,.08)">
+            <span style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8A6D2F">02</span>
+            <span style="font-weight:700;font-size:22px;line-height:1.26;color:#174F59">Why we fund places</span>
+            <span style="font-size:16px;color:#5C6260">What therapy costs a family in Islamabad, and why families stop before it has finished working.</span>
+          </a>
+        </div>
+      </section>
+      <section style="padding-block:92px;background:#174F59;color:#E9E6DE">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <div data-reveal style="max-width:62ch;padding-top:22px;border-top:2px solid #C8A96B">
+            <p style="font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#C8A96B;margin:0 0 14px">Why now — a note on waiting</p>
+            <h2 style="font-weight:700;font-size:34px;line-height:1.22;color:#fff;margin:0;max-width:34ch;text-wrap:balance">A year of waiting is not a year paused</h2>
+            <p style="font-size:19px;color:#E9E6DE;line-height:1.6;margin:18px 0 0;max-width:58ch">This is the part most families are never told plainly. Development does not hold still while a child waits for a place, a diagnosis, or the money. It carries on — just along a different path.</p>
+          </div>
+
+          <div style="display:grid;gap:20px;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:48px">
+            <div data-reveal style="border-top:2px solid #C8A96B;padding-top:20px">
+              <b style="display:block;font-size:34px;line-height:1;color:#fff;font-weight:700">1 in 31</b>
+              <span style="display:block;margin-top:14px;font-size:16.5px;color:#E9E6DE">Children identified with autism in the United States in 2022 — up from 1 in 150 in 2000. This is not a rare condition. It is a common one that most systems are still built to treat as rare.</span>
+              <cite style="display:block;margin-top:12px;font-size:13.5px;color:#CFCABE;font-style:normal">CDC, ADDM Network — published April&nbsp;2025 <sup>1</sup></cite>
+            </div>
+            <div data-reveal style="border-top:2px solid #C8A96B;padding-top:20px">
+              <b style="display:block;font-size:34px;line-height:1;color:#fff;font-weight:700">Age 2</b>
+              <span style="display:block;margin-top:14px;font-size:16.5px;color:#E9E6DE">Autism can be reliably identified by a trained clinician from around this age. In practice most children are diagnosed years later — and every one of those years is a year of support not given.</span>
+              <cite style="display:block;margin-top:12px;font-size:13.5px;color:#CFCABE;font-style:normal">Consistent finding across ADDM surveillance <sup>1</sup></cite>
+            </div>
+            <div data-reveal style="border-top:2px solid #C8A96B;padding-top:20px">
+              <b style="display:block;font-size:34px;line-height:1;color:#fff;font-weight:700">21%</b>
+              <span style="display:block;margin-top:14px;font-size:16.5px;color:#E9E6DE">Of children who left ABA within two years had actually met their goals. The other four in five stopped for reasons that had nothing to do with whether it was working.</span>
+              <cite style="display:block;margin-top:12px;font-size:13.5px;color:#CFCABE;font-style:normal">Choi et&nbsp;al., <em>J Dev Behav Pediatr</em>, 2022 <sup>2</sup></cite>
+            </div>
+          </div>
+
+          <div style="display:grid;gap:56px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);margin-top:56px;align-items:start">
+            <div data-reveal>
+              <h3 style="font-weight:700;font-size:21px;line-height:1.24;color:#fff;margin:0">What a delay actually costs</h3>
+              <p style="margin:16px 0 0;font-size:17px;color:#E9E6DE;max-width:50ch">Nothing dramatic happens on the day you decide to wait. The cost is quiet, and it accumulates.</p>
+              <ul style="list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:16px">
+                <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:8px;height:8px;border-radius:50%;background:#C8A96B;margin-top:.62em"></span><span style="font-size:16.5px;color:#E9E6DE"><strong style="color:#fff">Skills compound, and so does their absence.</strong> A child who cannot yet ask for what they want does not simply wait to learn — they find another way to be understood, and that way is usually harder to live with for everyone.</span></li>
+                <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:8px;height:8px;border-radius:50%;background:#C8A96B;margin-top:.62em"></span><span style="font-size:16.5px;color:#E9E6DE"><strong style="color:#fff">Behaviour hardens into habit.</strong> What starts as frustration becomes a pattern, and a pattern that has worked for three years takes longer to change than one that is three months old.</span></li>
+                <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:8px;height:8px;border-radius:50%;background:#C8A96B;margin-top:.62em"></span><span style="font-size:16.5px;color:#E9E6DE"><strong style="color:#fff">School gets harder to enter, not easier.</strong> The gap between a child and their classroom widens with time, and each year of it makes an inclusive placement more difficult to arrange.</span></li>
+                <li style="display:flex;gap:12px;align-items:flex-start"><span style="flex:none;width:8px;height:8px;border-radius:50%;background:#C8A96B;margin-top:.62em"></span><span style="font-size:16.5px;color:#E9E6DE"><strong style="color:#fff">The family pays too.</strong> Parenting stress rises with unmet need, and a stressed household is a harder place to practise new skills — which is precisely what makes them stick.</span></li>
+              </ul>
+            </div>
+            <div data-reveal>
+              <h3 style="font-weight:700;font-size:21px;line-height:1.24;color:#fff;margin:0">And the part that should give you hope</h3>
+              <p style="margin:16px 0 0;font-size:17px;color:#E9E6DE;max-width:50ch">The same study that measured how many families drop out also measured what happened to those who stayed.</p>
+              <p style="margin:16px 0 0;font-size:19px;color:#fff;max-width:50ch">The children who completed two years made clinically significant gains — <strong>including the children who began with the greatest needs.</strong></p>
+              <p style="margin:16px 0 0;font-size:16.5px;color:#E9E6DE;max-width:50ch">Read that alongside the 21%. Families are not losing therapy because it failed them. They are losing it because they run out of money, or time, or hope, before it has finished working. Which of those three we can help with, we will.</p>
+              <div style="margin-top:26px;border-left:3px solid #C8A96B;padding:14px 0 14px 20px">
+                <p style="margin:0;font-size:16.5px;color:#E9E6DE;max-width:48ch">We do not promise recovery or cure, and you should be wary of anyone who does. What we can say is that starting sooner gives us more to work with, and that the first conversation costs nothing.</p>
+              </div>
+              <a href="#" style="margin-top:26px;display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:16.5px;text-decoration:none;background:#fff;color:#174F59;background-image:linear-gradient(#C8A96B,#C8A96B);background-repeat:no-repeat;background-size:0% 100%;transition:background-size .32s cubic-bezier(.2,.7,.3,1)" style-hover="background-size:100% 100%">Talk to someone this week</a>
+            </div>
+          </div>
+
+          <div data-reveal style="margin-top:52px;padding-top:22px;border-top:1px solid rgba(255,255,255,.16)">
+            <p style="margin:0;font-size:14px;color:#CFCABE;max-width:96ch;line-height:1.7"><sup>1</sup> Shaw KA, Williams S, Patrick ME, et&nbsp;al. Prevalence and Early Identification of Autism Spectrum Disorder Among Children Aged 4 and 8 Years — ADDM Network, 16 Sites, United States, 2022. <em>MMWR Surveill Summ.</em> 2025;74(2):1–22. &nbsp;·&nbsp; <sup>2</sup> Choi KR, Bhakta B, Knight EA, et&nbsp;al. Patient Outcomes After Applied Behavior Analysis for Autism Spectrum Disorder. <em>J Dev Behav Pediatr.</em> 2022;43(1):9–16.</p>
+            <p style="margin:12px 0 0;font-size:14px;color:#CFCABE;max-width:96ch;line-height:1.7">Pakistan has never run a national prevalence study. The Pakistan Autism Society estimates 350,000–400,000 children; published research is city-specific and does not agree. Nobody knows the real number — which is not a footnote, it is the first problem. A child who is never counted is never planned for.</p>
+          </div>
+        </div>
+      </section>
+      <section style="padding-block:88px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <div data-reveal style="max-width:56ch">
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">Why we give it away</p>
+            <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Therapy is not a luxury. It is only priced like one.</h2>
+            <p style="font-size:19px;color:#5C6260;line-height:1.6;margin:20px 0 0">In Islamabad a therapy session starts at around PKR&nbsp;1,500 and runs past PKR&nbsp;3,000. A child who needs intensive support does not need one session a week — many need five or six.</p>
+          </div>
+          <div style="display:grid;gap:16px;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:40px">
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-left:4px solid #174F59;border-radius:14px;padding:26px"><b style="display:block;font-size:42px;line-height:1.05;color:#174F59;font-weight:700">PKR 30,000</b><span style="display:block;margin-top:12px;font-size:15.5px">A month of therapy at the <em>cheapest</em> end — five sessions a week at PKR&nbsp;1,500.</span><cite style="display:block;margin-top:10px;font-size:13.1px;color:#5C6260;font-style:normal">81% of a full minimum-wage income</cite></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-left:4px solid #174F59;border-radius:14px;padding:26px"><b style="display:block;font-size:42px;line-height:1.05;color:#174F59;font-weight:700">PKR 72,000</b><span style="display:block;margin-top:12px;font-size:15.5px">A month at six sessions a week at PKR&nbsp;3,000. Common for high support needs, not extreme.</span><cite style="display:block;margin-top:10px;font-size:13.1px;color:#5C6260;font-style:normal">195% — nearly twice that income</cite></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-left:4px solid #174F59;border-radius:14px;padding:26px"><b style="display:block;font-size:42px;line-height:1.05;color:#174F59;font-weight:700">PKR 37,000</b><span style="display:block;margin-top:12px;font-size:15.5px">The monthly minimum wage in Islamabad. The whole household income, for many families.</span><cite style="display:block;margin-top:10px;font-size:13.1px;color:#5C6260;font-style:normal">ICT, financial year 2025–26</cite></div>
+          </div>
+          <p data-reveal style="margin:36px 0 0;max-width:62ch;font-size:18px">A study of 334 children referred for ABA found that 13% never started, a third had stopped within a year, and more than half were gone by two years — but only 21% of those departures happened because the child had met their goals. The children who stayed made clinically significant gains. Families are not losing therapy because it failed them; they are losing it because they run out of money before it has time to finish.</p>
+          <p data-reveal style="margin:24px 0 0;max-width:62ch;font-size:19px;color:#174F59;font-weight:700">That is the gap this centre exists to close.</p>
+        </div>
+      </section>
+      <section style="padding-block:76px;background:#174F59;color:#E9E6DE">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto;text-align:center">
+          <h2 style="font-weight:700;font-size:38px;line-height:1.18;color:#fff;margin:0;text-wrap:balance">Start with a conversation</h2>
+          <p style="font-size:19px;color:#E9E6DE;line-height:1.55;max-width:58ch;margin:16px auto 0">Tell us about your child, or ask about a funded place. The first conversation costs nothing.</p>
+          <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:26px">
+            <a href="#" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:16.5px;text-decoration:none;background:#fff;color:#174F59;background-image:linear-gradient(#C8A96B,#C8A96B);background-repeat:no-repeat;background-size:0% 100%;transition:background-size .32s cubic-bezier(.2,.7,.3,1)" style-hover="background-size:100% 100%">Talk to someone this week</a>
+            <a href="#" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:16.5px;text-decoration:none;border:2px solid rgba(255,255,255,.55);color:#fff">Support a place</a>
+          </div>
+        </div>
+      </section>
+      <dc-import name="HopeFooterV3" hint-size="100%,420px"></dc-import>
+    </div>
+  </div>
+
+  <div data-screen-label="Volunteer" style="display:flex;flex-direction:column;gap:10px">
+    <p style="margin:0;font:700 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:#6B6459">06 · Volunteer — new page</p>
+    <div style="width:1200px;background:#FAF8F3;color:#252A29;font-size:19px;line-height:1.65;border:1px solid rgba(0,0,0,.1);border-radius:8px;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.09)">
+      <dc-import name="HopeHeaderV3" current="Volunteer" cta="Volunteer with us" hint-size="100%,77px"></dc-import>
+      <section style="background:#174F59;padding-block:64px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto;display:grid;gap:48px;grid-template-columns:minmax(0,1fr) minmax(0,.7fr);align-items:center">
+          <div>
+            <p style="font-size:14.4px;color:#CFCABE;margin:0 0 16px"><a href="#" style="color:#91A995">Home</a> › Volunteer</p>
+            <h1 style="font-weight:700;font-size:54px;line-height:1.08;margin:0;color:#fff;max-width:18ch;text-wrap:balance">Volunteer with us</h1>
+            <p style="font-size:20.5px;color:#E9E6DE;line-height:1.55;max-width:52ch;margin:20px 0 0">Mental health work, wherever we can be useful — with children, with adults, and in the places most services never reach. Someone still does the work. A good deal of it is done by volunteers.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:32px">
+              <a href="#" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:16.5px;text-decoration:none;background:#fff;color:#174F59;background-image:linear-gradient(#C8A96B,#C8A96B);background-repeat:no-repeat;background-size:0% 100%;transition:background-size .32s cubic-bezier(.2,.7,.3,1)" style-hover="background-size:100% 100%">Register as a volunteer</a>
+              <a href="#" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:16.5px;text-decoration:none;border:2px solid rgba(255,255,255,.55);color:#fff">Partner as a company</a>
+            </div>
+          </div>
+          <div style="position:relative;width:100%;aspect-ratio:1;border-radius:18px;overflow:hidden"><image-slot id="v-hero" shape="rect" src="https://images.unsplash.com/photo-1758273240373-370993d0275d?auto=format&fit=crop&w=1200&q=75" credit="Photo by Vitaly Gariev on Unsplash" credit-href="https://unsplash.com/photos/therapist-listens-to-young-woman-on-couch-HZwcaAeLs54" placeholder="Volunteering — mental health support across the lifespan"></image-slot></div>
+        </div>
+      </section>
+
+      <section style="padding-block:88px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <div data-reveal style="max-width:56ch">
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">Four ways to help</p>
+            <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">There is a role here whatever you bring</h2>
+            <p style="font-size:19px;color:#5C6260;line-height:1.6;margin:18px 0 0">You do not need a clinical background, and you do not need to know anything about autism. The work spans mental health broadly — children, adults, older people. Some of the most useful volunteers have never worked in this field at all — they can drive, cook, photograph, fix, teach a craft, or simply sit with someone.</p>
+          </div>
+          <div style="display:grid;gap:20px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:44px">
+            <article data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:16px;padding:30px;display:flex;flex-direction:column;gap:12px;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 12px 28px rgba(31,95,107,.1);border-color:#174F59">
+              <div style="width:44px;height:44px;border-radius:11px;display:grid;place-items:center;background:#EAF0F0;color:#174F59"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"></circle><path d="M2 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2M17 8a3 3 0 1 0 0-6"></path></svg></div>
+              <h3 style="font-weight:700;font-size:23px;line-height:1.28;margin:0">Individuals</h3>
+              <p style="margin:0;font-size:16px;color:#5C6260">Help at camps and open days, assist in the classroom, prepare learning materials, or spend time with an adult who has few visitors. Regular volunteers are matched to one group so the people they support see the same face each week.</p>
+            </article>
+            <article data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:16px;padding:30px;display:flex;flex-direction:column;gap:12px;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 12px 28px rgba(31,95,107,.1);border-color:#6E8A73">
+              <div style="width:44px;height:44px;border-radius:11px;display:grid;place-items:center;background:#EFF2EE;color:#6E8A73"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2Z"></path><path d="M8 8h6M8 12h6"></path></svg></div>
+              <h3 style="font-weight:700;font-size:23px;line-height:1.28;margin:0">Students &amp; professionals</h3>
+              <p style="margin:0;font-size:16px;color:#5C6260">Psychology and education students, therapists, teachers, SLPs and OTs. Volunteering here can run alongside supervised hours — if you are working towards IBA or IBT certification, say so and we will structure it properly rather than informally.</p>
+            </article>
+            <article data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:16px;padding:30px;display:flex;flex-direction:column;gap:12px;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 12px 28px rgba(31,95,107,.1);border-color:#8A6D2F">
+              <div style="width:44px;height:44px;border-radius:11px;display:grid;place-items:center;background:#F7F1E3;color:#8A6D2F"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"></path><path d="M9 21v-5h6v5"></path></svg></div>
+              <h3 style="font-weight:700;font-size:23px;line-height:1.28;margin:0">Companies &amp; institutions</h3>
+              <p style="margin:0;font-size:16px;color:#5C6260">Team volunteering days, CSR partnerships, sponsoring a therapy place or a classroom's materials, donating equipment, or offering skills your staff already have — accounting, design, transport, IT. We will tell you honestly which of those we actually need this quarter.</p>
+            </article>
+            <article data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:16px;padding:30px;display:flex;flex-direction:column;gap:12px;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 12px 28px rgba(31,95,107,.1);border-color:#A8873F">
+              <div style="width:44px;height:44px;border-radius:11px;display:grid;place-items:center;background:#F7EBE7;color:#A8873F"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.3-7-9.5A4.5 4.5 0 0 1 12 8a4.5 4.5 0 0 1 7 3.5C19 16.7 12 21 12 21Z"></path></svg></div>
+              <h3 style="font-weight:700;font-size:23px;line-height:1.28;margin:0">From a distance</h3>
+              <p style="margin:0;font-size:16px;color:#5C6260">You do not have to be in Islamabad. Translation, admin, fundraising, social media, grant writing and remote mentoring all get done by people we have never met in person.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section style="padding-block:88px;background:#EAF0F0;border-block:1px solid #E9E6DE">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto;display:grid;gap:60px;grid-template-columns:minmax(0,.85fr) minmax(0,1fr);align-items:center">
+          <div data-reveal style="position:relative;width:100%;aspect-ratio:5/4;border-radius:18px;overflow:hidden"><image-slot id="v-adults" shape="rect" src="https://images.unsplash.com/photo-1708687044998-35e1afa39c58?auto=format&fit=crop&w=900&q=75" credit="Photo by Ortopediatri Çocuk Ortopedi Akademisi on Unsplash" credit-href="https://unsplash.com/photos/a-boy-in-a-wheelchair-holding-a-teddy-bear-VlzIH1CEsCA" placeholder="Adult and older-adult services"></image-slot></div>
+          <div data-reveal>
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">Not only children, not only autism</p>
+            <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Mental health, wherever we can be useful</h2>
+            <p style="margin:20px 0 0;max-width:54ch;font-size:18px">The centre began with children, but the founder is a clinical psychologist and the need does not stop at childhood or at one diagnosis. We work with adults as well — and we take on mental health work anywhere we can genuinely help, not only autism.</p>
+            <p style="margin:16px 0 0;max-width:54ch;font-size:16.5px;color:#5C6260">Autistic children become autistic adults, and almost every service in the country stops at eighteen. Alongside that: older adults who are isolated, carers who are exhausted, adults living with anxiety, depression or grief, and people whose disability was never assessed at all.</p>
+            <p style="margin:20px 0 0;max-width:54ch;font-size:16.5px;color:#5C6260">Volunteers are needed for all of it — independence and daily routines, employment readiness, community access, and simple company, which for isolated adults is the thing in shortest supply. This is often where someone with ordinary life experience is worth more than a clinician. If you can teach a person to cook, use a bus, sit an interview or hold a conversation, you are qualified.</p>
+            <div style="margin-top:26px;padding-top:22px;border-top:1px solid #D6DDD9">
+              <p style="margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#6E8A73">Settings volunteers work in</p>
+              <ul style="display:grid;gap:8px 20px;grid-template-columns:1fr 1fr;list-style:none;margin:0;padding:0;font-size:16px">
+                <li style="display:flex;gap:9px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:50%;background:#C8A96B;flex:none;margin-top:.55em"></span>Old age homes and day centres</li>
+                <li style="display:flex;gap:9px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:50%;background:#C8A96B;flex:none;margin-top:.55em"></span>Orphanages and shelter homes</li>
+                <li style="display:flex;gap:9px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:50%;background:#C8A96B;flex:none;margin-top:.55em"></span>Special education schools</li>
+                <li style="display:flex;gap:9px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:50%;background:#C8A96B;flex:none;margin-top:.55em"></span>Mainstream schools — student wellbeing</li>
+                <li style="display:flex;gap:9px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:50%;background:#C8A96B;flex:none;margin-top:.55em"></span>Community and awareness camps</li>
+                <li style="display:flex;gap:9px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:50%;background:#C8A96B;flex:none;margin-top:.55em"></span>Rehabilitation and disability centres</li>
+                <li style="display:flex;gap:9px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:50%;background:#C8A96B;flex:none;margin-top:.55em"></span>Home visits for housebound adults</li>
+                <li style="display:flex;gap:9px;align-items:flex-start"><span style="width:6px;height:6px;border-radius:50%;background:#C8A96B;flex:none;margin-top:.55em"></span>The centre itself, in Islamabad</li>
+              </ul>
+            </div>
+            <a href="#" style="margin-top:24px;display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:999px;font-weight:700;font-size:16.5px;text-decoration:none;background:#174F59;color:#fff;background-image:linear-gradient(#C97868,#C97868);background-repeat:no-repeat;background-size:0% 100%;transition:background-size .3s cubic-bezier(.2,.7,.3,1),color .3s" style-hover="background-size:100% 100%;color:#252A29">Ask about adult services</a>
+          </div>
+        </div>
+      </section>
+
+      <section style="padding-block:88px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <div data-reveal style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+            <div style="max-width:56ch">
+              <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">Volunteer work</p>
+              <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">What it actually looks like</h2>
+              <p style="font-size:18px;color:#5C6260;line-height:1.6;margin:16px 0 0">Every frame below is empty on purpose. Drop your own photographs straight onto them — camps, company days, adult sessions, classroom help. They save as you go.</p>
+            </div>
+            <a href="#" style="font-weight:700;font-size:16.5px;color:#174F59;text-decoration:none">Join the next volunteer day ↗</a>
+          </div>
+          <div style="display:grid;gap:14px;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:210px 210px;margin-top:40px">
+            <div data-reveal style="position:relative;grid-column:span 2;grid-row:span 2;min-width:0"><image-slot id="v-g1" shape="rounded" radius="14" src="https://images.unsplash.com/photo-1762955911431-4c44c7c3f408?auto=format&fit=crop&w=700&q=75" credit="Photo by Age Cymru on Unsplash" credit-href="https://unsplash.com/photos/caregiver-assisting-elderly-couple-with-coloring-bSXk1lOp8T0" placeholder="Old-age homes — activity sessions"></image-slot></div>
+            <div data-reveal style="position:relative;min-width:0"><image-slot id="v-g2" shape="rounded" radius="14" src="https://images.unsplash.com/photo-1762955911769-d652ceaa94bb?auto=format&fit=crop&w=700&q=75" credit="Photo by Age Cymru on Unsplash" credit-href="https://unsplash.com/photos/caregiver-assists-two-elderly-women-knitting-GStFfDrOygo" placeholder="Group activity and companionship"></image-slot></div>
+            <div data-reveal style="position:relative;min-width:0"><image-slot id="v-g3" shape="rounded" radius="14" src="https://images.unsplash.com/photo-1765896387377-e293914d1e69?auto=format&fit=crop&w=700&q=75" credit="Photo by Age Cymru on Unsplash" credit-href="https://unsplash.com/photos/two-women-laughing-together-indoors-GPrh_GLiWCI" placeholder="One-to-one support"></image-slot></div>
+            <div data-reveal style="position:relative;min-width:0"><image-slot id="v-g4" shape="rounded" radius="14" src="https://images.unsplash.com/photo-1765896387398-1e1ae8d2eb85?auto=format&fit=crop&w=700&q=75" credit="Photo by Age Cymru on Unsplash" credit-href="https://unsplash.com/photos/two-women-talking-in-comfortable-chairs-qW3DLnehg9w" placeholder="A listening conversation"></image-slot></div>
+            <div data-reveal style="position:relative;min-width:0"><image-slot id="v-g5" shape="rounded" radius="14" src="https://images.unsplash.com/photo-1773227060703-b31bd307e218?auto=format&fit=crop&w=700&q=75" credit="Photo by Age Cymru on Unsplash" credit-href="https://unsplash.com/photos/elderly-women-engaged-in-an-activity-together-llZYHfr_zlg" placeholder="Community sessions"></image-slot></div>
+          </div>
+          <p data-reveal style="margin:24px 0 0;font-size:15.5px;color:#5C6260;max-width:74ch">Written consent is needed for any identifiable person, adult or child. Where you do not have it, photograph hands, materials, the room or the group from behind — never blur a face, it reads as concealment.</p>
+        </div>
+      </section>
+
+      <section style="padding-block:88px;background:#F4F1EA;border-top:1px solid #E9E6DE">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto;display:grid;gap:56px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start">
+          <div data-reveal>
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">Before you sign up</p>
+            <h2 style="font-weight:700;font-size:38px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">What we ask, and what you get</h2>
+            <div style="margin-top:26px;display:grid;gap:0;border-top:1px solid #E9E6DE">
+              <span style="display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid #E9E6DE;font-size:16px"><b>Minimum commitment</b><span style="color:#5C6260;text-align:right">A few hours a month, ideally at the same time</span></span>
+              <span style="display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid #E9E6DE;font-size:16px"><b>Minimum age</b><span style="color:#5C6260;text-align:right">16, or 18 for adult services</span></span>
+              <span style="display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid #E9E6DE;font-size:16px"><b>Screening</b><span style="color:#5C6260;text-align:right">A conversation, references, and safeguarding checks</span></span>
+              <span style="display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid #E9E6DE;font-size:16px"><b>Induction</b><span style="color:#5C6260;text-align:right">A half-day before your first session</span></span>
+              <span style="display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid #E9E6DE;font-size:16px"><b>You get</b><span style="color:#5C6260;text-align:right">Training, supervision, and a written reference</span></span>
+              <span style="display:flex;justify-content:space-between;gap:20px;padding:14px 0;font-size:16px"><b>Cost to you</b><span style="color:#5C6260;text-align:right">Nothing</span></span>
+            </div>
+            <p style="margin:22px 0 0;font-size:15.5px;color:#5C6260;max-width:52ch">Confidentiality and safeguarding are not paperwork here. You will be around children and adults who cannot always speak for themselves, and the induction spends most of its time on exactly that.</p>
+          </div>
+          <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-top:5px solid #174F59;border-radius:16px;padding:32px">
+            <h2 style="font-weight:700;font-size:26px;line-height:1.2;color:#174F59;margin:0">Register your interest</h2>
+            <p style="font-size:15.5px;color:#5C6260;margin:12px 0 22px">Five fields. We will call you back rather than making you wait.</p>
+            <div style="display:flex;flex-direction:column;gap:6.4px;margin-bottom:16px">
+              <label style="font-weight:700;font-size:15.7px">Your name <span style="font-weight:400;color:#5C6260">(required)</span></label>
+              <input type="text" style="font-family:inherit;font-size:16px;min-height:48px;padding:11.2px 14.4px;background:#F4F1EA;border:1.5px solid #E9E6DE;border-radius:8px;color:#252A29;width:100%;box-sizing:border-box">
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6.4px;margin-bottom:16px">
+              <label style="font-weight:700;font-size:15.7px">Phone number <span style="font-weight:400;color:#5C6260">(required)</span></label>
+              <input type="tel" style="font-family:inherit;font-size:16px;min-height:48px;padding:11.2px 14.4px;background:#F4F1EA;border:1.5px solid #E9E6DE;border-radius:8px;color:#252A29;width:100%;box-sizing:border-box">
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6.4px;margin-bottom:16px">
+              <label style="font-weight:700;font-size:15.7px">I am volunteering as</label>
+              <select style="font-family:inherit;font-size:16px;min-height:48px;padding:11.2px 14.4px;background:#F4F1EA;border:1.5px solid #E9E6DE;border-radius:8px;color:#252A29;width:100%;box-sizing:border-box"><option>An individual</option><option>A student or professional</option><option>A company or institution</option><option>Remotely, from elsewhere</option></select>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+              <span style="font-size:15.5px"><strong>Where would you like to help?</strong> <span style="font-weight:400;color:#5C6260">(choose any)</span></span>
+              <div style="display:grid;gap:9.6px;grid-template-columns:1fr 1fr">
+                <label style="display:flex;align-items:flex-start;gap:9.6px;padding:11.2px 12.8px;border:1.5px solid #174F59;border-radius:8px;background:#EAF0F0;min-height:48px;box-sizing:border-box"><input type="checkbox" checked style="width:20px;height:20px;flex:none;margin-top:.15rem;accent-color:#174F59"><span style="font-size:15.2px;line-height:1.4">Camps &amp; open days</span></label>
+                <label style="display:flex;align-items:flex-start;gap:9.6px;padding:11.2px 12.8px;border:1.5px solid #E9E6DE;border-radius:8px;background:#F4F1EA;min-height:48px;box-sizing:border-box"><input type="checkbox" style="width:20px;height:20px;flex:none;margin-top:.15rem;accent-color:#174F59"><span style="font-size:15.2px;line-height:1.4">The classroom</span></label>
+                <label style="display:flex;align-items:flex-start;gap:9.6px;padding:11.2px 12.8px;border:1.5px solid #E9E6DE;border-radius:8px;background:#F4F1EA;min-height:48px;box-sizing:border-box"><input type="checkbox" style="width:20px;height:20px;flex:none;margin-top:.15rem;accent-color:#174F59"><span style="font-size:15.2px;line-height:1.4">Adult services</span></label>
+                <label style="display:flex;align-items:flex-start;gap:9.6px;padding:11.2px 12.8px;border:1.5px solid #E9E6DE;border-radius:8px;background:#F4F1EA;min-height:48px;box-sizing:border-box"><input type="checkbox" style="width:20px;height:20px;flex:none;margin-top:.15rem;accent-color:#174F59"><span style="font-size:15.2px;line-height:1.4">Admin &amp; fundraising</span></label>
+                <label style="display:flex;align-items:flex-start;gap:9.6px;padding:11.2px 12.8px;border:1.5px solid #E9E6DE;border-radius:8px;background:#F4F1EA;min-height:48px;box-sizing:border-box"><input type="checkbox" style="width:20px;height:20px;flex:none;margin-top:.15rem;accent-color:#174F59"><span style="font-size:15.2px;line-height:1.4">A professional skill</span></label>
+                <label style="display:flex;align-items:flex-start;gap:9.6px;padding:11.2px 12.8px;border:1.5px solid #E9E6DE;border-radius:8px;background:#F4F1EA;min-height:48px;box-sizing:border-box"><input type="checkbox" style="width:20px;height:20px;flex:none;margin-top:.15rem;accent-color:#174F59"><span style="font-size:15.2px;line-height:1.4">Wherever needed</span></label>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6.4px;margin-bottom:16px">
+              <label style="font-weight:700;font-size:15.7px">Anything we should know? <span style="font-weight:400;color:#5C6260">(optional)</span></label>
+              <textarea style="font-family:inherit;font-size:16px;min-height:96px;padding:11.2px 14.4px;background:#F4F1EA;border:1.5px solid #E9E6DE;border-radius:8px;color:#252A29;width:100%;box-sizing:border-box;resize:vertical"></textarea>
+              <p style="font-size:14.4px;color:#5C6260;margin:0">Availability, relevant experience, or what drew you here.</p>
+            </div>
+            <button type="submit" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:999px;font-family:inherit;font-weight:700;font-size:16.5px;border:2px solid transparent;background:#174F59;color:#fff;width:100%;margin-top:6px;cursor:pointer">Send my details</button>
+            <p style="font-size:14.4px;color:#5C6260;margin:14px 0 0;text-align:center">Prefer to talk? Call or WhatsApp <a href="#">+92&nbsp;335&nbsp;5443660</a>.</p>
+          </div>
+        </div>
+      </section>
+
+      <dc-import name="HopeFooterV3" hint-size="100%,420px"></dc-import>
+    </div>
+  </div>
+
+  <div data-screen-label="About" style="display:flex;flex-direction:column;gap:10px">
+    <p style="margin:0;font:700 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:#6B6459">07 · About</p>
+    <div style="width:1200px;background:#FAF8F3;color:#252A29;font-size:19px;line-height:1.65;border:1px solid rgba(0,0,0,.1);border-radius:8px;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.09)">
+      <dc-import name="HopeHeaderV3" current="About" hint-size="100%,77px"></dc-import>
+      <section style="background:#174F59;padding-block:64px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <p style="font-size:14.4px;color:#CFCABE;margin:0 0 16px"><a href="#" style="color:#91A995">Home</a> › About</p>
+          <h1 style="font-weight:700;font-size:54px;line-height:1.08;margin:0;color:#fff;max-width:20ch;text-wrap:balance">Where it all began</h1>
+          <p style="font-size:20.5px;color:#E9E6DE;line-height:1.55;max-width:58ch;margin:20px 0 0">The Project Hope was founded as a multidisciplinary centre for children with special needs in Islamabad, and now trains and consults worldwide.</p>
+        </div>
+      </section>
+      <section style="padding-block:96px;background:#FAF8F3;border-bottom:1px solid #E9E6DE;color:#252A29">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <div data-reveal style="max-width:60ch">
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8A6D2F;margin:0 0 16px">Our story</p>
+            <h2 style="font-weight:700;font-size:46px;line-height:1.12;color:#174F59;margin:0;text-wrap:balance">I kept meeting parents who had run out of places to ask</h2>
+          </div>
+          <div data-reveal style="display:grid;gap:56px;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:start;margin-top:44px">
+            <div style="display:flex;flex-direction:column;gap:20px;font-size:18.5px;line-height:1.7;color:#3F4644;max-width:62ch">
+              <p style="margin:0">Before this was a centre, it was a corridor. Hospital waiting areas at Shifa, then classrooms at Beaconhouse, and in all of them the same family, over and over — a mother holding a folder of reports she had been handed by four different people, none of whom had told her what to do on Monday morning.</p>
+              <p style="margin:0">What I saw was not grief about a diagnosis. Most of these parents had made their peace with the word. What was breaking them was the not-knowing: no path, no order to the steps, no one saying <em>start here, then this</em>. They were doing everything asked of them and still watching months pass. And when a plan finally did exist, it came with a fee that ran past what the household earned, so it quietly became a plan for someone else's child.</p>
+              <p style="margin:0">You can watch a parent decide to stop hoping. It is not dramatic. They stop asking questions in the session. They start saying <em>we will see</em> instead of <em>what is next</em>. They cancel one appointment and do not rebook, because rebooking means saying out loud that the money is gone. That is the moment I could not walk past any more.</p>
+              <p style="margin:0">So I went and measured it. My clinical psychology thesis asked whether a caregiver's stress changes what a child actually keeps from therapy — and it does. An exhausted, unsupported parent cannot carry a plan into the home, and a skill that never leaves the therapy room was never really learned. Which means supporting the parent is not kindness around the edges of the work. It <strong style="color:#174F59;font-weight:700">is</strong> the work.</p>
+              <p style="margin:0">The Project Hope opened in August 2025 for exactly that reason. Not to promise recovery, and not to be one more place that hands a family a report. To be the place that says: here is the path, here is who walks it with you, and here is what happens if you cannot pay — because that answer should never be <em>nothing</em>.</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:26px">
+              <div style="position:relative;width:100%;aspect-ratio:4/5;border-radius:16px;overflow:hidden"><image-slot id="ab-story" shape="rect" src="https://images.unsplash.com/photo-1774801890406-ffa0131fc497?auto=format&fit=crop&w=1100&q=75" credit="Photo by Adrien Olichon on Unsplash" credit-href="https://unsplash.com/photos/modern-building-with-outdoor-seating-and-green-lawn-HcvJlNp1koQ" placeholder="The centre — Shahzad Town, Islamabad"></image-slot></div>
+              <blockquote style="margin:0;border-left:2px solid #C8A96B;padding:4px 0 4px 22px">
+                <p style="margin:0;font-size:23px;line-height:1.35;color:#174F59;font-style:italic">Hope is not a feeling you hand to a family. It is a path you show them, and then walk with them.</p>
+                <cite style="display:block;margin-top:14px;font-size:14.5px;color:#8A6D2F;font-style:normal;font-weight:700">Muhammad Farooq E Azam Awan — Founder, clinical psychologist &amp; IBAO-certified Behavior Analyst</cite>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="padding-block:88px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto;display:grid;gap:56px;grid-template-columns:minmax(0,.6fr) minmax(0,1fr);align-items:start">
+          <div data-reveal style="position:relative;width:100%;aspect-ratio:3/4;border-radius:18px;overflow:hidden"><image-slot id="ab-founder" shape="rect" src="site/assets/img/farooq.png" placeholder="Portrait — Muhammad Farooq E Azam Awan"></image-slot></div>
+          <div data-reveal>
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">The founder</p>
+            <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Muhammad Farooq E Azam Awan</h2>
+            <p style="margin:20px 0 0;max-width:60ch;font-size:18px">An internationally certified Behavior Analyst and clinical psychology practitioner. He founded The Project Hope in August 2025 and leads its clinical teams, its training programmes, and its inclusive school.</p>
+            <h3 style="font-weight:700;font-size:23px;line-height:1.3;margin:36px 0 0;color:#174F59">Before the centre</h3>
+            <ul style="list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:12px">
+              <li style="display:flex;gap:11.2px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:22px;height:22px;color:#6E8A73;margin-top:.28em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:16.5px"><strong>Assistant Applied Behavior Analyst</strong> — Shifa Integrated HealthCare Technologies. Functional behaviour assessments, behaviour intervention plans, and supervision of junior therapists.</span></li>
+              <li style="display:flex;gap:11.2px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:22px;height:22px;color:#6E8A73;margin-top:.28em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:16.5px"><strong>Special Educational Needs teacher</strong> — Beaconhouse School System, Islamabad. Individualised education plans and ABA-informed classroom support.</span></li>
+              <li style="display:flex;gap:11.2px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:22px;height:22px;color:#6E8A73;margin-top:.28em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:16.5px"><strong>ABA and psychology intern</strong> — Shifa International Hospital, Islamabad. Standardised assessment, intake evaluation, and therapeutic sessions.</span></li>
+            </ul>
+            <h3 style="font-weight:700;font-size:23px;line-height:1.3;margin:36px 0 0;color:#174F59">Education</h3>
+            <ul style="list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:12px">
+              <li style="display:flex;gap:11.2px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:22px;height:22px;color:#6E8A73;margin-top:.28em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:16.5px"><strong>MS Clinical Psychology</strong> — SZABIST, Islamabad, 2026. Thesis: <em>Family Involvement in ABA and Skill Generalization in Children: The Moderating Role of Caregiver Stress in Nuclear Families.</em></span></li>
+              <li style="display:flex;gap:11.2px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:22px;height:22px;color:#6E8A73;margin-top:.28em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:16.5px"><strong>BS Psychology</strong> — COMSATS University Islamabad, February 2024.</span></li>
+              <li style="display:flex;gap:11.2px;align-items:flex-start"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex:none;width:22px;height:22px;color:#6E8A73;margin-top:.28em"><path d="M20 6 9 17l-5-5"></path></svg><span style="font-size:16.5px"><strong>Continuing education</strong> — Ethics, Supervision &amp; Cultural Competency (6 CEUs, IBAO); Clinical Care for Autistic Adults; AFIRM series, 31 evidence-based autism intervention modules.</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section style="padding-block:88px;background:#EAF0F0;border-block:1px solid #E9E6DE">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <div data-reveal style="max-width:58ch">
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8A6D2F;margin:0 0 14px">Credentials</p>
+            <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Certified by the IBAO</h2>
+            <p style="font-size:19px;color:#5C6260;line-height:1.6;margin:18px 0 0">The International Behavior Analysis Organization certifies behaviour analysts internationally under the standard <em>Ethics, Education, Confidence</em>. Its credentials are portable across borders — which matters for anyone training here who may practise elsewhere.</p>
+          </div>
+          <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-top:4px solid #C8A96B;border-radius:16px;padding:36px;display:grid;gap:36px;grid-template-columns:auto minmax(0,1fr);align-items:center;margin-top:32px">
+            <div style="width:120px;height:120px;border-radius:50%;background:#F7F1E3;border:2px solid #C8A96B;display:grid;place-items:center;text-align:center;color:#8A6D2F;font-weight:700;line-height:1.15"><span style="font-size:9.9px;letter-spacing:.08em;text-transform:uppercase">Certified</span><b style="display:block;font-size:27px">IBA</b><span style="font-size:9.9px;letter-spacing:.08em;text-transform:uppercase">IBAO</span></div>
+            <div>
+              <h3 style="font-weight:700;font-size:23px;line-height:1.3;margin:0;color:#174F59">International Behavior Analyst (IBA)</h3>
+              <p style="margin:12px 0 0;font-size:16.5px"><strong>Muhammad Farooq E Azam Awan</strong> — Founder &amp; CEO, The Project Hope.</p>
+              <ul style="list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px 24px;grid-template-columns:1fr 1fr;font-size:15.2px">
+                <li style="display:flex;gap:8px;flex-wrap:wrap"><span style="color:#5C6260;min-width:8.5em">Certification no.</span><b style="font-variant-numeric:tabular-nums">IBA_072025_002612</b></li>
+                <li style="display:flex;gap:8px;flex-wrap:wrap"><span style="color:#5C6260;min-width:8.5em">Certifying body</span><b>IBAO</b></li>
+                <li style="display:flex;gap:8px;flex-wrap:wrap"><span style="color:#5C6260;min-width:8.5em">Issued</span><b>9 July 2025</b></li>
+                <li style="display:flex;gap:8px;flex-wrap:wrap"><span style="color:#5C6260;min-width:8.5em">Valid until</span><b>9 July 2027</b></li>
+              </ul>
+              <a href="#" style="display:inline-flex;gap:7px;margin-top:16px;color:#174F59;font-weight:700;text-decoration:none">View the certificate (PDF) ↗</a>
+            </div>
+          </div>
+          <div style="display:grid;gap:16px;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:24px">
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-left:4px solid #C8A96B;border-radius:10px;padding:22px"><h3 style="font-weight:700;font-size:16.3px;line-height:1.3;margin:0 0 5px;color:#8A6D2F">Approved Content Provider</h3><p style="margin:0;font-size:14.9px;color:#5C6260">Authorised to deliver IBA and IBT training content.</p></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-left:4px solid #C8A96B;border-radius:10px;padding:22px"><h3 style="font-weight:700;font-size:16.3px;line-height:1.3;margin:0 0 5px;color:#8A6D2F">Certified Supervisor</h3><p style="margin:0;font-size:14.9px;color:#5C6260">For candidates on both IBA and IBT pathways.</p></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-left:4px solid #C8A96B;border-radius:10px;padding:22px"><h3 style="font-weight:700;font-size:16.3px;line-height:1.3;margin:0 0 5px;color:#8A6D2F">Certified Mentor</h3><p style="margin:0;font-size:14.9px;color:#5C6260">For IBA candidates.</p></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-left:4px solid #C8A96B;border-radius:10px;padding:22px"><h3 style="font-weight:700;font-size:16.3px;line-height:1.3;margin:0 0 5px;color:#8A6D2F">CEU Provider</h3><p style="margin:0;font-size:14.9px;color:#5C6260">Authorised to issue continuing education units.</p></div>
+          </div>
+        </div>
+      </section>
+      <section style="padding-block:88px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <div data-reveal style="max-width:58ch">
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">Research &amp; writing</p>
+            <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Professional contributions</h2>
+            <p style="font-size:19px;color:#5C6260;line-height:1.6;margin:18px 0 0">Publishing what you know is how a training provider demonstrates it — and it answers the questions families arrive with.</p>
+          </div>
+          <div style="display:grid;gap:20px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:40px">
+            <article data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:8px"><p style="margin:0;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6E8A73">Research</p><h3 style="font-weight:700;font-size:19px;line-height:1.3;margin:0;color:#174F59">Family involvement in ABA and skill generalisation</h3><p style="margin:0;font-size:15.5px;color:#5C6260">MS thesis, SZABIST — the moderating role of caregiver stress in nuclear families. Quantitative, SPSS.</p></article>
+            <article data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:8px"><p style="margin:0;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6E8A73">Research</p><h3 style="font-weight:700;font-size:19px;line-height:1.3;margin:0;color:#174F59">Academic procrastination and social anxiety</h3><p style="margin:0;font-size:15.5px;color:#5C6260">BS research project, COMSATS — among students with and without obesity.</p></article>
+          </div>
+        </div>
+      </section>
+      <section style="padding-block:88px;background:#F4F1EA;border-top:1px solid #E9E6DE">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <div data-reveal style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+            <div>
+              <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 14px">Real people, real spaces</p>
+              <h2 style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Inside the centre</h2>
+            </div>
+            <a href="#" style="font-weight:700;font-size:16.5px;color:#174F59;text-decoration:none">Arrange a visit ↗</a>
+          </div>
+          <div style="display:grid;gap:14px;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:36px">
+            <div data-reveal style="position:relative;aspect-ratio:4/3;min-width:0"><image-slot id="ab-g1" shape="rounded" radius="14" src="https://images.unsplash.com/photo-1761474257877-47bac32b03b6?auto=format&fit=crop&w=800&q=75" credit="Photo by Adeel Ahmed on Unsplash" credit-href="https://unsplash.com/photos/interior-of-a-modern-shopping-mall-with-glass-dome-ceiling-Azv3rnn5np0" placeholder="The building"></image-slot></div>
+            <div data-reveal style="position:relative;aspect-ratio:4/3;min-width:0"><image-slot id="ab-g2" shape="rounded" radius="14" src="https://images.unsplash.com/photo-1773227057385-670ca05191da?auto=format&fit=crop&w=800&q=75" credit="Photo by Age Cymru on Unsplash" credit-href="https://unsplash.com/photos/elderly-woman-clapping-hands-with-others-dxVDFXW3aAI" placeholder="A session in progress"></image-slot></div>
+            <div data-reveal style="position:relative;aspect-ratio:4/3;min-width:0"><image-slot id="ab-g3" shape="rounded" radius="14" src="https://images.unsplash.com/photo-1770223722037-8dc5d3dff8d3?auto=format&fit=crop&w=800&q=75" credit="Photo by Navy Medicine on Unsplash" credit-href="https://unsplash.com/photos/a-woman-shows-a-colorful-plate-to-another-person-PU7HRiWxjH4" placeholder="A conversation with a family"></image-slot></div>
+          </div>
+          <p data-reveal style="margin:20px 0 0;font-size:15.5px;color:#5C6260;max-width:72ch">Written consent is required for any identifiable child. Where you don't have it, photograph hands, materials or the room — never blur a face, it reads as concealment.</p>
+        </div>
+      </section>
+      <dc-import name="HopeFooterV3" hint-size="100%,420px"></dc-import>
+    </div>
+  </div>
+
+  <div data-screen-label="Register" style="display:flex;flex-direction:column;gap:10px">
+    <p style="margin:0;font:700 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:#6B6459">08 · Register</p>
+    <div style="width:1200px;background:#FAF8F3;color:#252A29;font-size:19px;line-height:1.65;border:1px solid rgba(0,0,0,.1);border-radius:8px;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.09)">
+      <dc-import name="HopeHeaderV3" current="Register" hint-size="100%,77px"></dc-import>
+      <section style="background:#174F59;padding-block:64px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <p style="font-size:14.4px;color:#CFCABE;margin:0 0 16px"><a href="#" style="color:#91A995">Home</a> › Register</p>
+          <h1 style="font-weight:700;font-size:54px;line-height:1.08;margin:0;color:#fff;max-width:18ch;text-wrap:balance">Register with us</h1>
+          <p style="font-size:20.5px;color:#E9E6DE;line-height:1.55;max-width:58ch;margin:20px 0 0">Three forms, depending on why you are here. None takes more than a couple of minutes, and we will call you back rather than making you wait.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px">
+            <a href="#" style="display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:13px 26px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;background:#fff;color:#174F59">For my child</a>
+            <a href="#" style="display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:13px 26px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;border:2px solid rgba(255,255,255,.55);color:#fff">For training</a>
+            <a href="#" style="display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:13px 26px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;border:2px solid rgba(255,255,255,.55);color:#fff">To volunteer</a>
+          </div>
+        </div>
+      </section>
+      <section style="padding-block:88px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-top:5px solid #174F59;border-radius:16px;padding:40px;max-width:760px">
+            <p style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#6E8A73;margin:0 0 12px">For families</p>
+            <h2 style="font-weight:700;font-size:32px;line-height:1.2;color:#174F59;margin:0">Therapy or a school place</h2>
+            <p style="font-size:18px;color:#5C6260;line-height:1.55;margin:14px 0 26px">For parents and caregivers. You do not need a diagnosis or a referral to register.</p>
+            <fieldset style="border:1px solid #E9E6DE;border-radius:10px;padding:24px;margin:0 0 20px">
+              <legend style="font-weight:700;font-size:15.7px;padding:0 8px;color:#174F59">About you</legend>
+              <div style="display:flex;flex-direction:column;gap:6.4px;margin-bottom:16px">
+                <label style="font-weight:700;font-size:15.7px">Your name <span style="font-weight:400;color:#5C6260">(required)</span></label>
+                <input type="text" style="font-family:inherit;font-size:16px;min-height:48px;padding:11.2px 14.4px;background:#F4F1EA;border:1.5px solid #E9E6DE;border-radius:8px;color:#252A29;width:100%;box-sizing:border-box">
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6.4px;margin-bottom:16px">
+                <label style="font-weight:700;font-size:15.7px">Phone number <span style="font-weight:400;color:#5C6260">(required)</span></label>
+                <input type="tel" style="font-family:inherit;font-size:16px;min-height:48px;padding:11.2px 14.4px;background:#F4F1EA;border:1.5px solid #E9E6DE;border-radius:8px;color:#252A29;width:100%;box-sizing:border-box">
+                <p style="font-size:14.4px;color:#5C6260;margin:0">We will call or WhatsApp you back on this number.</p>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6.4px">
+                <label style="font-weight:700;font-size:15.7px">How should we reach you?</label>
+                <select style="font-family:inherit;font-size:16px;min-height:48px;padding:11.2px 14.4px;background:#F4F1EA;border:1.5px solid #E9E6DE;border-radius:8px;color:#252A29;width:100%;box-sizing:border-box"><option>WhatsApp</option><option>Phone call</option><option>Email</option></select>
+              </div>
+            </fieldset>
+            <fieldset style="border:1px solid #E9E6DE;border-radius:10px;padding:24px;margin:0 0 20px">
+              <legend style="font-weight:700;font-size:15.7px;padding:0 8px;color:#174F59">About your child</legend>
+              <div style="display:flex;flex-direction:column;gap:6.4px;margin-bottom:16px">
+                <label style="font-weight:700;font-size:15.7px">Child's first name <span style="font-weight:400;color:#5C6260">(optional)</span></label>
+                <input type="text" style="font-family:inherit;font-size:16px;min-height:48px;padding:11.2px 14.4px;background:#F4F1EA;border:1.5px solid #E9E6DE;border-radius:8px;color:#252A29;width:100%;box-sizing:border-box">
+                <p style="font-size:14.4px;color:#5C6260;margin:0">First name only — we don't need more than that yet.</p>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+                <span style="font-size:15.5px"><strong>What are you interested in?</strong> <span style="font-weight:400;color:#5C6260">(choose any)</span></span>
+                <div style="display:grid;gap:9.6px;grid-template-columns:1fr 1fr">
+                  <label style="display:flex;align-items:flex-start;gap:9.6px;padding:11.2px 12.8px;border:1.5px solid #E9E6DE;border-radius:8px;background:#F4F1EA;min-height:48px;box-sizing:border-box"><input type="checkbox" style="width:20px;height:20px;flex:none;margin-top:.15rem;accent-color:#174F59"><span style="font-size:15.2px;line-height:1.4">Applied Behaviour Analysis</span></label>
+                  <label style="display:flex;align-items:flex-start;gap:9.6px;padding:11.2px 12.8px;border:1.5px solid #E9E6DE;border-radius:8px;background:#F4F1EA;min-height:48px;box-sizing:border-box"><input type="checkbox" style="width:20px;height:20px;flex:none;margin-top:.15rem;accent-color:#174F59"><span style="font-size:15.2px;line-height:1.4">Speech &amp; language therapy</span></label>
+                  <label style="display:flex;align-items:flex-start;gap:9.6px;padding:11.2px 12.8px;border:1.5px solid #174F59;border-radius:8px;background:#EAF0F0;min-height:48px;box-sizing:border-box"><input type="checkbox" checked style="width:20px;height:20px;flex:none;margin-top:.15rem;accent-color:#174F59"><span style="font-size:15.2px;line-height:1.4">Occupational therapy</span></label>
+                  <label style="display:flex;align-items:flex-start;gap:9.6px;padding:11.2px 12.8px;border:1.5px solid #E9E6DE;border-radius:8px;background:#F4F1EA;min-height:48px;box-sizing:border-box"><input type="checkbox" style="width:20px;height:20px;flex:none;margin-top:.15rem;accent-color:#174F59"><span style="font-size:15.2px;line-height:1.4">Physiotherapy</span></label>
+                  <label style="display:flex;align-items:flex-start;gap:9.6px;padding:11.2px 12.8px;border:1.5px solid #E9E6DE;border-radius:8px;background:#F4F1EA;min-height:48px;box-sizing:border-box"><input type="checkbox" style="width:20px;height:20px;flex:none;margin-top:.15rem;accent-color:#174F59"><span style="font-size:15.2px;line-height:1.4">A place at the inclusive school</span></label>
+                  <label style="display:flex;align-items:flex-start;gap:9.6px;padding:11.2px 12.8px;border:1.5px solid #E9E6DE;border-radius:8px;background:#F4F1EA;min-height:48px;box-sizing:border-box"><input type="checkbox" style="width:20px;height:20px;flex:none;margin-top:.15rem;accent-color:#174F59"><span style="font-size:15.2px;line-height:1.4">I'm not sure yet</span></label>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6.4px">
+                <label style="font-weight:700;font-size:15.7px">What kind of support are you looking for? <span style="font-weight:400;color:#5C6260">(optional)</span></label>
+                <textarea style="font-family:inherit;font-size:16px;min-height:110px;padding:11.2px 14.4px;background:#F4F1EA;border:1.5px solid #E9E6DE;border-radius:8px;color:#252A29;width:100%;box-sizing:border-box;resize:vertical"></textarea>
+                <p style="font-size:14.4px;color:#5C6260;margin:0">In your own words, and only as much as you want to share. <strong>Please don't send medical records through this form</strong> — bring them to the first appointment instead.</p>
+              </div>
+            </fieldset>
+            <div style="display:flex;align-items:flex-start;gap:11.2px;padding:16px;border:1.5px solid #E9E6DE;border-radius:8px;background:#F4F1EA;margin-bottom:16px">
+              <input type="checkbox" style="width:20px;height:20px;flex:none;margin-top:.2rem;accent-color:#174F59">
+              <label style="font-size:15.2px;line-height:1.5">I agree to The Project Hope storing these details in order to contact me about my enquiry. I can ask for them to be deleted at any time.</label>
+            </div>
+            <button type="submit" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:999px;font-family:inherit;font-weight:700;font-size:16.5px;border:2px solid transparent;background:#174F59;color:#fff;width:100%;cursor:pointer">Send registration</button>
+            <p style="font-size:14.4px;color:#5C6260;margin:14px 0 0;text-align:center">Prefer to talk? Call or WhatsApp <a href="#">+92&nbsp;335&nbsp;5443660</a>.</p>
+          </div>
+        </div>
+      </section>
+      <section style="padding-block:88px;background:#EAF0F0;border-block:1px solid #E9E6DE">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <div data-reveal style="display:grid;gap:20px;grid-template-columns:repeat(2,minmax(0,1fr))">
+            <div style="background:#fff;border:1px solid #E9E6DE;border-top:5px solid #6E8A73;border-radius:16px;padding:32px">
+              <p style="font-size:12.8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#6E8A73;margin:0 0 10px">For professionals</p>
+              <h2 style="font-weight:700;font-size:26px;line-height:1.2;color:#174F59;margin:0">IBA &amp; IBT training</h2>
+              <p style="font-size:16.5px;color:#5C6260;line-height:1.55;margin:12px 0 0">For teachers, therapists, behaviour technicians and graduates seeking certification, supervision or continuing education.</p>
+              <a href="#" style="margin-top:20px;display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:13px 26px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;border:2px solid #6E8A73;color:#6E8A73">Open the training form</a>
+            </div>
+            <div style="background:#fff;border:1px solid #E9E6DE;border-top:5px solid #8A6D2F;border-radius:16px;padding:32px">
+              <p style="font-size:12.8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8A6D2F;margin:0 0 10px">For volunteers</p>
+              <h2 style="font-weight:700;font-size:26px;line-height:1.2;color:#174F59;margin:0">Give time or skills</h2>
+              <p style="font-size:16.5px;color:#5C6260;line-height:1.55;margin:12px 0 0">Individuals, students, companies and remote helpers — for work with both children and adults.</p>
+              <a href="#" style="margin-top:20px;display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:13px 26px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;border:2px solid #8A6D2F;color:#8A6D2F">Open the volunteer form</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section style="padding-block:88px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <h2 data-reveal style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">What happens next</h2>
+          <div style="display:grid;gap:20px;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:40px">
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:24px"><div style="width:40px;height:40px;border-radius:50%;background:#174F59;color:#fff;display:grid;place-items:center;font-weight:700;margin-bottom:14px">1</div><h3 style="font-weight:700;font-size:17.5px;line-height:1.3;margin:0 0 5px;color:#174F59">We read it</h3><p style="margin:0;font-size:15.2px;color:#5C6260">Registrations go to a real person, not an inbox nobody checks.</p></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:24px"><div style="width:40px;height:40px;border-radius:50%;background:#174F59;color:#fff;display:grid;place-items:center;font-weight:700;margin-bottom:14px">2</div><h3 style="font-weight:700;font-size:17.5px;line-height:1.3;margin:0 0 5px;color:#174F59">We get in touch</h3><p style="margin:0;font-size:15.2px;color:#5C6260">By whichever method you chose.</p></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:24px"><div style="width:40px;height:40px;border-radius:50%;background:#174F59;color:#fff;display:grid;place-items:center;font-weight:700;margin-bottom:14px">3</div><h3 style="font-weight:700;font-size:17.5px;line-height:1.3;margin:0 0 5px;color:#174F59">We talk</h3><p style="margin:0;font-size:15.2px;color:#5C6260">A conversation about what you need, and whether we're the right fit.</p></div>
+            <div data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:24px"><div style="width:40px;height:40px;border-radius:50%;background:#174F59;color:#fff;display:grid;place-items:center;font-weight:700;margin-bottom:14px">4</div><h3 style="font-weight:700;font-size:17.5px;line-height:1.3;margin:0 0 5px;color:#174F59">Next steps</h3><p style="margin:0;font-size:15.2px;color:#5C6260">An assessment for families, dates for trainees, an induction for volunteers.</p></div>
+          </div>
+        </div>
+      </section>
+      <dc-import name="HopeFooterV3" hint-size="100%,420px"></dc-import>
+    </div>
+  </div>
+
+  <div data-screen-label="Contact" style="display:flex;flex-direction:column;gap:10px">
+    <p style="margin:0;font:700 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:#6B6459">09 · Contact</p>
+    <div style="width:1200px;background:#FAF8F3;color:#252A29;font-size:19px;line-height:1.65;border:1px solid rgba(0,0,0,.1);border-radius:8px;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.09)">
+      <dc-import name="HopeHeaderV3" current="Contact" cta="Call us" hint-size="100%,77px"></dc-import>
+      <section style="background:#174F59;padding-block:64px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <p style="font-size:14.4px;color:#CFCABE;margin:0 0 16px"><a href="#" style="color:#91A995">Home</a> › Contact</p>
+          <h1 style="font-weight:700;font-size:54px;line-height:1.08;margin:0;color:#fff;max-width:20ch;text-wrap:balance">Start with a conversation</h1>
+          <p style="font-size:20.5px;color:#E9E6DE;line-height:1.55;max-width:58ch;margin:20px 0 0">Tell us about your child, ask about IBA or IBT training, offer your time, or talk to us about supporting the school. Whichever is easier.</p>
+        </div>
+      </section>
+      <section style="padding-block:88px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto;display:grid;gap:52px;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)">
+          <div data-reveal style="display:flex;flex-direction:column;gap:16px">
+            <h2 style="font-weight:700;font-size:26px;line-height:1.2;color:#174F59;margin:0">Ways to reach us</h2>
+            <div style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:24px;display:flex;gap:16px;align-items:flex-start;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s" style-hover="transform:translateY(-4px);box-shadow:0 4px 12px rgba(31,95,107,.08)">
+              <div style="width:44px;height:44px;flex:none;border-radius:10px;background:#EFF2EE;color:#6E8A73;display:grid;place-items:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2h4l2 5-2.5 1.5a13 13 0 0 0 6 6L16 13z"></path></svg></div>
+              <div><h3 style="font-weight:700;font-size:17px;line-height:1.3;margin:0;color:#174F59">WhatsApp</h3><p style="margin:4px 0 0;font-size:15.5px;color:#5C6260">Usually the quickest way to reach us.<br><a href="#" style="color:#174F59;font-weight:700">+92&nbsp;335&nbsp;5443660</a></p></div>
+            </div>
+            <div style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:24px;display:flex;gap:16px;align-items:flex-start;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s" style-hover="transform:translateY(-4px);box-shadow:0 4px 12px rgba(31,95,107,.08)">
+              <div style="width:44px;height:44px;flex:none;border-radius:10px;background:#EFF2EE;color:#6E8A73;display:grid;place-items:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2h4l2 5-2.5 1.5a13 13 0 0 0 6 6L16 13z"></path></svg></div>
+              <div><h3 style="font-weight:700;font-size:17px;line-height:1.3;margin:0;color:#174F59">Phone</h3><p style="margin:4px 0 0;font-size:15.5px;color:#5C6260"><a href="#" style="color:#174F59;font-weight:700">+92&nbsp;335&nbsp;5443660</a></p></div>
+            </div>
+            <div style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:24px;display:flex;gap:16px;align-items:flex-start;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s" style-hover="transform:translateY(-4px);box-shadow:0 4px 12px rgba(31,95,107,.08)">
+              <div style="width:44px;height:44px;flex:none;border-radius:10px;background:#EFF2EE;color:#6E8A73;display:grid;place-items:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 7 10 6 10-6"></path></svg></div>
+              <div><h3 style="font-weight:700;font-size:17px;line-height:1.3;margin:0;color:#174F59">Email</h3><p style="margin:4px 0 0;font-size:15.5px;color:#5C6260"><a href="#" style="color:#174F59;font-weight:700">mfarooqeazamawan@gmail.com</a></p></div>
+            </div>
+            <div style="background:#fff;border:1px solid #E9E6DE;border-radius:14px;padding:24px;display:flex;gap:16px;align-items:flex-start;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s" style-hover="transform:translateY(-4px);box-shadow:0 4px 12px rgba(31,95,107,.08)">
+              <div style="width:44px;height:44px;flex:none;border-radius:10px;background:#EFF2EE;color:#6E8A73;display:grid;place-items:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></div>
+              <div><h3 style="font-weight:700;font-size:17px;line-height:1.3;margin:0;color:#174F59">Visit us</h3><p style="margin:4px 0 0;font-size:15.5px;color:#5C6260">Islamabad, Pakistan</p></div>
+            </div>
+          </div>
+          <form data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:16px;padding:32px">
+            <h2 style="font-weight:700;font-size:26px;line-height:1.2;color:#174F59;margin:0">Send us a message</h2>
+            <p style="font-size:15.5px;color:#5C6260;margin:12px 0 24px">Four fields. We will ask the rest when we speak.</p>
+            <div style="display:flex;flex-direction:column;gap:6.4px;margin-bottom:16px">
+              <label style="font-weight:700;font-size:15.7px">Your name <span style="font-weight:400;color:#5C6260">(required)</span></label>
+              <input type="text" style="font-family:inherit;font-size:16px;min-height:48px;padding:11.2px 14.4px;background:#F4F1EA;border:1.5px solid #E9E6DE;border-radius:8px;color:#252A29;width:100%;box-sizing:border-box">
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6.4px;margin-bottom:16px">
+              <label style="font-weight:700;font-size:15.7px">What is this about?</label>
+              <select style="font-family:inherit;font-size:16px;min-height:48px;padding:11.2px 14.4px;background:#F4F1EA;border:1.5px solid #E9E6DE;border-radius:8px;color:#252A29;width:100%;box-sizing:border-box"><option>Therapy for my child</option><option>A place at the school</option><option>IBA or IBT training</option><option>Volunteering</option><option>Adult services</option><option>Supporting the centre</option></select>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6.4px;margin-bottom:16px">
+              <label style="font-weight:700;font-size:15.7px">Phone number <span style="font-weight:400;color:#5C6260">(required)</span></label>
+              <input type="tel" style="font-family:inherit;font-size:16px;min-height:48px;padding:11.2px 14.4px;background:#F4F1EA;border:1.5px solid #E9E6DE;border-radius:8px;color:#252A29;width:100%;box-sizing:border-box">
+              <p style="font-size:14.4px;color:#5C6260;margin:0">We will call or WhatsApp you back on this number.</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6.4px;margin-bottom:16px">
+              <label style="font-weight:700;font-size:15.7px">How can we help? <span style="font-weight:400;color:#5C6260">(optional)</span></label>
+              <textarea style="font-family:inherit;font-size:16px;min-height:120px;padding:11.2px 14.4px;background:#F4F1EA;border:1.5px solid #E9E6DE;border-radius:8px;color:#252A29;width:100%;box-sizing:border-box;resize:vertical"></textarea>
+              <p style="font-size:14.4px;color:#5C6260;margin:0">A sentence is plenty.</p>
+            </div>
+            <button type="submit" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 28px;border-radius:999px;font-family:inherit;font-weight:700;font-size:16.5px;border:2px solid transparent;background:#174F59;color:#fff;width:100%;margin-top:6px;cursor:pointer">Send message</button>
+          </form>
+        </div>
+      </section>
+      <section style="padding-block:88px;background:#F4F1EA;border-top:1px solid #E9E6DE">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <h2 data-reveal style="font-weight:700;font-size:42px;line-height:1.18;color:#174F59;margin:0;text-wrap:balance">Finding us</h2>
+          <p data-reveal style="font-size:19px;color:#5C6260;line-height:1.55;max-width:58ch;margin:14px 0 0">A real, visitable address is itself a trust signal — parents check.</p>
+          <div data-reveal style="aspect-ratio:16/6;border-radius:16px;border:2px dashed #174F59;background:#EAF0F0;display:grid;place-items:center;text-align:center;padding:24px;color:#174F59;margin-top:28px">
+            <span style="font-weight:700;max-width:34ch;font-size:16.5px">Google Maps embed — needs the exact street address and map pin</span>
+          </div>
+        </div>
+      </section>
+      <dc-import name="HopeFooterV3" hint-size="100%,420px"></dc-import>
+    </div>
+  </div>
+
+  <div data-screen-label="404" style="display:flex;flex-direction:column;gap:10px">
+    <p style="margin:0;font:700 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:#6B6459">10 · 404</p>
+    <div style="width:1200px;background:#FAF8F3;color:#252A29;font-size:19px;line-height:1.65;border:1px solid rgba(0,0,0,.1);border-radius:8px;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.09)">
+      <dc-import name="HopeHeaderV3" current="none" hint-size="100%,77px"></dc-import>
+      <section style="background:#174F59;padding-block:76px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <p style="font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C8A96B;margin:0 0 18px">Error 404</p>
+          <h1 style="font-weight:700;font-size:60px;line-height:1.06;margin:0;color:#fff;max-width:18ch;text-wrap:balance">We couldn't find that page</h1>
+          <p style="font-size:20.5px;color:#E9E6DE;line-height:1.55;max-width:56ch;margin:22px 0 0">The link may be out of date, or the address may have a typo in it. Nothing is wrong on your end.</p>
+        </div>
+      </section>
+      <section style="padding-block:88px">
+        <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+          <p data-reveal style="margin:0;font-size:18px;color:#5C6260">Here is where most people are heading:</p>
+          <div style="display:grid;gap:20px;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:28px">
+            <article data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:16px;padding:30px;display:flex;flex-direction:column;gap:10px;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 12px 28px rgba(31,95,107,.1);border-color:#174F59"><h2 style="font-weight:700;font-size:22px;line-height:1.28;margin:0;color:#174F59">Therapy for your child</h2><p style="margin:0;font-size:15.7px;color:#5C6260">ABA, speech, occupational therapy and physiotherapy.</p><a href="#" style="margin-top:auto;padding-top:12px;font-weight:700;font-size:16px;color:#174F59;text-decoration:none">Go to therapy →</a></article>
+            <article data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:16px;padding:30px;display:flex;flex-direction:column;gap:10px;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 12px 28px rgba(31,95,107,.1);border-color:#6E8A73"><h2 style="font-weight:700;font-size:22px;line-height:1.28;margin:0;color:#174F59">IBA &amp; IBT training</h2><p style="margin:0;font-size:15.7px;color:#5C6260">Certification, supervision and continuing education.</p><a href="#" style="margin-top:auto;padding-top:12px;font-weight:700;font-size:16px;color:#6E8A73;text-decoration:none">Go to training →</a></article>
+            <article data-reveal style="background:#fff;border:1px solid #E9E6DE;border-radius:16px;padding:30px;display:flex;flex-direction:column;gap:10px;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s,border-color .25s" style-hover="transform:translateY(-6px);box-shadow:0 12px 28px rgba(31,95,107,.1);border-color:#8A6D2F"><h2 style="font-weight:700;font-size:22px;line-height:1.28;margin:0;color:#174F59">Talk to a person</h2><p style="margin:0;font-size:15.7px;color:#5C6260">Call or WhatsApp us on +92&nbsp;335&nbsp;5443660.</p><a href="#" style="margin-top:auto;padding-top:12px;font-weight:700;font-size:16px;color:#8A6D2F;text-decoration:none">Go to contact →</a></article>
+          </div>
+        </div>
+      </section>
+      <dc-import name="HopeFooterV3" hint-size="100%,420px"></dc-import>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const els = Array.from(document.querySelectorAll("[data-reveal]"));
+    if (!els.length || !("IntersectionObserver" in window)) return;
+    const ease = "cubic-bezier(.2,.7,.3,1)";
+    const show = (el) => {
+      el.style.transition = "opacity .5s " + ease + ", transform .5s " + ease;
+      el.style.opacity = "1";
+      el.style.transform = "none";
+    };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        show(e.target);
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.06, rootMargin: "0px 0px -6% 0px" });
+    els.forEach((el, i) => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(14px)";
+      el.style.transitionDelay = (i % 5) * 55 + "ms";
+      io.observe(el);
+    });
+    this._t = setTimeout(() => els.forEach(show), 1600);
+  }
+  componentWillUnmount() { clearTimeout(this._t); }
+
+}
+</script>
+</body>
+</html>

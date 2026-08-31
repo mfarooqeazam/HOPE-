@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="position:sticky;top:0;z-index:50;background:rgba(249,247,242,.94);backdrop-filter:blur(10px);border-bottom:1px solid #E2DDD1;font-family:'Times New Roman',Tinos,'Liberation Serif',Times,serif">
+  <div style="width:min(100% - 40px,1140px);margin-inline:auto;display:flex;align-items:center;gap:24px;min-height:76px;position:relative">
+    <a href="#" style="text-decoration:none;margin-right:auto;display:flex;align-items:center;gap:12.8px;color:#1F5F6B">
+      <img src="site/assets/img/hope-logo-sm.png" alt="The Project Hope" width="71" height="54" style="height:54px;width:auto;flex:none;display:block">
+      <span style="font-weight:700;font-size:20.5px;color:#1F5F6B;white-space:nowrap">The Project Hope</span>
+    </a>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <button type="button" aria-expanded="false" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;min-width:48px;padding:0 14.4px;border-radius:8px;background:transparent;border:2px solid #1F5F6B;color:#1F5F6B;font-family:inherit;font-weight:700;font-size:16px;cursor:pointer">Menu</button>
+    </sc-if>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav aria-label="Main" style="display:flex;gap:1.6px;align-items:center">
+        <sc-for list="{{ links }}" as="l" hint-placeholder-count="7">
+          <a href="#" style="position:relative;font-size:15.7px;text-decoration:none;padding:8.8px 9.6px;border-radius:8px;line-height:1.65;color:{{ l.color }};font-weight:{{ l.weight }}">{{ l.label }}<span style="position:absolute;left:9.6px;right:9.6px;bottom:4.8px;height:2px;background:#1F5F6B;transform:{{ l.bar }};transform-origin:left center"></span></a>
+        </sc-for>
+      </nav>
+      <a href="#" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12.8px 25.6px;border-radius:999px;font-family:inherit;font-weight:700;font-size:16px;line-height:1.65;text-decoration:none;border:2px solid transparent;background:#1F5F6B;color:#fff;box-shadow:0 1px 2px rgba(31,95,107,.06),0 2px 8px rgba(31,95,107,.05)">{{ cta }}</a>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:90},&quot;current&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Home&quot;,&quot;Therapy&quot;,&quot;Training&quot;,&quot;School&quot;,&quot;About&quot;,&quot;Register&quot;,&quot;Contact&quot;],&quot;default&quot;:&quot;Home&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;cta&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Talk to us&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;mobile&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const cur = this.props.current || "Home";
+    const labels = ["Home", "Therapy", "Training", "School", "About", "Register", "Contact"];
+    return {
+      cta: this.props.cta ?? "Talk to us",
+      isMobile: !!this.props.mobile,
+      isDesktop: !this.props.mobile,
+      links: labels.map(label => {
+        const on = label === cur;
+        return {
+          label,
+          color: on ? "#1F5F6B" : "#2D2D2D",
+          weight: on ? "700" : "400",
+          bar: on ? "scaleX(1)" : "scaleX(0)"
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

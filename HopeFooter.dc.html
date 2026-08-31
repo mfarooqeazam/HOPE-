@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="background:#1F5F6B;color:#fff;padding-block:64px 32px;margin-top:96px;font-family:'Times New Roman',Tinos,'Liberation Serif',Times,serif;line-height:1.65">
+  <div style="width:min(100% - 40px,1140px);margin-inline:auto">
+    <sc-if value="{{ full }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;gap:32px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+        <div>
+          <h3 style="font-family:inherit;font-weight:700;font-size:15.7px;line-height:1.4;margin:0 0 12px;color:#fff">The Project Hope</h3>
+          <p style="margin:0;max-width:65ch;font-size:15.2px;color:#CFE6EA">A multidisciplinary centre for children with special needs — therapy, professional training and free inclusive education in Islamabad.</p>
+        </div>
+        <div>
+          <h3 style="font-family:inherit;font-weight:700;font-size:15.7px;line-height:1.4;margin:0 0 12px;color:#fff">For families</h3>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:15.2px">
+            <li><a href="#" style="color:#CFE6EA">Child development &amp; therapy</a></li>
+            <li><a href="#" style="color:#CFE6EA">Inclusive education</a></li>
+            <li><a href="#" style="color:#CFE6EA">{{ famLast }}</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="font-family:inherit;font-weight:700;font-size:15.7px;line-height:1.4;margin:0 0 12px;color:#fff">For professionals</h3>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:15.2px">
+            <li><a href="#" style="color:#CFE6EA">IBA — 270 hours</a></li>
+            <li><a href="#" style="color:#CFE6EA">IBT — 40 hours</a></li>
+            <li><a href="#" style="color:#CFE6EA">{{ proLast }}</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="font-family:inherit;font-weight:700;font-size:15.7px;line-height:1.4;margin:0 0 12px;color:#fff">Contact</h3>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:15.2px">
+            <li><a href="#" style="color:#CFE6EA">+92&nbsp;335&nbsp;5443660</a></li>
+            <li><a href="#" style="color:#CFE6EA">Email us</a></li>
+            <li><a href="#" style="color:#CFE6EA">LinkedIn</a></li>
+            <li style="color:#CFE6EA">Shahzad Town, Islamabad</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.2);font-size:14.4px;color:#CFE6EA;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between">
+        <span>© 2025 The Project Hope</span>
+        <span><a href="#" style="color:#CFE6EA">About</a> · <a href="#" style="color:#CFE6EA">Register</a> <a href="#" style="color:#CFE6EA">Contact</a></span>
+      </div>
+    </sc-if>
+    <sc-if value="{{ bare }}" hint-placeholder-val="{{ false }}">
+      <div style="font-size:14.4px;color:#CFE6EA;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between">
+        <span>© 2025 The Project Hope</span>
+        <span><a href="#" style="color:#CFE6EA">Back to home</a></span>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:420},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;default&quot;,&quot;register&quot;,&quot;bare&quot;],&quot;default&quot;:&quot;default&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const v = this.props.variant || "default";
+    return {
+      full: v !== "bare",
+      bare: v === "bare",
+      famLast: v === "register" ? "Register" : "Book a free call",
+      proLast: v === "register" ? "Enrol" : "Supervision & CEUs"
+    };
+  }
+}
+</script>
+</body>
+</html>
