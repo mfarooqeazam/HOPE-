@@ -28,6 +28,6 @@ window.HOPE_CONFIG = {
   SUPABASE_ANON_KEY: "sb_publishable_8_Go4wID_ZRYx15LZ-1KJQ_gREp1xeL",
 
   /* Shown to visitors when a submission fails, so they always have a way through */
-  FALLBACK_PHONE: "+92 335 5443660",
-  FALLBACK_WHATSAPP: "https://wa.me/923355443660"
+  FALLBACK_PHONE: "+92 302 5252 556",
+  FALLBACK_WHATSAPP: "https://wa.me/923025252556"
 };

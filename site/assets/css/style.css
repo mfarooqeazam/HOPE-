@@ -97,6 +97,7 @@
      body copy, so text never runs longer than it should. */
   --wrap:1320px;
   --head-h:76px;
+  --head-h-wide:118px;
 }
 
 /* 2. RESET & BASE ========================================================== */
@@ -136,6 +137,7 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
 :focus-visible{outline:3px solid var(--teal); outline-offset:2px; border-radius:2px}
 /* Sticky header must never cover the element you just jumped to (WCAG 2.4.11) */
 [id]{scroll-margin-top:calc(var(--head-h) + 1rem)}
+@media(min-width:1181px){[id]{scroll-margin-top:calc(var(--head-h-wide) + 1rem)}}
 .sr-only{
   position:absolute; width:1px; height:1px; padding:0; margin:-1px;
   overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
@@ -178,13 +180,36 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
   background:rgba(249,247,242,.94); backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
-.head__in{display:flex; align-items:center; gap:var(--s5); min-height:var(--head-h); position:relative}
+/* Two rows on wide screens: the mark and the call to action sit on the top
+   row, and the full navigation runs beneath. Twelve items cannot share a
+   single row with the logo without either shrinking the type or hiding
+   pages, and the brief is that every page is reachable from the nav. Below
+   the breakpoint this collapses back to one row plus the drawer. */
+.head__in{
+  display:flex; align-items:center; gap:var(--s5);
+  min-height:var(--head-h); position:relative;
+}
+@media(min-width:1181px){
+  .head__in{
+    display:grid; grid-template-columns:auto 1fr auto;
+    grid-template-areas:"logo . cta" "nav nav nav";
+    row-gap:.15rem; padding-block:.6rem .1rem;
+  }
+  .head__in > .logo{grid-area:logo}
+  .head__in > .btn--head{grid-area:cta; justify-self:end}
+  .head__in > .nav{grid-area:nav}
+}
 .logo{text-decoration:none; margin-right:auto; display:flex; align-items:center; gap:.8rem; color:var(--teal)}
 .logo img{height:54px; width:auto; flex:none}
 .logo__name{font-weight:700; font-size:1.28rem; color:var(--teal); white-space:nowrap}
 @media(max-width:1180px){ .logo__name{display:none} }
 
 .nav{display:flex; gap:.1rem; align-items:center}
+@media(min-width:1181px){
+  .nav{gap:0; justify-content:space-between; width:100%; padding-bottom:.35rem}
+  .nav a{font-size:.94rem; padding:.5rem .45rem; white-space:nowrap}
+  .nav a::after{left:.45rem; right:.45rem}
+}
 .nav a{
   position:relative; font-size:.98rem; color:var(--charcoal);
   text-decoration:none; padding:.55rem .6rem; border-radius:var(--r-sm);
@@ -1334,3 +1359,50 @@ legend{
 }
 @media(max-width:640px){.mapwrap{aspect-ratio:4/3}}
 .mapwrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+
+/* 29. PORTAL ===============================================================
+   A hub, not an account area. The three routes are the same three the site
+   already has; this page gathers them, says what each one needs, and adds a
+   short form for people who would rather talk. */
+.portal__h{
+  font-size:.78rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted); margin-top:var(--s4);
+}
+.ticks--tight{margin-top:var(--s3); gap:.4rem}
+.ticks--tight li{font-size:.92rem}
+.ticks--tight svg{width:15px; height:15px}
+.portal__no{
+  margin-top:var(--s4); font-size:.9rem; color:var(--muted);
+  padding-top:var(--s3); border-top:1px solid var(--line);
+}
+.portal__no strong{color:var(--charcoal)}
+
+/* 30. SERVICE DETAIL =======================================================
+   Each therapy card opens into what it is, why it matters, what a child gets
+   out of it, and what a session looks like. Native <details>, so it works
+   without JavaScript and find-in-page still reaches closed text. */
+.svc{margin-top:auto; border-top:1px solid var(--line); padding-top:var(--s4)}
+.svc summary{
+  cursor:pointer; list-style:none; font-weight:700; color:var(--teal);
+  font-size:.94rem; display:flex; align-items:center; gap:.45rem;
+  min-height:44px;
+}
+.svc summary::-webkit-details-marker{display:none}
+.svc summary::after{
+  content:""; width:9px; height:9px; flex:none;
+  border-right:2px solid currentColor; border-bottom:2px solid currentColor;
+  transform:rotate(45deg) translateY(-2px);
+  transition:transform .25s cubic-bezier(.2,.7,.3,1);
+}
+.svc[open] summary::after{transform:rotate(-135deg) translateY(-2px)}
+.svc summary:hover,.svc summary:focus-visible{color:var(--teal-deep)}
+.svc__body{padding-top:var(--s3)}
+.svc__body h4{
+  font-size:.76rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--sage-deep); margin-top:var(--s4);
+}
+.svc__body h4:first-child{margin-top:0}
+.svc__body p{margin-top:.35rem; font-size:.94rem; color:var(--charcoal)}
+.card--b .svc__body h4{color:var(--sage-deep)}
+.card--c .svc__body h4{color:var(--gold-deep)}
+@media (prefers-reduced-motion: reduce){ .svc summary::after{transition:none} }
