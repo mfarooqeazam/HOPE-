@@ -36,3 +36,7 @@ __pycache__/
 
 # Design bundle archive — the extracted files live in design/
 Hope project UI redesign.zip
+
+# Scratch patch scripts
+_*.py
+_*.js
