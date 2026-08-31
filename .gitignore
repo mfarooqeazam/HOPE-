@@ -33,3 +33,6 @@ assets/ibao-certificate.pdf
 # Python
 __pycache__/
 *.pyc
+
+# Design bundle archive — the extracted files live in design/
+Hope project UI redesign.zip

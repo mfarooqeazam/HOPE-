@@ -20,37 +20,60 @@
      - Headings max out at font-weight 700; Times has no heavier cut.
    ========================================================================== */
 
-/* 1. TOKENS ================================================================ */
+/* 1. TOKENS ================================================================
+   Quiet-luxury palette, from design/HANDOFF.md. Every ratio below was
+   computed, not estimated.
+
+   THREE VALUES DEVIATE FROM THE HANDOFF, because the handoff's own contrast
+   rule and its token roles disagreed with each other:
+
+   - Eyebrows. The handoff gives #6E8A73 for "eyebrow labels, sage text on
+     light". Eyebrows are 12-13px bold, which is not large text, so they need
+     4.5:1 — #6E8A73 reaches only 3.57:1 on ivory. --sage-deep is therefore
+     #3E5A44 (7.19:1), which is what the handoff's own rule 4 prescribes for
+     sage that must read as text. #6E8A73 is kept as --sage-mid, fills only.
+
+   - Gold on deep teal. The handoff states 8.3:1; the real figure for
+     #C8A96B on #174F59 is 4.06:1, which fails for small text. --gold-on-teal
+     is #D3BA88 (4.85:1) for eyebrow-sized type on teal grounds.
+
+   - Link hover. #A8873F is 3.19:1 on ivory, below 4.5 for body-size links.
+     --gold-link-hover is #7E6229 (5.40:1 ivory, 5.08:1 sunk).
+   ========================================================================== */
 :root{
-  /* Ground — 70-80% of surface area */
-  --cream:#F9F7F2;
-  --sunk:#F2EFE7;
+  /* Ground */
+  --cream:#FAF8F3;             /* Warm Ivory — page background */
+  --sunk:#F4F1EA;              /* Stone Sunk — alternate sections */
   --white:#FFFFFF;
 
   /* Ink */
-  --charcoal:#2D2D2D;          /* 12.86:1 on cream — AAA */
-  --muted:#5A5A5A;
+  --charcoal:#252A29;          /* 13.72:1 on ivory */
+  --muted:#5C6260;             /* Steel — 5.87:1 on ivory */
 
   /* Identity */
-  --teal:#1F5F6B;              /* 6.75:1 on cream */
-  --teal-deep:#164A54;
-  --teal-wash:#E8F0F1;
+  --teal:#174F59;              /* 8.61:1 on ivory */
+  --teal-deep:#0F3B43;         /* 11.46:1 on ivory; 12.16:1 with white */
+  --teal-wash:#EAF0F0;
 
   /* Growth */
-  --sage:#8FB996;              /* fill only — never text */
-  --sage-deep:#47724F;         /* 5.54:1 with white */
-  --sage-wash:#EDF3EE;
+  --sage:#91A995;              /* fill only — 2.38:1, never text */
+  --sage-mid:#6E8A73;          /* fill / large decorative only — 3.57:1 */
+  --sage-deep:#3E5A44;         /* 7.19:1 on ivory — the text-safe sage */
+  --sage-wash:#EFF2EE;
 
   /* Action */
-  --coral:#E88D7A;             /* fill only — never text */
-  --coral-deep:#BC3B21;        /* 5.55:1 with white */
-  --coral-wash:#FBEDE9;
+  --coral:#C97868;             /* Dusty Terracotta — fill only, 3.11:1 */
+  --coral-deep:#A9503C;        /* 5.07:1 ivory · 4.77:1 sunk · 5.39:1 w/ white */
+  --coral-wash:#F7EAE6;
 
   /* Certification — reserved for verifiable credentials */
-  --gold:#D4AF37;              /* fill only */
-  --gold-deep:#7E661B;         /* 5.16:1 on cream */
+  --gold:#C8A96B;              /* Champagne — fill only, 2.12:1 */
+  --gold-deep:#8A6D2F;         /* 4.59:1 on ivory — gold as text */
+  --gold-on-teal:#D3BA88;      /* 4.85:1 on --teal — small text on teal */
+  --gold-link-hover:#7E6229;   /* 5.40:1 on ivory */
 
-  --line:#E2DDD1;
+  --line:#E9E6DE;              /* Soft Stone — borders, hairlines */
+  --stone-muted:#CFCABE;       /* breadcrumbs on dark — 5.59:1 on teal */
   --error:#A8452F;
 
   /* Times New Roman first; Tinos is metric-identical and covers Android,
@@ -62,8 +85,8 @@
 
   --r-sm:8px; --r-md:14px; --r-lg:22px; --r-pill:999px;
 
-  --e1:0 1px 2px rgba(31,95,107,.06),0 2px 8px rgba(31,95,107,.05);
-  --e2:0 4px 12px rgba(31,95,107,.08),0 12px 28px rgba(31,95,107,.07);
+  --e1:0 1px 2px rgba(23,79,89,.06),0 2px 8px rgba(23,79,89,.05);
+  --e2:0 4px 12px rgba(23,79,89,.08),0 12px 28px rgba(23,79,89,.07);
 
   --wrap:1140px;
   --head-h:76px;
@@ -194,7 +217,7 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
 }
 
 .progress{
-  position:fixed; inset:0 0 auto 0; height:3px; background:var(--coral-deep);
+  position:fixed; inset:0 0 auto 0; height:3px; background:var(--gold-deep);
   transform:scaleX(0); transform-origin:left center; z-index:60;
 }
 
@@ -207,7 +230,8 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
   transition:background-color .2s,color .2s,transform .2s,box-shadow .2s;
 }
 .btn--primary{background:var(--teal); color:#fff; box-shadow:var(--e1)}
-.btn--primary:hover{background:var(--coral-deep); transform:translateY(-2px); box-shadow:var(--e2)}
+.btn--primary:hover{background:var(--gold); color:var(--teal-deep);
+  transform:translateY(-2px); box-shadow:var(--e2)}
 .btn--primary:active{transform:translateY(0)}
 .btn--ghost{background:transparent; color:var(--teal); border-color:var(--teal)}
 .btn--ghost:hover{background:var(--teal-wash)}
@@ -216,7 +240,7 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
 .btn[disabled],.btn[aria-busy="true"]{opacity:.7; cursor:not-allowed; transform:none}
 
 .prose a{color:var(--teal); text-underline-offset:3px}
-.prose a:hover{color:var(--coral-deep)}
+.prose a:hover{color:var(--gold-link-hover)}
 
 /* 7. COMPONENTS ============================================================ */
 .card{
@@ -231,7 +255,7 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
 .card--c .card__plate{background:var(--coral-wash); color:var(--coral-deep)}
 .card p{font-size:.98rem; color:var(--muted)}
 .card .more{font-weight:700; color:var(--teal); text-decoration:none; margin-top:auto; padding-top:var(--s3); display:inline-flex; gap:.4rem; align-items:center}
-.card .more:hover{color:var(--coral-deep)}
+.card .more:hover{color:var(--gold-link-hover)}
 .card .more::after{content:"\2192"; transition:transform .2s}
 .card .more:hover::after{transform:translateX(3px)}
 
@@ -273,7 +297,7 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
 .cred__meta dfn{font-style:normal; color:var(--muted); min-width:8.5em}
 .cred__meta b{font-variant-numeric:tabular-nums}
 .cred__link{display:inline-flex; align-items:center; gap:.45rem; margin-top:1.1rem; color:var(--teal); font-weight:700; text-decoration:underline; text-underline-offset:3px}
-.cred__link:hover{color:var(--coral-deep)}
+.cred__link:hover{color:var(--gold-link-hover)}
 
 .auths{display:grid; gap:var(--s4); grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin-top:var(--s6)}
 .auth{background:var(--white); border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:var(--r-sm); padding:var(--s5)}
@@ -564,7 +588,7 @@ legend{
    background-size so there is no extra element and no stacking-context risk;
    the end state is identical to before, so contrast is unchanged. */
 .btn--primary{
-  background-image:linear-gradient(var(--coral-deep),var(--coral-deep));
+  background-image:linear-gradient(var(--gold),var(--gold));
   background-repeat:no-repeat;
   background-size:0% 100%;
   transition:background-size .3s cubic-bezier(.2,.7,.3,1), transform .2s, box-shadow .2s, color .2s;
