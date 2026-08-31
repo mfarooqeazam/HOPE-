@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not Sure Where to Start? — The Project Hope</title>
+<meta name="description" content="A short guide for parents unsure where to begin: describe what you are noticing and see which services usually fit, what an assessment involves, and what to bring. Not a diagnosis.">
+<link rel="canonical" href="https://example.com/first-steps.html">
+<meta name="theme-color" content="#174F59">
+<link rel="icon" href="assets/img/hope-logo-sm.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to main content</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="head">
+  <div class="wrap head__in">
+    <a class="logo" href="index.html">
+      <img src="assets/img/hope-logo-sm.png" alt="The Project Hope" width="71" height="54" fetchpriority="high">
+      <span class="logo__name">The Project Hope</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu">Menu</button>
+    <nav class="nav" id="navMenu" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="therapy.html">Therapy</a>
+      <a href="training.html">Training</a>
+      <a href="school.html">School</a>
+      <a href="why-it-matters.html">Why it matters</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn btn--primary" href="contact.html">Talk to us</a>
+    </nav>
+    <a class="btn btn--primary btn--head" href="contact.html">Talk to us</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="banner">
+    <div class="wrap">
+      <p class="crumbs"><a href="index.html">Home</a> &rsaquo; Not sure where to start?</p>
+      <h1>Not sure where to start?</h1>
+      <p class="lede">Most families arrive without knowing what to ask for. Tell us what you are noticing and this page will show which services usually fit, what an assessment involves, and what happens next.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="story">
+        <p class="note"><strong>Read this first.</strong> This is a guide to our services, not a test and not a diagnosis. It cannot tell you whether your child has a condition, and nothing here is scored. Only an assessment with a qualified clinician can answer that. Your answers stay in your browser &mdash; nothing is sent anywhere unless you choose to contact us afterwards.</p>
+
+        <form class="steps-form mt3" id="firstSteps" novalidate>
+          <fieldset>
+            <legend>How old is your child?</legend>
+            <div class="choices" role="group">
+              <label class="choice"><input type="radio" name="age" value="under2"><span>Under 2</span></label>
+              <label class="choice"><input type="radio" name="age" value="2to5"><span>2 to 5</span></label>
+              <label class="choice"><input type="radio" name="age" value="6to12"><span>6 to 12</span></label>
+              <label class="choice"><input type="radio" name="age" value="teen"><span>13 to 18</span></label>
+              <label class="choice"><input type="radio" name="age" value="adult"><span>Over 18</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="mt3">
+            <legend>What are you noticing? <span class="opt">(choose any that apply)</span></legend>
+            <div class="choices choices--stack" role="group">
+            <label class="choice"><input type="checkbox" name="concern" value="comm"><span><strong>Communication</strong><br><span class="fs-sm">Not speaking yet, few words, hard to understand, or not using words to ask for things.</span></span></label>
+            <label class="choice"><input type="checkbox" name="concern" value="behav"><span><strong>Behaviour that is hard to manage</strong><br><span class="fs-sm">Meltdowns, aggression, self-injury, or behaviour that is getting in the way of daily life.</span></span></label>
+            <label class="choice"><input type="checkbox" name="concern" value="social"><span><strong>Playing and relating to others</strong><br><span class="fs-sm">Little interest in other children, limited eye contact, or difficulty joining in.</span></span></label>
+            <label class="choice"><input type="checkbox" name="concern" value="daily"><span><strong>Daily living and fine motor</strong><br><span class="fs-sm">Dressing, feeding, toileting, handwriting, or being overwhelmed by noise, texture or light.</span></span></label>
+            <label class="choice"><input type="checkbox" name="concern" value="move"><span><strong>Movement and physical development</strong><br><span class="fs-sm">Sitting, walking, balance, coordination, posture, or physical strength.</span></span></label>
+            <label class="choice"><input type="checkbox" name="concern" value="school"><span><strong>Learning and school</strong><br><span class="fs-sm">Falling behind, struggling in class, or a school saying they cannot meet the child's needs.</span></span></label>
+            <label class="choice"><input type="checkbox" name="concern" value="unsure"><span><strong>I am not sure — something feels different</strong><br><span class="fs-sm">You cannot name it, but you know your child is not doing what others their age do.</span></span></label>
+            </div>
+          </fieldset>
+
+          <p class="mt3">
+            <button class="btn btn--primary" type="submit">Show me where to start</button>
+            <button class="btn btn--ghost" type="reset">Clear</button>
+          </p>
+        </form>
+
+        <div class="result mt3" id="stepsResult" hidden tabindex="-1">
+          <h2>Where we would start</h2>
+          <div id="stepsBody"></div>
+          <p class="mt3">
+            <a class="btn btn--primary" href="contact.html">Talk to someone this week</a>
+            <a class="btn btn--ghost" href="register.html">Register with us</a>
+          </p>
+          <p class="note mt3"><strong>This is a starting point, not an answer.</strong> Which services a child actually needs is decided at assessment, not from a list. Bring this page with you if it helps.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sunk">
+    <div class="wrap">
+      <div class="story">
+        <p class="eyebrow">If you want to track development properly</p>
+        <h2 data-reveal>Use a real checklist, free</h2>
+        <p class="mt2" data-reveal>We deliberately do not publish our own milestone checklist. Writing one would mean inventing clinical content, and there is already a good free one used worldwide.</p>
+        <p class="mt2" data-reveal>The US Centers for Disease Control and Prevention publishes <strong>Learn the Signs. Act Early.</strong> &mdash; milestone checklists from 2 months to 5 years, revised in 2022 so that each milestone is one most children (75% or more) reach by that age. It is free, it is available in several languages, and there is a Milestone Tracker app. It is designed to start a conversation with a professional, not to give a diagnosis.</p>
+        <p class="mt3" data-reveal>
+          <a class="btn btn--ghost" href="https://www.cdc.gov/act-early/milestones/index.html" target="_blank" rel="noopener">CDC milestone checklists <span class="sr-only">(opens in a new tab)</span></a>
+        </p>
+        <p class="note mt3">Bring whatever you record to your first appointment. A parent&rsquo;s own notes about what a child does at home are often more useful than anything we can observe in a single session.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__brand">
+        <a class="foot__logo" href="index.html">
+          <img src="assets/img/hope-logo-sm.png" alt="" width="60" height="46" loading="lazy" decoding="async">
+          <span>The Project Hope</span>
+        </a>
+        <p>A multidisciplinary centre in Shahzad Town, Islamabad &mdash; therapy, professional training and inclusive education, with a number of places funded rather than charged for.</p>
+        <p class="foot__tag">Where healing meets growth.</p>
+      </div>
+
+      <div>
+        <h3>For families</h3>
+        <ul>
+          <li><a href="therapy.html">Therapy for your child</a></li>
+          <li><a href="school.html">The inclusive school</a></li>
+          <li><a href="first-steps.html">Not sure where to start?</a></li>
+          <li><a href="why-it-matters.html">Why it matters</a></li>
+          <li><a href="register.html">Register with us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>For professionals</h3>
+        <ul>
+          <li><a href="training.html">IBA &mdash; 270 hours</a></li>
+          <li><a href="training.html">IBT &mdash; 40 hours</a></li>
+          <li><a href="training.html">Supervision &amp; CEUs</a></li>
+          <li><a href="blog.html">Writing &amp; research</a></li>
+          <li><a href="volunteer.html">Volunteer with us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="tel:+923355443660">+92&nbsp;335&nbsp;5443660</a></li>
+          <li><a href="https://wa.me/923355443660" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:mfarooqeazamawan@gmail.com">Email us</a></li>
+          <li><a href="https://www.linkedin.com/in/m-farooq-e-azam-awan-4107272b6" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="contact.html#faq">Common questions</a></li>
+        </ul>
+        <p class="foot__addr">Shahzad Town, Islamabad, Pakistan</p>
+      </div>
+    </div>
+
+    <div class="foot__bar">
+      <span>&copy; 2025 The Project Hope</span>
+      <span class="foot__legal">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="register.html">Register</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

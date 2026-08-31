@@ -37,8 +37,8 @@
   }
 
   /* ---- footer year ------------------------------------------------------ */
-  var yr = document.getElementById("yr");
-  if (yr) yr.textContent = String(new Date().getFullYear());
+  /* The copyright year is written in the markup, not derived from the
+     visitor's clock. A machine with a wrong date used to age the site. */
 
   /* ---- mobile menu ------------------------------------------------------ */
   var toggle = document.getElementById("navToggle");
@@ -400,6 +400,143 @@
   }
 
   all("form.enquiry").forEach(function (f) { initForm(/** @type {HTMLFormElement} */ (f)); });
+
+  /* ---- first steps guide -------------------------------------------------
+     Maps what a parent describes onto the services this centre actually
+     offers. It is deliberately NOT a screener: nothing is scored, no risk
+     band is produced, and no conclusion about the child is drawn. Writing a
+     scoring instrument would mean inventing clinical content, and a wrong
+     result given to a frightened parent does real harm.
+
+     Everything runs in the browser. Nothing is stored and nothing is sent —
+     which is also what the project's data rule requires: no clinical data
+     is collected by this site. */
+  (function firstSteps() {
+    const formEl = /** @type {HTMLFormElement|null} */ (document.getElementById("firstSteps"));
+    const outEl = document.getElementById("stepsResult");
+    const bodyEl = document.getElementById("stepsBody");
+    if (!formEl || !outEl || !bodyEl) return;
+    /* Re-bound so the null check carries into the hoisted handlers below. */
+    const form = formEl, out = outEl, body = bodyEl;
+
+    /** What each concern usually points to, in this centre's own services. */
+    /** @type {Object<string,{h:string,p:string,href:string}>} */
+    var MAP = {
+      comm: {
+        h: "Speech and language therapy",
+        p: "Understanding and using language — spoken, gestural, or through a communication aid. Communication is not only speech, and a child who cannot yet speak is not a child without something to say.",
+        href: "therapy.html"
+      },
+      behav: {
+        h: "Applied Behavior Analysis (ABA)",
+        p: "We begin with a functional behavior assessment (FBA) to understand what a behaviour achieves for your child, then build a behavior intervention plan (BIP) around it. You are taught the strategies too.",
+        href: "therapy.html"
+      },
+      social: {
+        h: "ABA, alongside speech and language therapy",
+        p: "Play and social interaction usually sit across both. Goals are chosen for real settings — home, school, the park — rather than for the therapy room.",
+        href: "therapy.html"
+      },
+      daily: {
+        h: "Occupational therapy",
+        p: "The practical skills a day is made of — dressing, feeding, handwriting — and sensory processing, where ordinary input can feel overwhelming or insufficient.",
+        href: "therapy.html"
+      },
+      move: {
+        h: "Physiotherapy",
+        p: "Movement, strength, balance and posture, worked on in ways that fit into ordinary life rather than staying in the treatment room.",
+        href: "therapy.html"
+      },
+      school: {
+        h: "Educational support and the inclusive school",
+        p: "An individualised education plan (IEP), classroom support, and — where it is the right fit — a place at the school, with therapy inside the school day.",
+        href: "school.html"
+      },
+      unsure: {
+        h: "Start with an assessment",
+        p: "Not being able to name it is a common and entirely reasonable place to begin. An assessment exists precisely to answer that question, and you do not need a diagnosis or a referral first.",
+        href: "therapy.html"
+      }
+    };
+
+    /** @type {Object<string,string>} */
+    var AGE_NOTE = {
+      under2: "Under 2 is early, and early is good. Development moves quickly at this age, so a short review now is usually worth more than a long wait.",
+      "2to5": "This is the age range where therapy and an inclusive school place most often run alongside each other.",
+      "6to12": "At school age, the useful question is usually how support carries into the classroom, not just what happens in session.",
+      teen: "Adolescence changes the goals — independence, daily routines and preparing for what comes after school.",
+      adult: "Adult services are part of what we do. Most services in the country stop at eighteen; ours do not."
+    };
+
+    /** @param {string} tag @param {string|null} [cls] @param {string} [text] */
+    function el(tag, cls, text) {
+      var n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text) n.textContent = text;
+      return n;
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const age = /** @type {HTMLInputElement|null} */ (form.querySelector('input[name="age"]:checked'));
+      var picked = all('input[name="concern"]:checked', form).map(function (i) {
+        return /** @type {HTMLInputElement} */ (/** @type {unknown} */ (i)).value;
+      });
+
+      body.innerHTML = "";
+
+      if (!age && !picked.length) {
+        body.appendChild(el("p", null,
+          "Choose an age or tick at least one thing you are noticing, and this will fill in."));
+        out.hidden = false;
+        out.focus();
+        return;
+      }
+
+      if (age && AGE_NOTE[age.value]) {
+        body.appendChild(el("p", "lede", AGE_NOTE[age.value]));
+      }
+
+      // "Not sure" on its own points at assessment; alongside anything else it
+      // adds nothing, so it is dropped rather than repeated.
+      if (picked.length > 1) {
+        picked = picked.filter(function (k) { return k !== "unsure"; });
+      }
+      if (!picked.length) picked = ["unsure"];
+
+      /** @type {Object<string, boolean>} */
+      var seen = {};
+      var list = el("div", "result__list");
+      picked.forEach(function (k) {
+        var m = MAP[k];
+        if (!m || seen[m.h]) return;
+        seen[m.h] = true;
+        var card = el("div", "result__item");
+        card.appendChild(el("h3", null, m.h));
+        card.appendChild(el("p", null, m.p));
+        var a = el("a", "more", "Read more");
+        a.setAttribute("href", m.href);
+        card.appendChild(a);
+        list.appendChild(card);
+      });
+      body.appendChild(list);
+
+      var next = el("p", "mt3");
+      next.textContent = "Whichever of these applies, the path is the same: a conversation " +
+        "that costs nothing, then a structured assessment, then a written plan in plain " +
+        "language. If cost is the obstacle, say so at the first conversation rather than " +
+        "the last — a number of places are funded rather than charged for.";
+      body.appendChild(next);
+
+      out.hidden = false;
+      out.focus();
+    });
+
+    form.addEventListener("reset", function () {
+      out.hidden = true;
+      body.innerHTML = "";
+    });
+  })();
 
   /* ---- world reach map ---------------------------------------------------
      Ported from design/HopeReachMap.dc.html. Enhancement only: the geometry,
