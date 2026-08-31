@@ -53,6 +53,54 @@
     </div>
   </section>
 
+  <section class="section" id="signin">
+    <div class="wrap">
+      <div class="story">
+        <div class="panel" data-portal hidden>
+
+          <!-- signed out -->
+          <div data-portal-out>
+            <p class="eyebrow">Already with us?</p>
+            <h2>Sign in to your portal</h2>
+            <p class="lede mt1">If you are an existing family, trainee or volunteer, sign in to see your plans, sessions, materials and hours. There is no password &mdash; we email you a link.</p>
+
+            <form class="signin mt3" data-portal-form novalidate>
+              <div class="field">
+                <label for="po-email">The email address we have for you</label>
+                <input id="po-email" name="email" type="email" autocomplete="email" required
+                       data-error="Please enter the email address we hold for you.">
+                <p class="err" id="po-email-err" role="alert"></p>
+              </div>
+              <button class="btn btn--primary" type="submit">Email me a sign-in link</button>
+              <p class="form-status" role="status" aria-live="polite" tabindex="-1"></p>
+            </form>
+
+            <p class="note mt3"><strong>No account yet?</strong> Portals are set up by us once you are working with the centre &mdash; there is nothing to register for here. If you are new, use one of the three routes below.</p>
+          </div>
+
+          <!-- signed in -->
+          <div data-portal-in hidden>
+            <div class="panel__head">
+              <div>
+                <p class="eyebrow" data-portal-role>Portal</p>
+                <h2 data-portal-name>Welcome back</h2>
+              </div>
+              <button class="btn btn--ghost" type="button" data-portal-out-btn>Sign out</button>
+            </div>
+            <div class="mt3" data-portal-body>
+              <p class="lede">Loading your portal&hellip;</p>
+            </div>
+          </div>
+
+        </div>
+
+        <noscript>
+          <p class="note">The portal needs JavaScript to sign you in. Everything else on this site works without it &mdash; call or WhatsApp us on <a href="tel:+923025252556">+92&nbsp;302&nbsp;5252&nbsp;556</a> and we will send you what you need.</p>
+        </noscript>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="wrap">
       <p class="eyebrow">Three routes</p>
@@ -303,5 +351,6 @@
 
 <script src="assets/js/config.js"></script>
 <script src="assets/js/main.js" defer></script>
+<script src="assets/js/portal.js" defer></script>
 </body>
 </html>

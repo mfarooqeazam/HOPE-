@@ -1485,3 +1485,43 @@ legend{
   .growth__arc,.growth__leaf{transition:none}
   .growth.is-on .growth__leaf.on{transform:none}
 }
+
+/* 32. PORTAL PANEL =========================================================
+   The signed-in area. Deliberately plain: this is somewhere a parent reads
+   their child's plan, not somewhere to show off. */
+.panel{
+  background:var(--white); border:1px solid var(--line);
+  border-top:3px solid var(--teal); border-radius:var(--r-md);
+  padding:clamp(1.5rem,4vw,2.5rem);
+}
+.panel__head{display:flex; flex-wrap:wrap; gap:var(--s4); align-items:start; justify-content:space-between}
+.signin{max-width:34rem}
+
+.pblock{margin-top:var(--s6); padding-top:var(--s5); border-top:1px solid var(--line)}
+.pblock:first-child{margin-top:0; padding-top:0; border-top:0}
+.pblock h3{font-size:1.15rem; color:var(--teal)}
+.pblock__blurb{margin-top:var(--s3); color:var(--muted); font-size:.94rem}
+.pblock__empty{margin-top:var(--s4); color:var(--muted); font-style:italic}
+
+.prow{
+  margin-top:var(--s4); padding:var(--s4); border:1px solid var(--line);
+  border-radius:var(--r-sm); background:var(--sunk);
+}
+.prow strong{display:block; color:var(--charcoal)}
+.prow p{margin-top:.35rem; font-size:.94rem; color:var(--charcoal)}
+.prow__meta{color:var(--muted); font-size:.86rem}
+.prow__task{
+  margin-top:var(--s3); padding-top:var(--s3);
+  border-top:1px dashed var(--line); font-size:.92rem;
+}
+.prow__tag{
+  display:inline-block; margin-bottom:.4rem; font-size:.7rem; font-weight:700;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--teal);
+  background:var(--teal-wash); border-radius:var(--r-pill); padding:.2rem .6rem;
+}
+.prow__tag--funded{color:var(--sage-deep); background:var(--sage-wash)}
+.prow__tag--pending{color:var(--gold-deep); background:#FAF6EE}
+.prow__tag--cancelled,.prow__tag--missed{color:var(--coral-deep); background:var(--coral-wash)}
+
+.pbar{margin-top:var(--s4); height:8px; border-radius:99px; background:var(--line); overflow:hidden}
+.pbar__fill{height:100%; background:var(--teal); border-radius:99px}
