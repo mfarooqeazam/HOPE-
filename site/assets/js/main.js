@@ -136,6 +136,19 @@
      Elements outside a section still reveal once and stay revealed. */
   if (!reduced && "IntersectionObserver" in window) {
 
+    /* Any container that lays its children out as a row or a grid is treated
+       as a reveal group, so the cards in it arrive one after another instead
+       of as a slab. Doing it here rather than in the markup means all fifteen
+       pages get it without fifteen edits, and a page with scripting off is
+       unaffected either way. */
+    all(".grid, .steps, .trio, .gal, .tiles, .doors, .channels, .cards, .posts")
+      .forEach(function (el) {
+        if (el.closest(".reach")) return;              // frozen section
+        if (!el.hasAttribute("data-reveal-group") && el.children.length > 1) {
+          el.setAttribute("data-reveal-group", "");
+        }
+      });
+
     /** @param {Element} host @param {boolean} on */
     function setGroup(host, on) {
       var isGroup = host.hasAttribute("data-reveal-group");
@@ -145,8 +158,22 @@
       items.forEach(function (el, i) {
         var node = /** @type {HTMLElement} */ (el);
         if (!on) { node.classList.remove("in"); return; }
-        if (i < 5) setTimeout(function () { node.classList.add("in"); }, i * 70);
-        else node.classList.add("in");
+        /* The reach section keeps the timer-based stagger it shipped with,
+           to the millisecond. It is frozen by instruction, and its figures
+           are a declared group, so the newer path would have quietly
+           retimed them from 70ms steps to 55ms. */
+        if (isGroup && host.closest(".reach")) {
+          if (i < 5) setTimeout(function () { node.classList.add("in"); }, i * 70);
+          else node.classList.add("in");
+          return;
+        }
+        /* Everywhere else the stagger is a CSS custom property read by
+           transition-delay, not a chain of timers. Timers drift under load
+           and each one is a task on the main thread; a delay is resolved by
+           the compositor. Capped at seven so a twelve-card grid still
+           finishes inside ~400ms. */
+        if (isGroup) node.style.setProperty("--i", String(Math.min(i, 7)));
+        node.classList.add("in");
       });
     }
 

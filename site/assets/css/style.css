@@ -150,7 +150,7 @@
   --font:"Times New Roman",Tinos,"Liberation Serif",Times,serif;
 
   --s3:.75rem; --s4:1rem; --s5:1.5rem; --s6:2rem;
-  --s7:3rem;  --s8:4rem; --s9:6rem;
+  --s7:2.25rem; --s8:3rem; --s9:4rem;
 
   --r-sm:8px; --r-md:14px; --r-lg:22px; --r-pill:999px;
 
@@ -187,7 +187,7 @@ body{
   font-family:var(--font);
   /* Times has a small x-height, so the base starts a step above 1rem */
   font-size:clamp(1.0625rem,1rem + .3vw,1.1875rem);
-  line-height:1.65;
+  line-height:1.58;
   -webkit-font-smoothing:antialiased;
 }
 h1,h2,h3,h4{font-family:var(--font); font-weight:700; margin:0; text-wrap:pretty}
@@ -195,9 +195,9 @@ h1,h2,h3,h4{font-family:var(--font); font-weight:700; margin:0; text-wrap:pretty
    home page — and it only earns its cost on large display type where a
    single orphaned word is visible. Restricted to h1/h2 for that reason. */
 h1,h2{text-wrap:balance}
-h1{font-size:clamp(2.4rem,1.5rem + 3.8vw,3.7rem); line-height:1.12}
-h2{font-size:clamp(1.85rem,1.25rem + 2.3vw,2.6rem); line-height:1.22; color:var(--teal)}
-h3{font-size:clamp(1.2rem,1.08rem + .55vw,1.45rem); line-height:1.32}
+h1{font-size:clamp(2.4rem,1.5rem + 3.8vw,3.7rem); line-height:1.05}
+h2{font-size:clamp(1.95rem,1.3rem + 2.5vw,2.9rem); line-height:1.12; color:var(--teal)}
+h3{font-size:clamp(1.2rem,1.08rem + .55vw,1.45rem); line-height:1.25}
 h4{font-size:1.05rem; line-height:1.4}
 p{margin:0; max-width:65ch}
 img{max-width:100%; display:block}
@@ -232,7 +232,11 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
 
 /* 4. LAYOUT ================================================================ */
 .wrap{width:min(100% - 2.5rem,var(--wrap)); margin-inline:auto}
-.section{padding-block:clamp(3rem,7vw,6rem)}
+/* Sections carried 96px top and bottom at desktop width, which on the home
+   page alone was 1388px of padding -- 19% of the page. Halved-and-a-bit to
+   57.6px. Nothing is removed; the page simply stops holding its content at
+   arm's length. */
+.section{padding-block:clamp(2.25rem,4.2vw,3.6rem)}
 .section--sunk{background:var(--sunk)}
 .section--wash{background:var(--teal-wash)}
 .section--sage{background:var(--sage-wash)}
@@ -249,7 +253,7 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
   font-size:.8125rem; font-weight:700; letter-spacing:.12em;
   text-transform:uppercase; color:var(--accent); margin:0 0 var(--s3);
 }
-.lede{font-size:clamp(1.06rem,1.02rem + .35vw,1.3rem); color:var(--muted); line-height:1.6;
+.lede{font-size:clamp(1.06rem,1.02rem + .35vw,1.3rem); color:var(--muted); line-height:1.5;
   max-width:64ch}
 
 .grid{display:grid; gap:var(--s5); grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); margin-top:var(--s7)}
@@ -475,11 +479,11 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
    and a way down. Everything the page used to stack above the fold now
    sits below it. A first screen with fifteen things on it asks the
    visitor to make a decision before they have read anything. */
-.hero{padding-block:clamp(3.5rem,9vw,7rem) clamp(3rem,7vw,5rem)}
+.hero{padding-block:clamp(2.5rem,5.6vw,4.4rem) clamp(2rem,4.2vw,3.2rem)}
 .hero h1{max-width:15ch}
-.hero__lede{margin-top:var(--s5); max-width:46ch}
+.hero__lede{margin-top:var(--s4); max-width:46ch}
 .hero__acts{display:flex; flex-wrap:wrap; gap:var(--s4);
-  margin-top:clamp(2rem,4.5vw,2.9rem)}
+  margin-top:clamp(1.4rem,3vw,2rem)}
 
 /* Scroll cue. Static — a looping bounce would violate the motion budget,
    and this audience is exactly who that budget protects. It moves only
@@ -506,7 +510,7 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
 .trust svg{flex:none; width:20px; height:20px; color:var(--gold-deep)}
 
 /* Page banner for inner pages */
-.banner{background:var(--teal-wash); border-bottom:1px solid var(--line); padding-block:clamp(2.75rem,6vw,4.5rem)}
+.banner{background:var(--teal-wash); border-bottom:1px solid var(--line); padding-block:clamp(2rem,4vw,3.05rem)}
 .banner h1{font-size:clamp(2rem,1.3rem + 2.8vw,3rem); color:var(--teal)}
 .banner p{margin-top:var(--s4)}
 .crumbs{font-size:.9rem; color:var(--muted); margin-bottom:var(--s4)}
@@ -570,7 +574,7 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
 @media(min-width:600px){.gal{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(min-width:900px){
   .gal{grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);
-       grid-auto-rows:190px}
+       grid-auto-rows:168px}
   .gal > *:first-child{grid-row:span 2}
 }
 .gal div{aspect-ratio:1; border-radius:var(--r-md); border:2px dashed var(--sage-deep); background:var(--sage-wash); display:grid; place-items:center; text-align:center; padding:var(--s4); color:var(--sage-deep); font-weight:700; font-size:.92rem}
@@ -579,6 +583,14 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
 @media(min-width:880px){.contact{grid-template-columns:.9fr 1.1fr}}
 .channels{display:flex; flex-direction:column; gap:var(--s4)}
 .chan{background:var(--white); border:1px solid var(--line); border-radius:var(--r-md); padding:var(--s5); display:flex; gap:var(--s4); align-items:flex-start}
+/* A flex or grid child defaults to min-width:auto, so it never shrinks below
+   its longest unbreakable word. The email address is one 26-character token,
+   which pushed the contact panel 23px past a 320px viewport -- still a real
+   screen width on older Android, which is much of this audience. */
+.chan,.chan > *{min-width:0}
+.chan a,.chan p{overflow-wrap:anywhere}
+.enquiry,.enquiry .field,.enquiry .field > *{min-width:0}
+
 .chan__ic{width:44px; height:44px; flex:none; border-radius:var(--r-sm); background:var(--sage-wash); color:var(--sage-deep); display:grid; place-items:center}
 .chan h3{font-size:1.02rem; color:var(--teal)}
 .chan p{font-size:.95rem; color:var(--muted); margin-top:.15rem}
@@ -619,7 +631,7 @@ form.enquiry .btn{width:100%; margin-top:var(--s3)}
 .foot__bar{margin-top:var(--s7); padding-top:var(--s5); border-top:1px solid rgba(255,255,255,.2); font-size:.9rem; color:#CFE6EA; display:flex; flex-wrap:wrap; gap:var(--s4); justify-content:space-between}
 
 /* 10. UTILITIES ============================================================ */
-.mt1{margin-top:1rem} .mt2{margin-top:2rem} .mt3{margin-top:3rem}
+.mt1{margin-top:.85rem} .mt2{margin-top:1.5rem} .mt3{margin-top:2.15rem}
 /* Centring a block is not enough on its own: p has max-width:65ch, so a
    centred paragraph is a narrow box pinned to the left edge and anything
    inside it — a button, especially — centres within that box rather than on
@@ -631,14 +643,19 @@ form.enquiry .btn{width:100%; margin-top:var(--s3)}
 /* Reveal: visible at rest. JS opts elements into starting hidden, so if the
    script never runs nothing is ever invisible. */
 [data-reveal]{opacity:1}
-.js [data-reveal]{opacity:0; transform:translateY(20px); transition:opacity .5s ease-out, transform .5s ease-out}
+.js [data-reveal]{opacity:0; transform:translateY(14px);
+  transition:opacity .5s ease-out, transform .5s ease-out; transition-delay:0s}
+/* Members of a group come in one after another. The delay applies only on the
+   way in -- on the way out the base rule above wins, so a section leaving the
+   viewport does not unravel one card at a time. */
+.js [data-reveal].in{transition-delay:calc(var(--i, 0) * 55ms)}
 .js [data-reveal].in{opacity:1; transform:none}
 
 /* 11. HELPER CLASSES ======================================================= */
 /* These replace inline styles so the pages pass html-validate and so a
    Content-Security-Policy without 'unsafe-inline' for style would still work. */
 .mx-auto{margin-inline:auto}
-.mb2{margin-bottom:1.5rem}
+.mb2{margin-bottom:1.15rem}
 .t-teal{color:var(--teal)}
 .h-sub{font-size:1.45rem}
 .h-form{font-size:1.5rem}
@@ -1004,7 +1021,10 @@ legend{
    The hero and the credentials band are excluded: they are already on screen
    when the page loads, and animating them would just delay first paint. */
 .js [data-sec]{
-  opacity:0; transform:translateY(22px);
+  /* 14px, not the 22px this used to travel: the motion budget is a written
+     accessibility constraint, not a preference, and the rest of the file
+     already claims to honour it. */
+  opacity:0; transform:translateY(14px);
   transition:opacity .55s cubic-bezier(.2,.7,.3,1),
              transform .55s cubic-bezier(.2,.7,.3,1);
 }
@@ -1157,7 +1177,7 @@ legend{
 }
 .door__img.frame--comp{aspect-ratio:16/10}
 .photo.frame--comp{aspect-ratio:4/3; border-radius:18px; overflow:hidden}
-.gal .frame--comp{aspect-ratio:auto; height:100%; min-height:190px; border:0; padding:0; border-radius:var(--r-md); overflow:hidden}
+.gal .frame--comp{aspect-ratio:auto; height:100%; min-height:168px; border:0; padding:0; border-radius:var(--r-md); overflow:hidden}
 
 /* 21. MOTION, SECOND PASS ==================================================
    Richer interaction without leaving the budget: everything here is user- or
@@ -1247,14 +1267,19 @@ legend{
 .card:hover .card__img img{transform:scale(1.03)}
 
 .banner__media{
-  margin:var(--s5) 0; aspect-ratio:21/9; overflow:hidden;
-  border-radius:18px; background:var(--sunk);
+  /* A cinematic strip rather than a slab. At 21:9 across a 1320px wrap this
+     photograph stood 566px tall and pushed the page's first real sentence
+     below the fold. The ratio is kept for narrow screens, where it is only
+     167px; the cap does the work at desktop. Cropping is object-fit's job,
+     so nothing is scaled or distorted. */
+  margin:var(--s4) 0; aspect-ratio:21/9; max-height:clamp(220px,32vh,340px);
+  overflow:hidden; border-radius:18px; background:var(--sunk);
 }
 .banner__media img{width:100%; height:100%; object-fit:cover; display:block}
 
 .trio{display:grid; gap:var(--s4); grid-template-columns:1fr}
 @media(min-width:760px){.trio{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.trio .frame{aspect-ratio:16/10}
+.trio .frame{aspect-ratio:16/9}
 
 @media (prefers-reduced-motion: reduce){
   .card__img img{transition:none}
@@ -1417,7 +1442,7 @@ legend{
 }
 .faq__item[open] summary::after{transform:rotate(-135deg); margin-top:-3px}
 .faq__item summary:hover,.faq__item summary:focus-visible{color:var(--teal-deep)}
-.faq__item p{padding:0 0 var(--s5); color:var(--charcoal); max-width:70ch}
+.faq__item p{padding:0 0 var(--s4); color:var(--charcoal); max-width:70ch}
 @media (prefers-reduced-motion: reduce){
   .faq__item summary::after{transition:none}
 }
@@ -1449,7 +1474,11 @@ legend{
 /* Map embed. A fixed ratio so the third-party frame cannot shift the page as
    it loads, and lazy so it is not fetched until scrolled to. */
 .mapwrap{
-  position:relative; aspect-ratio:16/9; overflow:hidden;
+  /* The Google embed -- not the reach map, which is frozen. At 16/9 across the
+     wrap it stood 742px tall, most of the section it sits in, to show a place
+     marker. Capped; the embed reflows to whatever box it is given. */
+  position:relative; aspect-ratio:16/9; max-height:clamp(260px,44vh,440px);
+  overflow:hidden;
   border:1px solid var(--line); border-radius:18px; background:var(--sunk);
 }
 @media(max-width:640px){.mapwrap{aspect-ratio:4/3}}
