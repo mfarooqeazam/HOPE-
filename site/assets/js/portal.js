@@ -294,49 +294,40 @@
   }
 
   /** @param {HTMLElement} container */
-  function renderVolunteer(container) {
-    return Promise.all([
-      get("volunteer_hours?select=*&order=happened_on.desc"),
-      get("events?select=*&order=starts_at.asc")
-    ]).then(function (res) {
-      var hours = res[0], events = res[1];
+  function renderTherapist(container) {
+    return get("care_team?select=*,profiles!care_team_client_fkey(*)").then(function (team) {
+      var live = team.filter(function (t) {
+        return !t.ended_on || new Date(t.ended_on) > new Date();
+      });
 
-      var total = hours.reduce(function (n, h) { return n + Number(h.hours || 0); }, 0);
-      var s1 = section("Your hours",
-        "What you have given, and where. Confirmed hours can be used in a written reference.");
-      var tot = el("div", "prow");
-      tot.appendChild(el("strong", null, total.toFixed(1) + " hours"));
-      tot.appendChild(el("p", "prow__meta", hours.length + " entries"));
-      s1.appendChild(tot);
-      if (!hours.length) s1.appendChild(empty("No hours logged yet."));
-      hours.forEach(function (h) {
+      var s1 = section("Your clients",
+        "The families assigned to you. Not the whole caseload — the database enforces that, so this list is the whole of your access.");
+      if (!live.length) {
+        s1.appendChild(empty("Nobody is assigned to you yet. An administrator sets this up."));
+        container.appendChild(s1);
+        return;
+      }
+
+      live.forEach(function (t) {
+        var who = t.profiles || {};
         var row = el("div", "prow");
-        row.appendChild(el("span", "prow__tag" + (h.confirmed ? "" : " prow__tag--pending"),
-          h.confirmed ? "Confirmed" : "Pending"));
-        row.appendChild(el("strong", null, when(new Date(h.happened_on)) + " · " + h.hours + "h"));
-        row.appendChild(el("p", null, esc(h.activity) + (h.setting ? " — " + esc(h.setting) : "")));
+        if (t.role_label) row.appendChild(el("span", "prow__tag", esc(t.role_label)));
+        var label = who.child_first_name
+          ? esc(who.child_first_name) + (who.full_name ? " · " + esc(who.full_name) : "")
+          : esc(who.full_name || "Client");
+        row.appendChild(el("strong", null, label));
+
+        var a = el("a", "more", "Open record");
+        a.setAttribute("href", "staff.html?client=" + encodeURIComponent(t.client));
+        row.appendChild(a);
         s1.appendChild(row);
       });
       container.appendChild(s1);
 
-      var s2 = section("What is coming up", "Camps, open days and volunteer sessions.");
-      var future = events.filter(function (v) { return new Date(v.starts_at) >= new Date(); });
-      if (!future.length) s2.appendChild(empty("Nothing scheduled yet. We will email you."));
-      future.forEach(function (v) {
-        var row = el("div", "prow");
-        row.appendChild(el("span", "prow__tag", when(new Date(v.starts_at))));
-        row.appendChild(el("strong", null, esc(v.title)));
-        if (v.location) row.appendChild(el("p", "prow__meta", esc(v.location)));
-        if (v.detail) row.appendChild(el("p", null, esc(v.detail)));
-        if (v.signup_url) {
-          var a = el("a", "more", "Sign up");
-          a.setAttribute("href", v.signup_url);
-          a.setAttribute("target", "_blank");
-          a.setAttribute("rel", "noopener");
-          row.appendChild(a);
-        }
-        s2.appendChild(row);
-      });
+      var s2 = section("Writing session notes",
+        "Notes are written for the family to read, and every one carries your name.");
+      s2.appendChild(empty(
+        "Note-writing is not built into this page yet. Until it is, send session notes to an administrator to upload."));
       container.appendChild(s2);
     });
   }
@@ -349,22 +340,32 @@
   viewOut.hidden = true;
   viewIn.hidden = false;
 
+  var staffOnly = !!panel.getAttribute("data-portal-staff");
+
   get("profiles?select=*&limit=1").then(function (rows) {
     var me = rows[0];
     if (!me) throw new Error("no profile");
+    /* Wrong door: send them to the one that fits rather than showing an
+       empty staff view. */
+    if (staffOnly && ["therapist", "admin", "staff"].indexOf(me.role) < 0) {
+      throw new Error("wrong door");
+    }
     /** @type {Object<string,string>} */
     var ROLE = { family: "Family portal", trainee: "Training portal",
-                 volunteer: "Volunteer portal", staff: "Staff" };
+                 therapist: "Therapist", admin: "Administrator", staff: "Administrator" };
     roleNode.textContent = ROLE[me.role] || "Portal";
     nameNode.textContent = me.full_name ? "Welcome back, " + me.full_name : "Welcome back";
     bodyEl.innerHTML = "";
 
+    if (me.role === "therapist") return renderTherapist(bodyEl);
     if (me.role === "trainee") return renderTrainee(bodyEl);
-    if (me.role === "volunteer") return renderVolunteer(bodyEl);
     return renderFamily(bodyEl);
   }).catch(function (err) {
     bodyEl.innerHTML = "";
-    var msg = String(err && err.message) === "session expired"
+    var m = String(err && err.message);
+    var msg = m === "wrong door"
+      ? "That account is not a staff account. Your portal is on the portal page."
+      : m === "session expired"
       ? "That sign-in link has expired. Ask for a new one."
       : "We could not load your portal just now. Call or WhatsApp us on " +
         (cfg.FALLBACK_PHONE || "our number") + " and we will help.";

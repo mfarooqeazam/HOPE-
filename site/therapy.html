@@ -48,93 +48,159 @@
   <section class="banner">
     <div class="wrap">
       <p class="crumbs"><a href="index.html">Home</a> &rsaquo; Therapy</p>
-      <h1>Therapy for your child</h1>
-      <p class="lede">Four disciplines under one roof, planned together rather than in parallel. You do not need a diagnosis or a referral to start.</p>
+      <h1>Therapy at The Project Hope</h1>
+      <p class="lede">Four disciplines for children, under one roof and planned together rather than in parallel &mdash; and psychological therapy for adults, because clinical psychology does not stop at eighteen. You do not need a diagnosis or a referral to start.</p>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="therapies">
     <div class="wrap">
       <p class="eyebrow">What we offer</p>
       <h2 data-reveal>Four kinds of therapy</h2>
-      <div class="grid" data-reveal-group>
-        <article class="card">
-          <div class="card__img frame--comp"><img src="assets/img/comps/14-aba-natural-skill-building-with-materials.webp" srcset="assets/img/comps/14-aba-natural-skill-building-with-materials-sm.webp 700w, assets/img/comps/14-aba-natural-skill-building-with-materials.webp 1400w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="A child building a skill with materials alongside a practitioner." loading="lazy" decoding="async"></div>
+      <p class="lede mt1" data-reveal>Choose one to see what it is, why it matters, what your child gets out of it, and what a session actually looks like.</p>
+
+      <div class="svc-tabs mt3">
+        <div class="svc-cards" role="tablist" aria-label="Kinds of therapy">
+          <button class="svc-card" type="button" role="tab" id="svctab-aba"
+                  aria-controls="svcpanel-aba" aria-selected="true" tabindex="0">
+            <span class="svc-card__img frame--comp">
+              <img src="assets/img/comps/14-aba-natural-skill-building-with-materials.webp" srcset="assets/img/comps/14-aba-natural-skill-building-with-materials-sm.webp 700w, assets/img/comps/14-aba-natural-skill-building-with-materials.webp 1400w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="A child building a skill with materials alongside a practitioner." loading="lazy" decoding="async">
+            </span>
+            <span class="svc-card__body">
+              <span class="svc-card__title">ABA</span>
+              <span class="svc-card__helps">communication, following routines, managing transitions, self-care skills</span>
+              <span class="svc-card__more">Read more</span>
+            </span>
+          </button>
+          <button class="svc-card svc-card--sage" type="button" role="tab" id="svctab-sl"
+                  aria-controls="svcpanel-sl" aria-selected="false" tabindex="-1">
+            <span class="svc-card__img frame--comp">
+              <img src="assets/img/comps/15-speech-and-language-a-real-exchange.webp" srcset="assets/img/comps/15-speech-and-language-a-real-exchange-sm.webp 700w, assets/img/comps/15-speech-and-language-a-real-exchange.webp 1400w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="A speech and language session — a real exchange between child and therapist." loading="lazy" decoding="async">
+            </span>
+            <span class="svc-card__body">
+              <span class="svc-card__title">Speech &amp; language</span>
+              <span class="svc-card__helps">expressive and receptive language, articulation, social communication</span>
+              <span class="svc-card__more">Read more</span>
+            </span>
+          </button>
+          <button class="svc-card svc-card--gold" type="button" role="tab" id="svctab-ot"
+                  aria-controls="svcpanel-ot" aria-selected="false" tabindex="-1">
+            <span class="svc-card__img frame--comp">
+              <img src="assets/img/comps/16-occupational-therapy-fine-motor-and-handwriting.webp" srcset="assets/img/comps/16-occupational-therapy-fine-motor-and-handwriting-sm.webp 700w, assets/img/comps/16-occupational-therapy-fine-motor-and-handwriting.webp 1400w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="Fine-motor and handwriting work in an occupational therapy session." loading="lazy" decoding="async">
+            </span>
+            <span class="svc-card__body">
+              <span class="svc-card__title">Occupational therapy</span>
+              <span class="svc-card__helps">fine motor skills, sensory regulation, independence in daily routines</span>
+              <span class="svc-card__more">Read more</span>
+            </span>
+          </button>
+          <button class="svc-card" type="button" role="tab" id="svctab-physio"
+                  aria-controls="svcpanel-physio" aria-selected="false" tabindex="-1">
+            <span class="svc-card__img frame--comp">
+              <img src="assets/img/comps/17-physiotherapy-movement-mobility-and-physical-con.webp" srcset="assets/img/comps/17-physiotherapy-movement-mobility-and-physical-con-sm.webp 700w, assets/img/comps/17-physiotherapy-movement-mobility-and-physical-con.webp 1400w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="A physiotherapy session working on movement and mobility." loading="lazy" decoding="async">
+            </span>
+            <span class="svc-card__body">
+              <span class="svc-card__title">Physiotherapy</span>
+              <span class="svc-card__helps">gross motor skills, mobility, coordination, physical confidence</span>
+              <span class="svc-card__more">Read more</span>
+            </span>
+          </button>
+        </div>
+
+        <div class="svc-detail" role="tabpanel" id="svcpanel-aba" aria-labelledby="svctab-aba" tabindex="0">
           <h3>Applied Behavior Analysis (ABA)</h3>
-          <p>A structured, data-led approach to building communication, social and daily-living skills. We begin with a functional behavior assessment (FBA) to understand what a behaviour achieves for your child, then build a plan around it.</p>
-          <p><strong>Often helps with:</strong> communication, following routines, managing transitions, self-care skills.</p>
-          <details class="svc">
-            <summary>What this is, and what it is for</summary>
-            <div class="svc__body">
-              <h4>What it is</h4>
-              <p>Applied Behavior Analysis is the study of why behaviour happens and what changes it. In practice it means watching carefully, working out what a behaviour achieves for a child, and then teaching a better way to achieve the same thing. It is not a set of drills and it is not obedience training.</p>
-              <h4>Why it matters</h4>
-              <p>Behaviour is communication. A child who screams at the supermarket, or who will not sit for a meal, is usually solving a problem the only way they can. Left alone, that solution hardens into a habit, and a habit that has worked for three years takes longer to change than one that is three months old. Starting earlier means less to undo.</p>
-              <h4>What your child gets out of it</h4>
-              <p>Ways to ask for what they want, tolerate the parts of a day that are hard, and manage transitions between activities &mdash; plus the daily-living skills that make a household calmer. Goals are chosen for real life, not for the therapy room, and they are written down so you can see whether they are being met.</p>
-              <h4>What a session looks like</h4>
-              <p>We start with a functional behavior assessment (FBA) &mdash; structured observation to find out what the behaviour is achieving. From that we write a behavior intervention plan (BIP) with named goals and a way of measuring each one. Sessions are usually play-based. You are taught the strategies too, because what happens in the other 165 hours of the week is what makes a skill stick.</p>
-            </div>
-          </details>
-        </article>
-        <article class="card card--b">
-          <div class="card__img frame--comp"><img src="assets/img/comps/15-speech-and-language-a-real-exchange.webp" srcset="assets/img/comps/15-speech-and-language-a-real-exchange-sm.webp 700w, assets/img/comps/15-speech-and-language-a-real-exchange.webp 1400w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="A speech and language session — a real exchange between child and therapist." loading="lazy" decoding="async"></div>
+          <div class="svc-detail__grid">
+            <div class="svc-detail__block"><h4>What it is</h4><p>Applied Behavior Analysis is the study of why behaviour happens and what changes it. In practice it means watching carefully, working out what a behaviour achieves for a child, and then teaching a better way to achieve the same thing. It is not a set of drills and it is not obedience training.</p></div>
+            <div class="svc-detail__block"><h4>Why it matters</h4><p>Behaviour is communication. A child who screams at the supermarket, or who will not sit for a meal, is usually solving a problem the only way they can. Left alone, that solution hardens into a habit, and a habit that has worked for three years takes longer to change than one that is three months old. Starting earlier means less to undo.</p></div>
+            <div class="svc-detail__block"><h4>What your child gets out of it</h4><p>Ways to ask for what they want, tolerate the parts of a day that are hard, and manage transitions between activities &mdash; plus the daily-living skills that make a household calmer. Goals are chosen for real life, not for the therapy room, and they are written down so you can see whether they are being met.</p></div>
+            <div class="svc-detail__block"><h4>What a session looks like</h4><p>We start with a functional behavior assessment (FBA) &mdash; structured observation to find out what the behaviour is achieving. From that we write a behavior intervention plan (BIP) with named goals and a way of measuring each one. Sessions are usually play-based. You are taught the strategies too, because what happens in the other 165 hours of the week is what makes a skill stick.</p></div>
+          </div>
+          <p class="svc-detail__cta"><a class="btn btn--primary" href="first-steps.html">Not sure if this is what you need?</a></p>
+        </div>
+
+        <div class="svc-detail" role="tabpanel" id="svcpanel-sl" aria-labelledby="svctab-sl" hidden tabindex="0">
           <h3>Speech &amp; language therapy</h3>
-          <p>Support for understanding and using language — spoken, gestural, or through communication aids. Communication is not only speech, and a child who cannot yet speak is not a child without something to say.</p>
-          <p><strong>Often helps with:</strong> expressive and receptive language, articulation, social communication.</p>
-          <details class="svc">
-            <summary>What this is, and what it is for</summary>
-            <div class="svc__body">
-              <h4>What it is</h4>
-              <p>Work on understanding language and on expressing it &mdash; through speech, gesture, pictures, or a communication device. Speech and language are two different things: a child can have plenty of words and still struggle to use them to get something done, or have almost no words and a great deal to say.</p>
-              <h4>Why it matters</h4>
-              <p>Communication is the foundation nearly everything else rests on. Frustration, meltdowns and withdrawal are very often a child having no reliable way to be understood. Giving them one changes the rest of the day, not just the session. And using pictures or a device does not delay speech &mdash; the evidence points the other way.</p>
-              <h4>What your child gets out of it</h4>
-              <p>A reliable way to be understood, and to understand what is being asked of them. That might be clearer speech, or it might be signs, symbols or a device. We do not treat a non-speaking route as a consolation prize; we treat it as communication.</p>
-              <h4>What a session looks like</h4>
-              <p>Play, books, and real exchanges rather than flashcards where we can manage it &mdash; because language learned in conversation transfers to conversation. We work on comprehension as well as output, and we show you how to build the same opportunities into meals, journeys and bedtime.</p>
-            </div>
-          </details>
-        </article>
-        <article class="card card--c">
-          <div class="card__img frame--comp"><img src="assets/img/comps/16-occupational-therapy-fine-motor-and-handwriting.webp" srcset="assets/img/comps/16-occupational-therapy-fine-motor-and-handwriting-sm.webp 700w, assets/img/comps/16-occupational-therapy-fine-motor-and-handwriting.webp 1400w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="Fine-motor and handwriting work in an occupational therapy session." loading="lazy" decoding="async"></div>
+          <div class="svc-detail__grid">
+            <div class="svc-detail__block"><h4>What it is</h4><p>Work on understanding language and on expressing it &mdash; through speech, gesture, pictures, or a communication device. Speech and language are two different things: a child can have plenty of words and still struggle to use them to get something done, or have almost no words and a great deal to say.</p></div>
+            <div class="svc-detail__block"><h4>Why it matters</h4><p>Communication is the foundation nearly everything else rests on. Frustration, meltdowns and withdrawal are very often a child having no reliable way to be understood. Giving them one changes the rest of the day, not just the session. And using pictures or a device does not delay speech &mdash; the evidence points the other way.</p></div>
+            <div class="svc-detail__block"><h4>What your child gets out of it</h4><p>A reliable way to be understood, and to understand what is being asked of them. That might be clearer speech, or it might be signs, symbols or a device. We do not treat a non-speaking route as a consolation prize; we treat it as communication.</p></div>
+            <div class="svc-detail__block"><h4>What a session looks like</h4><p>Play, books, and real exchanges rather than flashcards where we can manage it &mdash; because language learned in conversation transfers to conversation. We work on comprehension as well as output, and we show you how to build the same opportunities into meals, journeys and bedtime.</p></div>
+          </div>
+          <p class="svc-detail__cta"><a class="btn btn--primary" href="first-steps.html">Not sure if this is what you need?</a></p>
+        </div>
+
+        <div class="svc-detail" role="tabpanel" id="svcpanel-ot" aria-labelledby="svctab-ot" hidden tabindex="0">
           <h3>Occupational therapy</h3>
-          <p>Work on the practical skills a day is made of — fine motor control, handwriting, dressing, feeding — and on sensory processing, where everyday input can feel overwhelming or insufficient.</p>
-          <p><strong>Often helps with:</strong> fine motor skills, sensory regulation, independence in daily routines.</p>
-          <details class="svc">
-            <summary>What this is, and what it is for</summary>
-            <div class="svc__body">
-              <h4>What it is</h4>
-              <p>Occupational therapy is about the occupations of a childhood &mdash; dressing, eating, writing, playing, managing a school day. It covers fine motor control and it covers sensory processing, where ordinary noise, texture, light or movement can feel overwhelming, or where a child needs far more input than most to feel settled.</p>
-              <h4>Why it matters</h4>
-              <p>These are the skills that decide how independent a child can be, and how much of the day is a fight. A child who cannot fasten a button, tolerate a uniform, or sit through assembly is not being difficult &mdash; and the gap between them and their classmates widens quietly every year it is left.</p>
-              <h4>What your child gets out of it</h4>
-              <p>Practical independence: handling clothes, cutlery, a pencil; managing the sensory parts of a school day; and strategies that make a supermarket or a classroom survivable rather than something to be avoided.</p>
-              <h4>What a session looks like</h4>
-              <p>Purposeful play and real tasks, often looking more like an obstacle course or a craft table than a clinic. We also look at the environment, because sometimes the most effective change is to a chair, a routine or a classroom rather than to the child.</p>
-            </div>
-          </details>
-        </article>
-        <article class="card">
-          <div class="card__img frame--comp"><img src="assets/img/comps/17-physiotherapy-movement-mobility-and-physical-con.webp" srcset="assets/img/comps/17-physiotherapy-movement-mobility-and-physical-con-sm.webp 700w, assets/img/comps/17-physiotherapy-movement-mobility-and-physical-con.webp 1400w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" alt="A physiotherapy session working on movement and mobility." loading="lazy" decoding="async"></div>
+          <div class="svc-detail__grid">
+            <div class="svc-detail__block"><h4>What it is</h4><p>Occupational therapy is about the occupations of a childhood &mdash; dressing, eating, writing, playing, managing a school day. It covers fine motor control and it covers sensory processing, where ordinary noise, texture, light or movement can feel overwhelming, or where a child needs far more input than most to feel settled.</p></div>
+            <div class="svc-detail__block"><h4>Why it matters</h4><p>These are the skills that decide how independent a child can be, and how much of the day is a fight. A child who cannot fasten a button, tolerate a uniform, or sit through assembly is not being difficult &mdash; and the gap between them and their classmates widens quietly every year it is left.</p></div>
+            <div class="svc-detail__block"><h4>What your child gets out of it</h4><p>Practical independence: handling clothes, cutlery, a pencil; managing the sensory parts of a school day; and strategies that make a supermarket or a classroom survivable rather than something to be avoided.</p></div>
+            <div class="svc-detail__block"><h4>What a session looks like</h4><p>Purposeful play and real tasks, often looking more like an obstacle course or a craft table than a clinic. We also look at the environment, because sometimes the most effective change is to a chair, a routine or a classroom rather than to the child.</p></div>
+          </div>
+          <p class="svc-detail__cta"><a class="btn btn--primary" href="first-steps.html">Not sure if this is what you need?</a></p>
+        </div>
+
+        <div class="svc-detail" role="tabpanel" id="svcpanel-physio" aria-labelledby="svctab-physio" hidden tabindex="0">
           <h3>Physiotherapy</h3>
-          <p>Movement, strength, balance and posture, worked on in ways that fit into ordinary life rather than staying in the treatment room.</p>
-          <p><strong>Often helps with:</strong> gross motor skills, mobility, coordination, physical confidence.</p>
-          <details class="svc">
-            <summary>What this is, and what it is for</summary>
-            <div class="svc__body">
-              <h4>What it is</h4>
-              <p>Physiotherapy works on how the body moves: strength, balance, posture, coordination and mobility. For some children that means reaching a milestone like sitting or walking; for others it means moving with less pain, less effort, or more confidence.</p>
-              <h4>Why it matters</h4>
-              <p>Movement is how children join in. A child who cannot keep up in the playground is excluded from far more than the game &mdash; that is where friendships and confidence are built. Posture and mobility also affect sitting, attention and handwriting, so this rarely stays a physical issue for long.</p>
-              <h4>What your child gets out of it</h4>
-              <p>Better strength, balance and coordination, and the confidence that comes with them. Where a physical difference is permanent, the goal is not to correct it but to make daily life work &mdash; getting around, keeping up, and being included.</p>
-              <h4>What a session looks like</h4>
-              <p>Active, and usually disguised as play. We work towards things that matter outside the room &mdash; stairs at home, a school corridor, a playground &mdash; and give you a short home programme, because frequency matters more than session length.</p>
-            </div>
-          </details>
+          <div class="svc-detail__grid">
+            <div class="svc-detail__block"><h4>What it is</h4><p>Physiotherapy works on how the body moves: strength, balance, posture, coordination and mobility. For some children that means reaching a milestone like sitting or walking; for others it means moving with less pain, less effort, or more confidence.</p></div>
+            <div class="svc-detail__block"><h4>Why it matters</h4><p>Movement is how children join in. A child who cannot keep up in the playground is excluded from far more than the game &mdash; that is where friendships and confidence are built. Posture and mobility also affect sitting, attention and handwriting, so this rarely stays a physical issue for long.</p></div>
+            <div class="svc-detail__block"><h4>What your child gets out of it</h4><p>Better strength, balance and coordination, and the confidence that comes with them. Where a physical difference is permanent, the goal is not to correct it but to make daily life work &mdash; getting around, keeping up, and being included.</p></div>
+            <div class="svc-detail__block"><h4>What a session looks like</h4><p>Active, and usually disguised as play. We work towards things that matter outside the room &mdash; stairs at home, a school corridor, a playground &mdash; and give you a short home programme, because frequency matters more than session length.</p></div>
+          </div>
+          <p class="svc-detail__cta"><a class="btn btn--primary" href="first-steps.html">Not sure if this is what you need?</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sunk" id="adults">
+    <div class="wrap">
+      <p class="eyebrow">Not only children</p>
+      <h2 data-reveal>Therapy for adults</h2>
+      <p class="lede mt1" data-reveal>The centre is led by a clinical psychologist, and clinical psychology does not stop at eighteen. Almost every service in the country does &mdash; which is why autistic children become autistic adults with nowhere left to go.</p>
+
+      <div class="grid mt3" data-reveal-group>
+        <article class="card">
+          <p class="door__who">For adults themselves</p>
+          <h3>Psychological therapy</h3>
+          <p>Individual therapy for adults living with anxiety, low mood, grief, stress or difficulty coping. Delivered by a clinical psychologist, drawing on cognitive behavioural therapy (CBT), rational emotive behaviour therapy (REBT) and psychodynamic approaches depending on what fits.</p>
+          <p class="mt2"><strong>Often helps with:</strong> anxiety, low mood, grief and loss, stress, sleep, confidence, difficulty coping after a change.</p>
+        </article>
+
+        <article class="card card--b">
+          <p class="door__who">For autistic adults</p>
+          <h3>Adult autism &amp; developmental support</h3>
+          <p>Support that continues past childhood: independence and daily routines, employment readiness, community access, and managing environments that were never designed for you. Behavioural support here is collaborative &mdash; goals you choose, not goals chosen for you.</p>
+          <p class="mt2"><strong>Often helps with:</strong> daily living, work and study, social and sensory demands, self-advocacy.</p>
+        </article>
+
+        <article class="card card--c">
+          <p class="door__who">For parents and carers</p>
+          <h3>Counselling for the family</h3>
+          <p>Raising a child with high support needs is relentless, and caregiver stress is not a side issue &mdash; it is one of the things that decides whether therapy carries into real life. That finding is the founder&rsquo;s own research. Support here is for you, not about your child.</p>
+          <p class="mt2"><strong>Often helps with:</strong> exhaustion and burnout, guilt, strain on a marriage, siblings, grief for the life you expected.</p>
+        </article>
+
+        <article class="card">
+          <p class="door__who">For older adults</p>
+          <h3>Older-adult wellbeing</h3>
+          <p>Isolation, bereavement, adjustment after illness or retirement, and cognitive change. We work in old age homes and day centres as well as at the centre, and volunteers are part of how this reaches people who cannot travel.</p>
+          <p class="mt2"><strong>Often helps with:</strong> loneliness, low mood, adjustment, keeping routine and purpose.</p>
         </article>
       </div>
+
+      <h3 class="mt3 t-teal" data-reveal>Honest limits</h3>
+      <ul class="ticks mt2" data-reveal-group>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>We are not a psychiatric service and we do not prescribe medication. Where that is what is needed, we will say so and help you find it.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>We are not a crisis service. If someone is at immediate risk, contact emergency services or your nearest hospital.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Adult work is currently delivered by the founder, so availability is genuinely limited. As demand grows the intention is to bring in additional clinical psychologists rather than stretch one person thin.</span></li>
+      </ul>
+
+      <p class="mt3">
+        <a class="btn btn--primary" href="contact.html">Ask about adult therapy</a>
+        <a class="btn btn--ghost" href="first-steps.html">Not sure what you need?</a>
+      </p>
     </div>
   </section>
 

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Staff Sign In — The Project Hope</title>
+<meta name="description" content="Sign-in for The Project Hope clinical and administrative staff. Not a public page.">
+<link rel="canonical" href="https://example.com/staff.html">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#174F59">
+<link rel="icon" href="assets/img/hope-logo-sm.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to main content</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="head">
+  <div class="wrap head__in">
+    <a class="logo" href="index.html">
+      <img src="assets/img/hope-logo-sm.png" alt="The Project Hope" width="71" height="54" fetchpriority="high">
+      <span class="logo__name">The Project Hope</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu">Menu</button>
+    <nav class="nav" id="navMenu" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="first-steps.html">Start here</a>
+      <a href="therapy.html">Therapy</a>
+      <a href="training.html">Training</a>
+      <a href="school.html">School</a>
+      <a href="why-it-matters.html">Why it matters</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="blog.html">Blogs</a>
+      <a href="about.html">About</a>
+      <a href="portal.html">Portal</a>
+      <a href="register.html">Register</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn btn--primary" href="contact.html">Talk to us</a>
+    </nav>
+    <a class="btn btn--primary btn--head" href="contact.html">Talk to us</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="banner banner--deep">
+    <div class="wrap">
+      <p class="crumbs"><a href="index.html">Home</a> &rsaquo; <a href="portal.html">Portal</a> &rsaquo; Staff</p>
+      <h1>Staff sign in</h1>
+      <p class="lede">For therapists, teachers and administrative staff at The Project Hope. If you are a family or a trainee, your sign-in is on the <a href="portal.html">portal page</a>.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="story">
+        <div class="panel" data-portal data-portal-staff hidden>
+
+          <div data-portal-out>
+            <p class="eyebrow">Team access</p>
+            <h2>Sign in</h2>
+            <p class="lede mt1">No password &mdash; we email you a one-time link. It expires in an hour and your session ends when you close the tab.</p>
+
+            <form class="signin mt3" data-portal-form novalidate>
+              <div class="field">
+                <label for="st-email">Your work email address</label>
+                <input id="st-email" name="email" type="email" autocomplete="email" required
+                       data-error="Please enter the email address your account uses.">
+                <p class="err" id="st-email-err" role="alert"></p>
+              </div>
+              <button class="btn btn--primary" type="submit">Email me a sign-in link</button>
+              <p class="form-status" role="status" aria-live="polite" tabindex="-1"></p>
+            </form>
+          </div>
+
+          <div data-portal-in hidden>
+            <div class="panel__head">
+              <div>
+                <p class="eyebrow" data-portal-role>Staff</p>
+                <h2 data-portal-name>Welcome back</h2>
+              </div>
+              <button class="btn btn--ghost" type="button" data-portal-out-btn>Sign out</button>
+            </div>
+            <div class="mt3" data-portal-body>
+              <p class="lede">Loading&hellip;</p>
+            </div>
+          </div>
+
+        </div>
+
+        <noscript>
+          <p class="note">This page needs JavaScript to sign you in.</p>
+        </noscript>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sunk">
+    <div class="wrap">
+      <div class="story">
+        <p class="eyebrow">How access works</p>
+        <h2 data-reveal>What you can and cannot see</h2>
+        <ul class="ticks mt3" data-reveal-group>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>You see the families assigned to you.</strong> Not the whole caseload. A therapist working with six children sees six children.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>This is enforced by the database, not the page.</strong> A bug in the website cannot widen your access, and neither can editing the URL.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>You can write session notes and upload plans</strong> for your own clients. Notes written here are read by the family, so write them for that reader.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Administrators see more,</strong> because someone has to schedule and invoice. Who holds that role is recorded.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Every session note carries your name.</strong> Not as surveillance &mdash; because a family is entitled to know who wrote what about their child.</span></li>
+        </ul>
+        <p class="note mt3"><strong>Before you write anything here.</strong> This holds identifiable information about children. Do not sign in on a shared device, do not leave it open, and do not paste anything from here into a message. If you think something has gone wrong, say so immediately &mdash; a mistake reported in an hour is an incident; one reported in a month is a breach. See <a href="privacy.html">privacy &amp; data protection</a>.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__brand">
+        <a class="foot__logo" href="index.html">
+          <img src="assets/img/hope-logo-sm.png" alt="" width="60" height="46" loading="lazy" decoding="async">
+          <span>The Project Hope</span>
+        </a>
+        <p>A multidisciplinary centre in Shahzad Town, Islamabad &mdash; therapy, professional training and inclusive education, with a number of places funded rather than charged for.</p>
+        <p class="foot__tag">Where healing meets growth.</p>
+      </div>
+
+      <div>
+        <h3>For families</h3>
+        <ul>
+          <li><a href="therapy.html">Therapy for your child</a></li>
+          <li><a href="school.html">The inclusive school</a></li>
+          <li><a href="first-steps.html">Not sure where to start?</a></li>
+          <li><a href="why-it-matters.html">Why it matters</a></li>
+          <li><a href="register.html">Register with us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>For professionals</h3>
+        <ul>
+          <li><a href="training.html">IBA &mdash; 270 hours</a></li>
+          <li><a href="training.html">IBT &mdash; 40 hours</a></li>
+          <li><a href="training.html">Supervision &amp; CEUs</a></li>
+          <li><a href="blog.html">Writing &amp; research</a></li>
+          <li><a href="volunteer.html">Volunteer with us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="tel:+923025252556">+92&nbsp;302&nbsp;5252&nbsp;556</a></li>
+          <li><a href="https://wa.me/923025252556" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:mfarooqeazamawan@gmail.com">Email us</a></li>
+          <li><a href="https://www.linkedin.com/in/m-farooq-e-azam-awan-4107272b6" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="contact.html#faq">Common questions</a></li>
+        </ul>
+        <p class="foot__addr">Shahzad Town, Islamabad, Pakistan</p>
+      </div>
+    </div>
+
+    <div class="foot__bar">
+      <span>&copy; 2025 The Project Hope</span>
+      <span class="foot__legal">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="register.html">Register</a>
+        <a href="privacy.html">Privacy</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/portal.js" defer></script>
+</body>
+</html>

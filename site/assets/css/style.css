@@ -1390,36 +1390,6 @@ legend{
 }
 .portal__no strong{color:var(--charcoal)}
 
-/* 30. SERVICE DETAIL =======================================================
-   Each therapy card opens into what it is, why it matters, what a child gets
-   out of it, and what a session looks like. Native <details>, so it works
-   without JavaScript and find-in-page still reaches closed text. */
-.svc{margin-top:auto; border-top:1px solid var(--line); padding-top:var(--s4)}
-.svc summary{
-  cursor:pointer; list-style:none; font-weight:700; color:var(--teal);
-  font-size:.94rem; display:flex; align-items:center; gap:.45rem;
-  min-height:44px;
-}
-.svc summary::-webkit-details-marker{display:none}
-.svc summary::after{
-  content:""; width:9px; height:9px; flex:none;
-  border-right:2px solid currentColor; border-bottom:2px solid currentColor;
-  transform:rotate(45deg) translateY(-2px);
-  transition:transform .25s cubic-bezier(.2,.7,.3,1);
-}
-.svc[open] summary::after{transform:rotate(-135deg) translateY(-2px)}
-.svc summary:hover,.svc summary:focus-visible{color:var(--teal-deep)}
-.svc__body{padding-top:var(--s3)}
-.svc__body h4{
-  font-size:.76rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
-  color:var(--sage-deep); margin-top:var(--s4);
-}
-.svc__body h4:first-child{margin-top:0}
-.svc__body p{margin-top:.35rem; font-size:.94rem; color:var(--charcoal)}
-.card--b .svc__body h4{color:var(--sage-deep)}
-.card--c .svc__body h4{color:var(--gold-deep)}
-@media (prefers-reduced-motion: reduce){ .svc summary::after{transition:none} }
-
 /* 31. HERO GROWTH MOTIF ====================================================
    Replaces the silhouette band. Four strands — therapy, education, family,
    training — rise from one root and meet in a single canopy, which is the
@@ -1525,3 +1495,95 @@ legend{
 
 .pbar{margin-top:var(--s4); height:8px; border-radius:99px; background:var(--line); overflow:hidden}
 .pbar__fill{height:100%; background:var(--teal); border-radius:99px}
+
+/* 33. THERAPY SELECTOR =====================================================
+   Four cards act as tabs; one panel below reveals the detail. This replaces
+   an accordion inside each card, which pushed the page around and made the
+   four therapies impossible to compare.
+
+   The panel reveals the way the Start here result does — same gesture, so
+   the site behaves consistently. */
+.svc-cards{
+  display:grid; gap:var(--s4); grid-template-columns:1fr;
+}
+@media(min-width:640px){.svc-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1000px){.svc-cards{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+.svc-card{
+  display:flex; flex-direction:column; text-align:left; padding:0; cursor:pointer;
+  background:var(--white); border:1px solid var(--line); border-radius:14px;
+  overflow:hidden; font-family:var(--font); color:inherit;
+  transition:transform .28s cubic-bezier(.2,.7,.3,1),
+             box-shadow .28s ease, border-color .28s ease;
+}
+.svc-card:hover{transform:translateY(-4px); box-shadow:var(--e2)}
+.svc-card__img{display:block; aspect-ratio:16/10; overflow:hidden; background:var(--sunk)}
+.svc-card__img img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  transition:transform .55s cubic-bezier(.2,.7,.3,1);
+}
+.svc-card:hover .svc-card__img img{transform:scale(1.04)}
+.svc-card__body{display:flex; flex-direction:column; gap:.4rem; padding:var(--s5); flex:1}
+.svc-card__title{font-size:1.08rem; font-weight:700; color:var(--teal)}
+.svc-card__helps{font-size:.88rem; color:var(--muted); line-height:1.45; flex:1}
+.svc-card__more{
+  font-size:.86rem; font-weight:700; color:var(--teal); margin-top:var(--s3);
+  display:inline-flex; align-items:center; gap:.35rem;
+}
+.svc-card__more::after{content:"\2192"; transition:transform .25s ease}
+.svc-card:hover .svc-card__more::after{transform:translateX(3px)}
+
+/* Selected card: a teal edge and a filled indicator, so the link between the
+   card and the panel below is unmistakable. */
+.svc-card[aria-selected="true"]{
+  border-color:var(--teal); box-shadow:var(--e2);
+  outline:2px solid var(--teal); outline-offset:-2px;
+}
+.svc-card[aria-selected="true"] .svc-card__more{color:var(--teal-deep)}
+.svc-card[aria-selected="true"] .svc-card__more::after{transform:rotate(90deg)}
+.svc-card--sage[aria-selected="true"]{border-color:var(--sage-deep); outline-color:var(--sage-deep)}
+.svc-card--gold[aria-selected="true"]{border-color:var(--gold-deep); outline-color:var(--gold-deep)}
+
+.svc-detail{
+  margin-top:var(--s5); padding:clamp(1.5rem,4vw,2.5rem);
+  background:var(--sunk); border:1px solid var(--line);
+  border-top:3px solid var(--teal); border-radius:var(--r-md);
+}
+.svc-detail:focus-visible{outline:3px solid var(--teal); outline-offset:3px}
+.svc-detail h3{font-size:clamp(1.3rem,1.1rem + .9vw,1.75rem); color:var(--teal)}
+.svc-detail__grid{display:grid; gap:var(--s5); margin-top:var(--s5); grid-template-columns:1fr}
+@media(min-width:800px){.svc-detail__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.svc-detail__block h4{
+  font-size:.76rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--sage-deep);
+}
+.svc-detail__block p{margin-top:.45rem; font-size:.96rem; color:var(--charcoal)}
+.svc-detail__cta{margin-top:var(--s6)}
+
+/* The reveal itself. Blocks arrive in sequence rather than all at once, which
+   is what makes it read as a considered answer instead of a page jump. */
+.js .svc-detail.is-swapping{opacity:0; transform:translateY(8px)}
+.js .svc-detail{
+  opacity:1; transform:none;
+  transition:opacity .3s ease, transform .3s cubic-bezier(.2,.7,.3,1);
+}
+.js .svc-detail__block{opacity:0; transform:translateY(10px)}
+.js .svc-detail.is-in .svc-detail__block{
+  opacity:1; transform:none;
+  transition:opacity .45s ease-out, transform .45s cubic-bezier(.2,.7,.3,1);
+}
+.js .svc-detail.is-in .svc-detail__block:nth-child(2){transition-delay:.07s}
+.js .svc-detail.is-in .svc-detail__block:nth-child(3){transition-delay:.14s}
+.js .svc-detail.is-in .svc-detail__block:nth-child(4){transition-delay:.21s}
+
+@media (prefers-reduced-motion: reduce){
+  .svc-card,.svc-card__img img,.svc-detail,.svc-detail__block{transition:none}
+  .svc-card:hover{transform:none}
+  .svc-card:hover .svc-card__img img{transform:none}
+  .js .svc-detail__block{opacity:1; transform:none}
+}
+
+/* Links on the deep teal banner. Without this they inherit --teal, which is
+   the banner's own background: 1:1, and axe caught it. */
+.banner--deep a{color:var(--gold-on-teal); text-decoration-color:rgba(211,186,136,.5)}
+.banner--deep a:hover,.banner--deep a:focus-visible{color:#fff; text-decoration-color:#fff}

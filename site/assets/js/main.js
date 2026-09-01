@@ -432,6 +432,83 @@
 
   all("form.enquiry").forEach(function (f) { initForm(/** @type {HTMLFormElement} */ (f)); });
 
+  /* ---- therapy selector --------------------------------------------------
+     Four cards, one panel. A proper tablist: one tab stop, arrow keys move
+     between therapies, Home and End jump to the ends.
+
+     Enhancement only. With scripting off every panel is visible and the page
+     reads as four sections, which is exactly what it was before. */
+  (function therapySelector() {
+    var listEl = document.querySelector(".svc-cards[role='tablist']");
+    if (!listEl) return;
+    var tabs = /** @type {HTMLElement[]} */ (all("[role='tab']", listEl));
+    var panels = /** @type {HTMLElement[]} */ (all(".svc-detail[role='tabpanel']"));
+    if (!tabs.length || !panels.length) return;
+
+    /** @param {string} id */
+    function panelFor(id) {
+      return panels.filter(function (p) { return p.id === id; })[0] || null;
+    }
+
+    /** @param {number} i @param {boolean} [focus] */
+    function select(i, focus) {
+      var tab = tabs[i];
+      if (!tab) return;
+      var wanted = tab.getAttribute("aria-controls") || "";
+      var next = panelFor(wanted);
+      if (!next) return;
+
+      tabs.forEach(function (t, j) {
+        var on = j === i;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.setAttribute("tabindex", on ? "0" : "-1");
+      });
+
+      var current = panels.filter(function (p) { return !p.hidden; })[0];
+      if (current === next) { if (focus) tab.focus(); return; }
+
+      /* Fade the outgoing panel, swap, then let the blocks arrive in
+         sequence. Height is not animated — animating height on a panel whose
+         content varies is where this kind of component usually starts
+         juddering. */
+      function show() {
+        panels.forEach(function (p) { p.hidden = p !== next; });
+        next.classList.remove("is-in");
+        next.classList.add("is-swapping");
+        /* Two frames: one for the browser to apply the start state, one to
+           transition away from it. */
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            next.classList.remove("is-swapping");
+            next.classList.add("is-in");
+          });
+        });
+        if (focus) tab.focus();
+      }
+
+      if (reduced || !current) { show(); return; }
+      current.classList.add("is-swapping");
+      window.setTimeout(show, 160);
+    }
+
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener("click", function () { select(i); });
+      tab.addEventListener("keydown", function (e) {
+        var k = e.key;
+        var last = tabs.length - 1;
+        if (k === "ArrowRight" || k === "ArrowDown") { e.preventDefault(); select(i === last ? 0 : i + 1, true); }
+        else if (k === "ArrowLeft" || k === "ArrowUp") { e.preventDefault(); select(i === 0 ? last : i - 1, true); }
+        else if (k === "Home") { e.preventDefault(); select(0, true); }
+        else if (k === "End") { e.preventDefault(); select(last, true); }
+      });
+    });
+
+    /* Mark the panel that is already open so its blocks are not left at
+       opacity 0 by the stylesheet. */
+    var open = panels.filter(function (p) { return !p.hidden; })[0];
+    if (open) open.classList.add("is-in");
+  })();
+
   /* ---- hero growth motif -------------------------------------------------
      Hovering or focusing one strand dims the others and names what it means.
      Enhancement only: with scripting off the illustration is still complete
@@ -528,6 +605,16 @@
         h: "Educational support and the inclusive school",
         p: "An individualised education plan (IEP), classroom support, and — where it is the right fit — a place at the school, with therapy inside the school day.",
         href: "school.html"
+      },
+      adult: {
+        h: "Psychological therapy for adults",
+        p: "Individual therapy with a clinical psychologist — CBT, REBT or psychodynamic, depending on what fits. Clinical psychology does not stop at eighteen, and almost every service in the country does.",
+        href: "therapy.html#adults"
+      },
+      carer: {
+        h: "Counselling for parents and carers",
+        p: "Support for you, not about the person you care for. Caregiver stress is one of the things that decides whether therapy carries into real life — which is the founder's own research finding.",
+        href: "therapy.html#adults"
       },
       unsure: {
         h: "Start with an assessment",
