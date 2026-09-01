@@ -432,6 +432,82 @@
 
   all("form.enquiry").forEach(function (f) { initForm(/** @type {HTMLFormElement} */ (f)); });
 
+  /* ---- map arrival -------------------------------------------------------
+     The countries drift in from the direction they sit in and settle. Purely
+     presentational: this reads geometry to work out a direction and sets two
+     custom properties. It touches no fill, no layer flag, no state and no
+     part of the map's own logic.
+
+     Distance is capped at 14px because that is the motion budget, and the
+     budget exists for the audience rather than for taste. The impression of
+     the map assembling comes from the stagger, not from how far anything
+     travels. Runs once. */
+  (function mapArrival() {
+    if (reduced || !("IntersectionObserver" in window)) return;
+    var svgEl = /** @type {SVGSVGElement|null} */ (document.querySelector("[data-map-svg]"));
+    if (!svgEl) return;
+    const svg = svgEl;
+    var shapes = all("path[data-n]", svg);
+    if (!shapes.length) return;
+
+    var vb = (svg.getAttribute("viewBox") || "0 0 1000 406").split(/\s+/).map(Number);
+    var w = vb[2] || 1000, h = vb[3] || 406;
+    var cx = w / 2, cy = h / 2;
+    var MAX = 14;                       // px, the whole budget
+
+    /* getBBox() forces layout, and there are 175 of them. Doing that at load
+       cost about 600ms of blocking time for an animation nobody had scrolled
+       to yet. It now happens once, when the map is first approached, and the
+       observer fires early enough that the work is finished before the map
+       is actually on screen. */
+    var prepared = false;
+    function prepare() {
+      if (prepared) return;
+      prepared = true;
+      shapes.forEach(function (el) {
+        var b;
+        try {
+          b = /** @type {SVGGraphicsElement} */ (/** @type {unknown} */ (el)).getBBox();
+        } catch (err) { return; }
+        var x = b.x + b.width / 2, y = b.y + b.height / 2;
+        var vx = x - cx, vy = y - cy;
+        var len = Math.sqrt(vx * vx + vy * vy) || 1;
+        /* Outward from the centre, so each country arrives from the side of
+           the world it belongs to. */
+        el.style.setProperty("--dx", (vx / len * MAX).toFixed(1) + "px");
+        el.style.setProperty("--dy", (vy / len * MAX).toFixed(1) + "px");
+        /* West to east, capped so the last country is never more than about
+           half a second behind the first. */
+        el.style.setProperty("--d", Math.round((x / w) * 520) + "ms");
+      });
+      svg.setAttribute("data-arrive", "");
+    }
+
+    /* Two observers: one well ahead of the map to do the measuring, one at
+       the map itself to start the transition. */
+    var pre = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        prepare();
+        pre.disconnect();
+      });
+    }, { rootMargin: "600px 0px 600px 0px" });
+    pre.observe(svg);
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        prepare();
+        requestAnimationFrame(function () { svg.classList.add("is-in"); });
+        io.disconnect();
+      });
+    }, { rootMargin: "0px 0px -15% 0px" });
+    io.observe(svg);
+
+    /* If the observer never fires, the map must not stay invisible. */
+    window.setTimeout(function () { svg.classList.add("is-in"); }, 3000);
+  })();
+
   /* ---- therapy selector --------------------------------------------------
      Four cards, one panel. A proper tablist: one tab stop, arrow keys move
      between therapies, Home and End jump to the ends.
@@ -459,13 +535,22 @@
       if (!next) return;
 
       tabs.forEach(function (t, j) {
-        var on = j === i;
-        t.setAttribute("aria-selected", on ? "true" : "false");
-        t.setAttribute("tabindex", on ? "0" : "-1");
+        t.setAttribute("aria-selected", j === i ? "true" : "false");
+        t.setAttribute("tabindex", j === i ? "0" : "-1");
       });
 
       var current = panels.filter(function (p) { return !p.hidden; })[0];
-      if (current === next) { if (focus) tab.focus(); return; }
+
+      /* Clicking the open one closes it. Nothing is open at load, so the four
+         therapies read as a row of equals rather than one being singled out
+         for no reason. */
+      if (current === next) {
+        next.hidden = true;
+        next.classList.remove("is-in");
+        tab.setAttribute("aria-selected", "false");
+        if (focus) tab.focus();
+        return;
+      }
 
       /* Fade the outgoing panel, swap, then let the blocks arrive in
          sequence. Height is not animated — animating height on a panel whose
@@ -491,22 +576,30 @@
       window.setTimeout(show, 160);
     }
 
+    /** @param {number} i */
+    function focusTab(i) {
+      tabs.forEach(function (t, j) { t.setAttribute("tabindex", j === i ? "0" : "-1"); });
+      if (tabs[i]) tabs[i].focus();
+    }
+
     tabs.forEach(function (tab, i) {
       tab.addEventListener("click", function () { select(i); });
       tab.addEventListener("keydown", function (e) {
         var k = e.key;
         var last = tabs.length - 1;
-        if (k === "ArrowRight" || k === "ArrowDown") { e.preventDefault(); select(i === last ? 0 : i + 1, true); }
-        else if (k === "ArrowLeft" || k === "ArrowUp") { e.preventDefault(); select(i === 0 ? last : i - 1, true); }
-        else if (k === "Home") { e.preventDefault(); select(0, true); }
-        else if (k === "End") { e.preventDefault(); select(last, true); }
+        /* Arrow keys move focus only. Opening is a deliberate act — Enter or
+           Space — so a keyboard user is not made to open all four on the way
+           past. */
+        if (k === "ArrowRight" || k === "ArrowDown") { e.preventDefault(); focusTab(i === last ? 0 : i + 1); }
+        else if (k === "ArrowLeft" || k === "ArrowUp") { e.preventDefault(); focusTab(i === 0 ? last : i - 1); }
+        else if (k === "Home") { e.preventDefault(); focusTab(0); }
+        else if (k === "End") { e.preventDefault(); focusTab(last); }
+        else if (k === "Enter" || k === " ") { e.preventDefault(); select(i, true); }
       });
     });
 
-    /* Mark the panel that is already open so its blocks are not left at
-       opacity 0 by the stylesheet. */
-    var open = panels.filter(function (p) { return !p.hidden; })[0];
-    if (open) open.classList.add("is-in");
+    /* Nothing is open at load. With scripting off every panel is visible,
+       which is the correct fallback — the page then reads as four sections. */
   })();
 
   /* ---- hero growth motif -------------------------------------------------

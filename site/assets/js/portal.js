@@ -81,8 +81,8 @@
     history.replaceState(null, "", window.location.pathname + window.location.search);
   }
 
-  /** @param {string} path @returns {Promise<any[]>} */
-  function get(path) {
+  /** @type {(path: string) => Promise<any[]>} */
+  var get = function (path) {
     var t = readToken();
     if (!t) return Promise.reject(new Error("not signed in"));
     return fetch(URL_BASE + "/rest/v1/" + path, {
@@ -96,7 +96,7 @@
       if (!r.ok) throw new Error("request failed");
       return r.json();
     });
-  }
+  };
 
   /* ---- sign in ---------------------------------------------------------- */
   signInForm.addEventListener("submit", function (e) {
@@ -332,8 +332,101 @@
     });
   }
 
+  /* ---- preview -----------------------------------------------------------
+     ?preview=family | trainee | therapist renders each view with sample rows
+     so the portal can be looked at before Auth is switched on and before any
+     real record exists.
+
+     Nothing here touches the network, and the sample data is obviously fake
+     on sight. A banner says so, because a screenshot of this should never be
+     mistakable for a real family's record. */
+  /** @type {Object<string, any>} */
+  var PREVIEW = {
+    family: {
+      name: "Preview — family portal",
+      documents: [
+        { kind: "bmp", title: "Behavior intervention plan — Term 2", issued_on: "2026-07-14", review_due: "2026-10-14",
+          summary: "Replacement communication for requesting a break, plus a plan for transitions between activities." },
+        { kind: "iep", title: "Individualised education plan", issued_on: "2026-06-02", review_due: "2026-12-02",
+          summary: "Classroom targets agreed with the school, aligned to the therapy goals." },
+        { kind: "report", title: "Initial assessment report", issued_on: "2026-05-20" }
+      ],
+      sessions: [
+        { starts_at: "2026-09-01T09:30:00Z", status: "attended", discipline: "aba", clinician: "Lead ABA therapist",
+          note: "Asked for a break twice using the card, without prompting. Sat through the full table task for the first time.",
+          home_task: "Leave the break card where it can be reached at the dinner table." },
+        { starts_at: "2026-08-27T09:30:00Z", status: "attended", discipline: "speech", clinician: "Speech and language therapist",
+          note: "Two-word requests are coming more often. We are not correcting pronunciation yet, on purpose." },
+        { starts_at: "2026-08-22T09:30:00Z", status: "cancelled", discipline: "aba", clinician: "Lead ABA therapist",
+          note: "Cancelled by us — therapist unwell. Not counted against your sessions." }
+      ],
+      fees: [
+        { description: "Therapy — 8 sessions", period: "September 2026", funded: true },
+        { description: "Initial assessment", period: "May 2026", amount_pkr: 0, paid_on: "2026-05-20", funded: true }
+      ]
+    },
+    trainee: {
+      name: "Preview — training portal",
+      enrolments: [{ hours_done: 96, hours_required: 270, cohorts: { name: "IBA cohort — Autumn 2026", pathway: "iba" } }],
+      materials: [
+        { kind: "slides", title: "Unit 3 — Functional behaviour assessment", url: "#" },
+        { kind: "video", title: "Unit 3 recording", url: "#" },
+        { kind: "quiz", title: "Unit 3 knowledge check", url: "#" },
+        { kind: "reading", title: "Ethics: consent and assent", url: "#" },
+        { kind: "live", title: "Supervision group — first Tuesday monthly" }
+      ]
+    },
+    therapist: {
+      name: "Preview — therapist view",
+      team: [
+        { role_label: "Lead ABA therapist", client: "demo-1", profiles: { child_first_name: "A", full_name: "Family 1" } },
+        { role_label: "Speech and language", client: "demo-2", profiles: { child_first_name: "B", full_name: "Family 2" } },
+        { role_label: "Lead ABA therapist", client: "demo-3", profiles: { child_first_name: "C", full_name: "Family 3" } }
+      ]
+    }
+  };
+
+  function previewMode() {
+    var want = new URLSearchParams(window.location.search).get("preview");
+    if (!want || !PREVIEW[want]) return false;
+    var d = PREVIEW[want];
+
+    viewOut.hidden = true;
+    viewIn.hidden = false;
+    roleNode.textContent = "Preview";
+    nameNode.textContent = d.name;
+    bodyEl.innerHTML = "";
+
+    var warn = el("p", "note", "");
+    warn.appendChild(el("strong", null, "This is a preview. "));
+    warn.appendChild(document.createTextNode(
+      "Every name, date and note below is invented so the layout can be seen " +
+      "before Auth is switched on. No real record is shown, and nothing here " +
+      "was fetched from the database."));
+    bodyEl.appendChild(warn);
+
+    /* Swap get() for the sample data, render, then put it back. */
+    var realGet = get;
+    get = function (path) {
+      if (path.indexOf("documents") === 0) return Promise.resolve(d.documents || []);
+      if (path.indexOf("sessions") === 0) return Promise.resolve(d.sessions || []);
+      if (path.indexOf("fees") === 0) return Promise.resolve(d.fees || []);
+      if (path.indexOf("enrolments") === 0) return Promise.resolve(d.enrolments || []);
+      if (path.indexOf("materials") === 0) return Promise.resolve(d.materials || []);
+      if (path.indexOf("care_team") === 0) return Promise.resolve(d.team || []);
+      return Promise.resolve([]);
+    };
+    var done = want === "trainee" ? renderTrainee(bodyEl)
+             : want === "therapist" ? renderTherapist(bodyEl)
+             : renderFamily(bodyEl);
+    done.then(function () { get = realGet; });
+    return true;
+  }
+
   /* ---- boot ------------------------------------------------------------- */
   captureFragment();
+
+  if (previewMode()) return;
 
   if (!readToken()) return;                 // stays on the signed-out view
 
