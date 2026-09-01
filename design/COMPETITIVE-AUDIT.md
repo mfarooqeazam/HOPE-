@@ -1,140 +1,160 @@
 # Competitive audit — September 2026
 
-Compared against the centres a family in Islamabad would realistically find
-alongside us in search. Everything below was read from the live sites, not
-assumed.
+Two markets, because there are two businesses: a therapy centre competing in
+Islamabad, and an IBAO training provider competing worldwide. Everything below
+was read from the live sites.
 
-**Sites reviewed**
+---
+
+# Part 1 — Therapy, Islamabad
 
 | Centre | What it is |
 | --- | --- |
-| [Sitaray Autism School & Therapy Centre](https://sitaray.net/) | G-13/1 Islamabad. The closest direct comparison — school + therapy + supervision. |
-| [Ask an Occupational Therapist (AOT)](https://askanot.org/) | E-11/1 Islamabad. Sensory-led, ABA/OT/speech. |
-| [SPARK](https://thesparkpakistan.com/) | E-11/3 Islamabad. Early intervention. |
-| [BASES](https://www.facebook.com/BASESinc/) | D-12 Markaz. ABA/OT/speech/physio/education. Facebook-only presence. |
+| [Sitaray](https://sitaray.net/) | G-13/1. School + therapy + supervision. The closest comparison. |
+| [Ask an Occupational Therapist](https://askanot.org/) | E-11/1. Sensory-led ABA/OT/speech. |
+| [SPARK](https://thesparkpakistan.com/) | E-11/3. Early intervention. |
+| [BASES](https://www.facebook.com/BASESinc/) | D-12. Facebook-only presence. |
 | [Pakistan Centre for Autism](https://www.pcforautism.org/) | National, advocacy-led. |
 
----
+## Behind
 
-## Where we are behind
+**1. Named staff — still the largest gap.**
+Sitaray publishes 16+ people with photographs and credentials down to
+`(BCBA / IBA)` and `(RBT)`. We publish three empty placeholders. This is the
+page parents decide on. Nothing else on this list matters as much.
 
-### 1. Named staff — the biggest gap by a distance
-Sitaray publishes **16+ team members with photographs and credentials**, down
-to role and certification (`ADNAN KHAN (BCBA / IBA) Clinical Director`,
-`Shanza Khan (RBT) Clinical Supervisor`). AOT names its therapists with
-qualifications too.
+**2. Street address.** Sitaray gives `House 39, Street 486, G-13/1`. We give
+an area. A parent working out whether they can do this twice a week needs the
+street.
 
-We publish **three empty placeholders**.
+**3. Age ranges per service.** Sitaray states them per programme (2–5 for
+early intervention, adolescents for life skills). We state none.
 
-This is the page parents use to decide. A parent comparing three centres can
-see exactly who would work with their child at two of them, and nobody at
-ours. Every marketing source on ABA websites puts this first, and our own
-About page already argues the point — it just has no names in it.
+**4. Testimonials.** Six with names, against our three empty frames.
 
-**Fix:** three real people, each with a photograph, a role, a qualification
-and one line in their own voice. This is worth more than any other content
-change on the site.
+**5. Google listing.** Theirs matches their site name. Ours reads *HOPE
+Rehabilitation & Learning Center* while the site says *The Project Hope*. A
+parent who searches one does not find the other. This is free to fix and
+costs real traffic every week it is left.
 
-### 2. Street address
-Sitaray publishes `House 39, Street 486, G-13/1 Islamabad`. We publish
-"Shahzad Town, Islamabad" and a placeholder. A parent deciding whether they
-can realistically get there twice a week needs the actual street.
+## Ahead
 
-AOT does not publish one either, so this is not universal — but the centre
-that does publish it is the strongest competitor.
+- **A credential that can be checked.** Certificate number, dates and the PDF
+  itself. Sitaray lists `BCBA / IBA` as text. Nobody else lets you verify.
+- **Cited evidence.** No competitor makes an evidence-based argument at all.
+- **We are the only ones who mention money.** Everyone else is silent on cost.
+- **The reach map.** Nothing comparable exists locally.
+- **Breadth.** Every competitor is autism-and-children. We cover adults,
+  older adults and broader mental health.
+- **Honesty as positioning.** "We will tell you if we are not the right
+  service" appears on no competitor site.
+- **Build quality.** Zero axe violations across 15 pages; two competitors are
+  effectively Facebook pages.
 
-### 3. Age ranges
-Sitaray states them per programme: early intervention 2–5, life skills for
-adolescents, transition school at kindergarten and prep level. We say nothing
-about age anywhere, which forces a parent to ask before they can rule us in
-or out.
-
-### 4. Testimonials
-Sitaray runs six, with names. We have three empty quote frames. Our own page
-already says an empty reviews section is more honest than a fabricated one,
-and that stands — but empty is still losing to six real ones.
-
-### 5. Programmes named as products
-Sitaray sells discrete, nameable things: Early Intervention, Transition
-School, Life Skills Training, Shadow Teacher Programme, Clinical Supervision,
-Residential Accommodation. We sell three broad categories.
-
-A parent searching "shadow teacher Islamabad" or "early intervention
-Islamabad" finds them and not us — even where we do the same work. If we
-offer any of these, they should be named. If we do not, they should not be
-invented.
-
-### 6. Events and workshops
-Sitaray has an Events page and a Workshops page, plus a recurring parent
-community event. We run free camps and say so in one sentence. That is a real
-activity with no page behind it.
-
-### 7. Opening hours
-Nobody publishes them on-site; AOT's are on its Google listing (9:00–18:00
-daily). Ours are missing in both places.
+**Useful finding: no Islamabad centre publishes therapy fees.** Our missing
+fee schedule is industry-normal, not a weakness.
 
 ---
 
-## Where we are ahead
+# Part 2 — IBAO training, worldwide
 
-### 1. A credential a visitor can actually check
-We publish the certificate number, the issuing body, the issue and expiry
-dates, and the PDF itself. Sitaray lists `BCBA / IBA` as text beside a name.
-Nobody else lets you verify anything. For a field with real credential
-inflation, this is our strongest single asset.
+This is the market where the site is under-selling hardest, and where the
+competition is far more professional than the local therapy market.
 
-### 2. Evidence, cited
-*Why it matters* carries CDC ADDM 2025, Buescher 2014 and Choi 2022 with
-inline citations. No competitor site makes an evidence-based argument at all.
+| Provider | Where | What they publish |
+| --- | --- | --- |
+| [ASBA Pro](https://www.asbapro.com/international-behaviour-analyst-course) | Australia | Full price list, three tiers, payment plan, named trainer |
+| [AIS Dubai](https://aisdubai.com/iba-course/) | UAE | Format, duration, named trainer; price on request |
+| [Behavior Tech Course](https://behaviortechcourse.com/) | US | IBT 40-hour, priced online |
+| [BIIG](https://www.findyourbiig.com/grow-training-courses/) | — | Course catalogue |
 
-### 3. We are the only ones who mention money
-Every other site is silent on cost. We publish the arithmetic — PKR
-30,000–72,000 a month against a PKR 37,000 minimum wage — and explain funded
-places. A parent who has been quietly rationing therapy has never seen anyone
-say that out loud.
+## What they do that we do not
 
-**Note:** *nobody* publishes fees. Our missing fee schedule is therefore
-industry-normal, not a competitive weakness. Publishing one would make us the
-only centre in the city that does, which is a decision, not an oversight.
+**1. They publish prices, in public, with tiers.**
+ASBA Pro lists its IBA course at **AUD $3,999 / $4,500 / $5,200** — self-guided,
+trainer-assisted, and mentorship-enhanced — with four monthly instalments and
+a 14-day money-back guarantee. We publish no fee and no dates.
 
-### 4. The reach map
-No competitor has anything comparable. It also carries a claim none of them
-can make: training delivered here counts towards an internationally portable
-credential.
+This is the opposite of the local therapy market, and it matters: a
+professional comparing providers across countries will not email four people
+for quotes. They will shortlist the two who published.
 
-### 5. Professional training as a real business line
-Sitaray offers "Clinical Supervision". We are an IBAO **Approved Content
-Provider** running full IBA and IBT pathways with mentorship and CEUs. This
-is a different category of offering and it is under-sold relative to how
-strong it is.
+**2. They name the trainer, with credentials, on the course page.**
+`Dr Cindy Hsiang, BCBA and registered psychologist`. `Mahwish Liaqat, QBA,
+IBA, MPhil`. Our trainer is the strongest asset the business has and he is
+not on the training page as a person.
 
-### 6. Breadth beyond autism and beyond childhood
-Every competitor is autism-and-children. We cover adults, older adults,
-broader mental health, and volunteering. Autistic children become autistic
-adults and almost every service in the country stops at eighteen — we are
-the only site addressing that.
+**3. They state duration and access window.** 18 months (ASBA), 12 months
+(AIS). We state hours but not how long a candidate has.
 
-### 7. Honesty as positioning
-"We will tell you if we are not the right service." "We do not promise
-recovery or cure, and you should be wary of anyone who does." No competitor
-says anything like this, and it is the most differentiated thing on the site.
+**4. They remove risk.** A money-back guarantee, instalments, "start anytime",
+same-day tech support. We ask people to enquire.
 
-### 8. Accessibility and build quality
-Zero axe violations across twelve pages, a keyboard-navigable map, WCAG 2.2
-touch targets, no layout shift. Two of the five competitors are effectively
-Facebook pages.
+**5. They tier the offer.** Self-guided at one price, mentorship at another.
+That is straightforward revenue we are leaving on the table.
+
+## Where we are genuinely ahead — and it is significant
+
+**1. We are the only one who can deliver the whole pathway.**
+AIS Dubai states plainly on its own course page:
+
+> "This course provides the 270 hours of IBAO approved coursework. Additional
+> requirements, such as supervised experience and successful completion of the
+> certification examination, must be completed separately."
+
+They sell coursework. The candidate then has to go and find a supervisor
+somewhere else. **We are an Approved Content Provider *and* a Certified
+Supervisor *and* a Certified Mentor *and* a CEU Provider.** A candidate can do
+coursework, supervised hours, mentorship and continuing education in one
+place, with one person accountable.
+
+That is the single strongest commercial fact on this site and it is currently
+one bullet in a list of four.
+
+**2. Supervised hours with real cases.** Training happens inside a working
+centre. The online-only providers cannot offer that at any price.
+
+**3. Nobody offers parent and caregiver training.** Neither IBAO competitor
+sells a parent programme. The global market for it is real and priced —
+$1,250 for a certificate course, $499 plus $75/month for a curriculum,
+$299/month for BCBA-led coaching. We now have the page; it needs a price.
+
+**4. Price position.** At AUD $3,999–5,200, the incumbents are pricing for
+Australian and Gulf incomes. A credible Pakistan-based ACP has room to serve
+South Asian and African candidates who are currently priced out — which is
+also the argument the reach map already makes.
 
 ---
 
-## What to do next, in order
+# What to do, in order
 
-1. **Three named staff with photographs.** Largest gap, cheapest fix.
-2. **Street address and opening hours**, on the site and on the Google listing.
-3. **Align the Google listing name.** It reads *HOPE Rehabilitation & Learning
-   Center*; the site says *The Project Hope*. A parent who searches one will
-   not find the other.
-4. **Age ranges** per service.
-5. **Name the programmes we already run** — early intervention, shadow
-   teacher, life skills — if we run them.
-6. **An events page** for the free camps.
-7. **Testimonials**, with written consent, when there are real ones.
+1. **Three named staff with photographs.** Largest gap on the therapy side.
+2. **Publish training prices and dates.** Largest gap on the training side.
+   Tiered, with instalments. Every serious competitor does this.
+3. **Put the trainer on the training page** — name, credential, certificate
+   link, and the fact that coursework, supervision, mentorship and CEUs come
+   from one accountable person.
+4. **Lead with the full-pathway advantage.** AIS Dubai's own page says
+   supervision is not included. That sentence is our sales argument.
+5. **Price the parent training.** No IBAO competitor offers it.
+6. **Fix the Google listing name.** Free.
+7. Street address, age ranges, testimonials.
+
+---
+
+# On the credential claims
+
+Two claims were raised for the site: being among the youngest IBAs certified,
+and the examination result.
+
+Both are strong and both are currently unpublishable, because neither can be
+checked by a reader. IBAO publishes no cohort ages and no score distribution,
+so a competitor could challenge either and we would have nothing to show.
+
+What *is* publishable, and is already on the site: certified at 24, holding
+Approved Content Provider, Certified Supervisor, Certified Mentor and CEU
+Provider authorisations simultaneously. That combination is rare at any age
+and is verifiable from the certificate.
+
+If the IBAO will put either claim in writing — a statement, a cohort figure,
+a score report — both go on the site the same day.
