@@ -147,16 +147,18 @@
       <h2 data-reveal>Five fields. We will call you back rather than making you wait.</h2>
 
       <form class="enquiry mt3" novalidate
-            data-table="registrations"
-            data-kind="volunteer"
+            data-table="enquiries"
+            data-fold="message"
+            data-keep="name,phone,email,topic"
             data-success="Thank you — your details have arrived. We will call or message you to talk it through.">
 
+        <input type="hidden" name="topic" value="Volunteer">
         <fieldset>
           <legend>About you</legend>
 
           <div class="field">
             <label for="v-name">Your name <span class="opt">(required)</span></label>
-            <input id="v-name" name="full_name" type="text" autocomplete="name" required
+            <input id="v-name" name="name" type="text" autocomplete="name" required
                    data-error="Please tell us your name so we know who we're speaking to.">
             <p class="err" id="v-name-err" role="alert"></p>
           </div>
@@ -291,6 +293,7 @@
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
         <a href="register.html">Register</a>
+        <a href="privacy.html">Privacy</a>
       </span>
     </div>
   </div>

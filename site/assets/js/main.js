@@ -293,6 +293,37 @@
 
     if (form.dataset.kind) out.kind = form.dataset.kind;
     out.source_page = location.pathname.split("/").pop() || "index.html";
+
+    /* Some forms collect more than their target table has columns for. Rather
+       than lose the answers or wait on a migration, `data-fold` names the
+       column everything else is folded into as readable text, and lists the
+       fields the table actually has.
+
+       This is what keeps the volunteer form working: `enquiries` has no
+       volunteer_as or services column, so those answers are written into the
+       message instead of being dropped on the floor. */
+    var fold = form.dataset.fold;
+    if (fold) {
+      var keep = (form.dataset.keep || "").split(",").map(function (k) { return k.trim(); });
+      keep.push(fold, "source_page");
+      /** @type {string[]} */
+      var lines = [];
+      var base = out[fold] ? String(out[fold]).trim() : "";
+      Object.keys(out).forEach(function (k) {
+        if (keep.indexOf(k) > -1) return;
+        var v = out[k];
+        if (v === "" || v === null || v === undefined || v === false) { delete out[k]; return; }
+        if (Array.isArray(v)) {
+          if (!v.length) { delete out[k]; return; }
+          v = v.join(", ");
+        }
+        if (v === true) v = "yes";
+        var label = k.replace(/_/g, " ");
+        lines.push(label.charAt(0).toUpperCase() + label.slice(1) + ": " + v);
+        delete out[k];
+      });
+      out[fold] = (base ? base + "\n\n" : "") + lines.join("\n");
+    }
     return out;
   }
 
