@@ -70,6 +70,13 @@ font-family: 'Times New Roman', Tinos, 'Liberation Serif', Times, serif;
 
 Headings cap at `font-weight: 700` and take no negative tracking.
 
+Tinos is **self-hosted** in `site/assets/fonts/` (SIL OFL 1.1, licence beside the files),
+not loaded from Google. The third-party route put two DNS lookups, two TLS handshakes and
+a render-blocking stylesheet in front of the first paint. Only the `latin` and `latin-ext`
+subsets ship; the `@font-face` rules sit at the top of `style.css`. Because of this
+`font-src` and `style-src` in `site/_headers` are now `'self'` — do not re-add a Google
+Fonts `<link>` without widening them again.
+
 ## Backend
 
 | Question | Decision |
@@ -122,9 +129,25 @@ colour-contrast failure because webfonts have not settled.
 measure a control build side by side before believing a regression. LCP and CLS are the
 stable signals; the real number comes from PageSpeed Insights on the deployed URL.
 
+**Never animate the `h1`'s opacity.** On every page the `h1` is the largest contentful
+paint. It used to be split into per-word spans that started at `opacity: 0`, which held
+the LCP element invisible until the observer had run and the stagger had finished —
+1873ms of render delay on a page whose server answered in 464ms. The word split now
+applies to below-the-fold `h2`s only; the `h1` keeps its entrance as a transform-only
+rise (§37.1), which paints immediately. The same rule applies to anything that becomes
+the LCP element: move it, do not fade it.
+
 **Current quality baseline — do not regress these:**
-html-validate clean · `tsc` clean · axe 0 violations on all 7 pages · Lighthouse mobile
-Accessibility 100, Best Practices 100, SEO 100, Performance 92–95 · CLS 0.
+html-validate clean · `tsc` clean · axe 0 violations on all 14 pages · no horizontal
+overflow at 1440/1280/1024/768/480/390/375 · Lighthouse mobile Accessibility 100,
+Best Practices 100, SEO 100 · CLS 0.
+
+Performance scores from a local run are **not** a baseline worth defending — on this
+machine the same build scored 78 and 96 in consecutive runs. Compare against a control
+built from `git archive HEAD`, served on a second port and measured interleaved, and
+read FCP/LCP/CLS rather than the composite. For a signal that does not drift, drive
+Chrome over CDP with `Emulation.setCPUThrottlingRate: 4` and take the median
+`RecalcStyleDuration` / `LayoutDuration` from `Performance.getMetrics`.
 
 ## Conventions
 
@@ -132,5 +155,13 @@ Accessibility 100, Best Practices 100, SEO 100, Performance 92–95 · CLS 0.
 - One stylesheet (`site/assets/css/style.css`), one script (`site/assets/js/main.js`).
 - Header/footer markup is duplicated per page — a nav change means editing every page.
 - Adding a page: copy an existing one, update nav on all pages, add to `sitemap.xml`.
-- Adding a third-party script requires updating the CSP in `site/_headers`.
+- Adding a third-party script requires updating the CSP in `site/_headers`. The CSP is
+  `script-src 'self'` with no `'unsafe-inline'`, so there is no inline `onload` to hang
+  progressive enhancement on — this is why page transitions use the CSS-only
+  `@view-transition` rule rather than a navigation script.
+- A page signs itself with `--accent`, set by `data-accent` on `<body>` (§37). Training
+  is gold, School sage, Why it matters terracotta; everything else keeps teal. Accents
+  colour the eyebrow, which is 13px — normal text, 4.5:1. `--gold-deep` fails that on
+  four of the six section grounds, so Training uses `--gold-accent` (#755A24, 5.51:1 on
+  the worst ground). Check any new accent against every ground before using it.
 - `tools/genmap.py` regenerates the reach map section in `site/index.html` in place.
