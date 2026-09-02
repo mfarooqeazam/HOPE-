@@ -24,6 +24,28 @@
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* GSAP, self-hosted and loaded before this file. It is an enhancement, not
+     a dependency: if either script fails, every animation below falls back to
+     the IntersectionObserver and CSS path that shipped before it, and with no
+     JavaScript at all the .js class is never set so nothing is ever hidden.
+
+     GSAP owns the whole page except the reach section, which keeps the older
+     path so its timing stays exactly as it was. The hero also stays on CSS
+     keyframes on purpose -- it is above the fold, and making the first thing
+     a visitor sees wait for the library to parse would undo the work that
+     got the largest contentful paint down. */
+  var gsap = /** @type {any} */ (window).gsap;
+  var useGsap = !reduced && !!gsap && "IntersectionObserver" in window;
+  if (useGsap) document.documentElement.classList.add("gsap");
+
+  /** The frozen section keeps the pre-GSAP path. @param {Element} el */
+  function fallbackOwns(el) {
+    return !useGsap || !!el.closest(".reach");
+  }
+
+  /** Motion budget: nothing travels further than this. */
+  var TRAVEL = 14;
+
   /** @type {HopeConfig} */
   var cfg = /** @type {any} */ (window).HOPE_CONFIG || {};
 
@@ -198,7 +220,7 @@
       });
     }, { rootMargin: "10% 0px -10% 0px" });
 
-    all("[data-sec]").forEach(function (el) {
+    all("[data-sec]").filter(fallbackOwns).forEach(function (el) {
       all("[data-reveal-group]", el).forEach(function (g) {
         Array.prototype.forEach.call(g.children, function (c) {
           /** @type {HTMLElement} */ (c).setAttribute("data-reveal", "");
@@ -216,7 +238,7 @@
       });
     }, { rootMargin: "0px 0px -12% 0px" });
 
-    all("[data-reveal],[data-reveal-group]").forEach(function (el) {
+    all("[data-reveal],[data-reveal-group]").filter(fallbackOwns).forEach(function (el) {
       if (el.closest("[data-sec]")) return;
       if (el.hasAttribute("data-reveal-group")) {
         Array.prototype.forEach.call(el.children, function (c) {
@@ -237,6 +259,170 @@
     }, 2500);
   } else {
     document.documentElement.classList.remove("js");
+  }
+
+  /* ---- GSAP: section timelines, uncovers, counters ------------------------
+     What GSAP is actually here for is ordering. Two independent observers can
+     say "reveal this" and "reveal that", but they cannot say "and then" --
+     each section now runs a timeline where the section arrives first and the
+     cards inside it follow in sequence, off one trigger.
+
+     Inside the budget, deliberately: nothing is scrubbed, nothing is pinned,
+     nothing parallaxes, nothing repeats, and nothing travels further than
+     TRAVEL. Those are the features GSAP is usually bought for, and they are
+     the ones this audience cannot have. Reduced-motion never reaches here --
+     useGsap is false and the CSS path takes over.
+
+     .in is still added and removed alongside the tween, because a number of
+     purely decorative CSS rules (the eyebrow rule, the drawn rule above each
+     heading) key off it and would otherwise never fire. */
+  if (useGsap) {
+    var EASE = "power2.out";
+
+    /** Everything except the frozen section. @param {Element} el */
+    function mine(el) { return !el.closest(".reach"); }
+
+    /** ScrollTrigger is deliberately not loaded. It is 43.5KB for scrubbing,
+       pinning and parallax -- the three things this site's motion budget
+       forbids outright, because the audience includes autistic children. What
+       is actually needed from it is "tell me when this element is on screen",
+       which IntersectionObserver already does, natively, for nothing. GSAP
+       core stays, because the thing it does that nothing else does is order
+       one tween after another.
+
+       @param {Element} el
+       @param {string} margin  rootMargin, i.e. how far up the fold to fire
+       @param {() => void} enter
+       @param {(() => void)=} back  called when scrolled back above it */
+    function onView(el, margin, enter, back) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) {
+            enter();
+            if (!back) io.unobserve(en.target);
+          } else if (back && en.boundingClientRect.top > 0) {
+            back();
+          }
+        });
+      }, { rootMargin: margin });
+      io.observe(el);
+    }
+
+    /* The same auto-promotion the fallback path does. */
+    all(".grid, .steps, .trio, .gal, .tiles, .doors, .channels, .cards, .posts")
+      .forEach(function (el) {
+        if (!mine(el)) return;
+        if (!el.hasAttribute("data-reveal-group") && el.children.length > 1) {
+          el.setAttribute("data-reveal-group", "");
+        }
+      });
+    all("[data-reveal-group]").forEach(function (g) {
+      if (!mine(g)) return;
+      Array.prototype.forEach.call(g.children, function (c) {
+        /** @type {HTMLElement} */ (c).setAttribute("data-reveal", "");
+      });
+    });
+
+    var gsSecs  = all("[data-sec]").filter(mine);
+    var gsItems = all("[data-reveal]").filter(mine);
+    var loose   = gsItems.filter(function (el) { return !el.closest("[data-sec]"); });
+
+    /* Mark what GSAP drives so the stylesheet stops transitioning the same
+       properties underneath it. Two engines writing one property is jank. */
+    gsSecs.concat(gsItems).forEach(function (el) { el.classList.add("gs"); });
+    gsap.set(gsSecs.concat(gsItems), { opacity: 0, y: TRAVEL });
+
+    /** @param {HTMLElement[]} els @param {boolean} on */
+    function mark(els, on) {
+      els.forEach(function (el) { el.classList[on ? "add" : "remove"]("in"); });
+    }
+
+    /* One timeline per section: the section arrives, then the cards inside it
+       follow in sequence off the same trigger. That ordering is what GSAP is
+       here for -- two independent observers can say "reveal this" and "reveal
+       that", but neither can say "and then".
+
+       Nothing is scrubbed, pinned or repeated, and nothing travels further
+       than TRAVEL. .in is added alongside the tween because several purely
+       decorative CSS rules key off it and would otherwise never fire. */
+    gsSecs.forEach(function (sec) {
+      var kids = all("[data-reveal]", sec).filter(mine);
+      var tl = gsap.timeline({ paused: true });
+      tl.to(sec, { opacity: 1, y: 0, duration: .5, ease: EASE });
+      if (kids.length) {
+        /* amount, not each: a twelve-card grid staggers over the same 0.42s a
+           four-card one does, instead of running for two-thirds of a second
+           while the reader waits for the last tile. */
+        tl.to(kids, {
+          opacity: 1, y: 0, duration: .55, ease: EASE,
+          stagger: { amount: Math.min(kids.length * 0.055, 0.42) }
+        }, "-=0.3");
+      }
+      onView(sec, "0px 0px -14% 0px",
+        function () { sec.classList.add("in"); mark(kids, true); tl.play(); },
+        function () { sec.classList.remove("in"); mark(kids, false); tl.pause(0); });
+    });
+
+    /* Anything outside a section reveals once and stays. */
+    loose.forEach(function (el) {
+      onView(el, "0px 0px -8% 0px", function () {
+        el.classList.add("in");
+        gsap.to(el, { opacity: 1, y: 0, duration: .55, ease: EASE });
+      });
+    });
+
+    /* Photographs wipe open, the image easing out of a slight scale behind
+       them. The hero is excluded: it has its own CSS entrance, which does not
+       wait for this library to download and parse. */
+    all(".frame--comp, .photo.frame--comp, .card__img, .door__img, .banner__media, .portrait, .svc-card__img")
+      .filter(function (el) { return mine(el) && !el.closest(".hero"); })
+      .forEach(function (el) {
+        var img = el.querySelector("img");
+        onView(el, "0px 0px -12% 0px", function () {
+          var tl = gsap.timeline();
+          tl.fromTo(el, { clipPath: "inset(0 0 100% 0)" },
+                        { clipPath: "inset(0 0 0% 0)", duration: .85, ease: EASE }, 0);
+          if (img) tl.fromTo(img, { scale: 1.05 }, { scale: 1, duration: 1.1, ease: EASE }, 0);
+        });
+      });
+
+    /* Numbers count up. Only the digits move: "1 in 31" keeps its words and
+       "PKR 30,000" keeps its separators, and the exact original string is
+       restored at the end so nothing is ever left approximated. */
+    all(".stat b, .tile b").filter(mine).forEach(function (el) {
+      var raw = el.textContent || "";
+      var m = raw.match(/([\d,]*\d)/);
+      if (!m) return;
+      var digits = m[1];
+      var target = parseInt(digits.replace(/,/g, ""), 10);
+      if (!isFinite(target) || target < 10) return;   // counting 0 to 1 is a flicker
+      var grouped = digits.indexOf(",") > -1;
+      var head = raw.slice(0, m.index);
+      var tail = raw.slice((m.index || 0) + digits.length);
+      onView(el, "0px 0px -8% 0px", function () {
+        var box = { v: 0 };
+        gsap.to(box, {
+          v: target, duration: .9, ease: EASE, snap: { v: 1 },
+          onUpdate: function () {
+            el.textContent = head + (grouped ? box.v.toLocaleString("en-GB") : String(box.v)) + tail;
+          },
+          onComplete: function () { el.textContent = raw; }
+        });
+      });
+    });
+
+    /* Failsafe, scoped to what is on screen. Content must never sit invisible
+       because a library failed -- but rescuing the whole page would force
+       every section open at once and leave nothing to play. */
+    window.setTimeout(function () {
+      all(".gs").forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top > window.innerHeight || r.bottom < 0) return;
+        if (parseFloat(window.getComputedStyle(el).opacity) > 0.99) return;
+        gsap.set(el, { opacity: 1, y: 0 });
+        el.classList.add("in");
+      });
+    }, 4000);
   }
 
   /* ---- scroll-linked: progress bar + process connector -------------------
@@ -481,6 +667,7 @@
      it is within 700px of the viewport, and the second one opens it. The work
      is the same; it is spread across the scroll instead of landing at once. */
   (function uncoverImages() {
+    if (useGsap) return;                       // the GSAP path does this one
     if (reduced || !("IntersectionObserver" in window)) return;
     var frames = all(".frame--comp, .photo.frame--comp, .card__img, .door__img, .banner__media, .portrait, .svc-card__img")
       .filter(function (el) { return !el.closest(".hero"); });
@@ -528,6 +715,7 @@
      Runs once per element, on a rAF loop that stops when it is done, so
      there is no timer left running on the page. */
   (function countNumbers() {
+    if (useGsap) return;                       // the GSAP path does this one
     if (reduced || !("IntersectionObserver" in window)) return;
     /* .reach__figures is excluded on purpose: the reach section is frozen by
        instruction, and counting its numbers would change how it renders. */

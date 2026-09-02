@@ -1940,6 +1940,14 @@ legend{
 }
 .vision .tbd::before,.banner--deep .tbd::before,.pointer .tbd::before{color:var(--gold-on-teal)}
 
+/* ---- 37.8b handing the reveal over to GSAP ------------------------------
+   .gs is set by the script on every element GSAP drives. GSAP writes opacity
+   and transform inline, frame by frame; a CSS transition on the same
+   properties would be a second engine fighting it for the same pixels. The
+   class only ever exists when the library actually loaded, so the CSS path
+   below is untouched when it did not. */
+.gs{transition:none !important}
+
 /* ---- 37.9 links ---------------------------------------------------------
    The underline retracts on hover instead of appearing. It reads as the link
    responding rather than as a state being switched on. Pointer devices only:

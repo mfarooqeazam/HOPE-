@@ -152,6 +152,19 @@ Chrome over CDP with `Emulation.setCPUThrottlingRate: 4` and take the median
 ## Conventions
 
 - Plain HTML/CSS/JS. No framework, no build step.
+- **GSAP core is self-hosted** in `site/assets/js/vendor/` and loaded `defer` before
+  `main.js` on every page. It drives section timelines, staggered reveals, the image
+  uncover and the counters. **ScrollTrigger is deliberately not loaded**: it is 43.5KB
+  for scrubbing, pinning and parallax, the three things the motion budget forbids, and
+  the only thing actually needed from it — "tell me when this is on screen" —
+  is IntersectionObserver, which is free. Adding it cost 0.8s of LCP when measured.
+- GSAP is an enhancement, never a dependency. `useGsap` gates it; if the file fails to
+  load the IntersectionObserver + CSS path still runs, and with no JS at all nothing is
+  hidden. All four paths (normal / GSAP blocked / JS blocked / reduced motion) are
+  verified to leave nothing invisible and the word count unchanged.
+- The reach section is excluded from GSAP by `mine()`; it keeps the older path so its
+  timing stays frozen. Elements GSAP drives carry `.gs`, which kills their CSS
+  transition — two engines writing one property is jank.
 - One stylesheet (`site/assets/css/style.css`), one script (`site/assets/js/main.js`).
 - Header/footer markup is duplicated per page — a nav change means editing every page.
 - Adding a page: copy an existing one, update nav on all pages, add to `sitemap.xml`.
