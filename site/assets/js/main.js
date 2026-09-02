@@ -277,7 +277,7 @@
      purely decorative CSS rules (the eyebrow rule, the drawn rule above each
      heading) key off it and would otherwise never fire. */
   if (useGsap) {
-    var EASE = "power2.out";
+    var EASE = "power3.out";
 
     /** Everything except the frozen section. @param {Element} el */
     function mine(el) { return !el.closest(".reach"); }
@@ -330,7 +330,20 @@
     /* Mark what GSAP drives so the stylesheet stops transitioning the same
        properties underneath it. Two engines writing one property is jank. */
     gsSecs.concat(gsItems).forEach(function (el) { el.classList.add("gs"); });
-    gsap.set(gsSecs.concat(gsItems), { opacity: 0, y: TRAVEL });
+
+    /* A section that has revealing children does not fade itself. Opacity
+       multiplies down the tree: a card at 0.5 inside a section at 0.5 paints
+       at 0.25, so fading both made every reveal wash out and read as slow
+       even though the timings were short. The section now holds still and
+       only its contents arrive. Sections with nothing inside to stagger keep
+       their own entrance -- there is nothing for them to compound with. */
+    var solo = gsSecs.filter(function (sec) {
+      return all("[data-reveal]", sec).filter(mine).length === 0;
+    });
+    gsap.set(solo, { opacity: 0, y: TRAVEL });
+    gsap.set(gsSecs.filter(function (sec) { return solo.indexOf(sec) === -1; }),
+             { opacity: 1, y: 0 });
+    gsap.set(gsItems, { opacity: 0, y: TRAVEL });
 
     /** @param {HTMLElement[]} els @param {boolean} on */
     function mark(els, on) {
@@ -348,17 +361,18 @@
     gsSecs.forEach(function (sec) {
       var kids = all("[data-reveal]", sec).filter(mine);
       var tl = gsap.timeline({ paused: true });
-      tl.to(sec, { opacity: 1, y: 0, duration: .5, ease: EASE });
       if (kids.length) {
-        /* amount, not each: a twelve-card grid staggers over the same 0.42s a
+        /* amount, not each: a twelve-card grid staggers over the same 0.4s a
            four-card one does, instead of running for two-thirds of a second
            while the reader waits for the last tile. */
         tl.to(kids, {
-          opacity: 1, y: 0, duration: .55, ease: EASE,
-          stagger: { amount: Math.min(kids.length * 0.055, 0.42) }
-        }, "-=0.3");
+          opacity: 1, y: 0, duration: .62, ease: EASE,
+          stagger: { amount: Math.min(kids.length * 0.05, 0.4) }
+        });
+      } else {
+        tl.to(sec, { opacity: 1, y: 0, duration: .55, ease: EASE });
       }
-      onView(sec, "0px 0px -14% 0px",
+      onView(sec, "0px 0px -12% 0px",
         function () { sec.classList.add("in"); mark(kids, true); tl.play(); },
         function () { sec.classList.remove("in"); mark(kids, false); tl.pause(0); });
     });
@@ -425,24 +439,21 @@
     }, 4000);
   }
 
-  /* ---- scroll-linked: progress bar + process connector -------------------
-     Both are scrubbed, i.e. they map directly to scroll position rather than
-     moving on their own. One shared rAF-throttled listener does both, so
-     there is only ever one scroll handler on the page. */
+  /* ---- scroll-linked: reading progress -----------------------------------
+     One rAF-throttled listener, so there is only ever one scroll handler.
+
+     There used to be a second thing here: a connector bar drawn across the
+     step cards, its scaleX mapped to scroll position. It went for three
+     reasons. It is a scrub, which the motion budget forbids outright. It
+     assumed the steps sit in a single row, so as soon as six cards wrapped
+     onto two it spanned only the first, and being behind the cards it showed
+     only in the gaps -- which read as stray dashes between some cards and not
+     others. And being injected as the grid's first child it threw off the
+     child count the column rules are chosen from. */
   var head = document.querySelector(".head");
   var bar = document.getElementById("progress");
-  var steps = document.querySelector(".steps");
-  /** @type {HTMLElement|null} */
-  var line = null;
 
-  if (steps && !reduced) {
-    line = document.createElement("div");
-    line.className = "steps__line";
-    line.setAttribute("aria-hidden", "true");
-    steps.insertBefore(line, steps.firstChild);
-  }
-
-  if ((bar || line) && !reduced) {
+  if (bar && !reduced) {
     var ticking = false;
     var onScroll = function () {
       if (ticking) return;
@@ -452,13 +463,6 @@
         if (bar) {
           var h = document.documentElement.scrollHeight - window.innerHeight;
           bar.style.transform = "scaleX(" + (h > 0 ? window.scrollY / h : 0) + ")";
-        }
-        if (line && steps) {
-          var r = steps.getBoundingClientRect();
-          var from = window.innerHeight * 0.85;      // start when it enters
-          var span = r.height + window.innerHeight * 0.35;
-          var p = span > 0 ? (from - r.top) / span : 0;
-          line.style.transform = "scaleX(" + Math.max(0, Math.min(1, p)) + ")";
         }
         ticking = false;
       });

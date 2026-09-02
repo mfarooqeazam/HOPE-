@@ -258,10 +258,50 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
 
 .grid{display:grid; gap:var(--s5); grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); margin-top:var(--s7)}
 .grid--tight{gap:var(--s4); grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+
+/* --- how many columns, given how many cards ------------------------------
+   auto-fit fills the row with as many tracks as fit, which at desktop width
+   is four, five or six. Nine cards then land as six and three; six land as
+   five and one, one card marooned beside four empty columns. That is what
+   made these sections look broken rather than airy.
+
+   So the column count is chosen from the number of cards instead, picking a
+   divisor where one exists and a near-divisor otherwise. :has(> :nth-child(N):
+   last-child) is "exactly N children" -- the Nth child is also the last.
+   Below 900px the auto-fit rule above still governs, which is what should
+   happen: on a phone these stack whatever the count. */
+@media (min-width:900px){
+  .grid:has(> :nth-child(2):last-child),
+  .grid:has(> :nth-child(4):last-child)   {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid:has(> :nth-child(3):last-child),
+  .grid:has(> :nth-child(5):last-child),
+  .grid:has(> :nth-child(6):last-child),
+  .grid:has(> :nth-child(9):last-child)   {grid-template-columns:repeat(3,minmax(0,1fr))}
+  .grid:has(> :nth-child(7):last-child),
+  .grid:has(> :nth-child(8):last-child)   {grid-template-columns:repeat(4,minmax(0,1fr))}
+
+  /* The tight variant carries smaller cards, so it takes one more column
+     wherever the count allows it. */
+  .grid--tight:has(> :nth-child(4):last-child)   {grid-template-columns:repeat(4,minmax(0,1fr))}
+  .grid--tight:has(> :nth-child(8):last-child)   {grid-template-columns:repeat(4,minmax(0,1fr))}
+  .grid--tight:has(> :nth-child(9):last-child)   {grid-template-columns:repeat(3,minmax(0,1fr))}
+
+  .steps:has(> :nth-child(6):last-child)  {grid-template-columns:repeat(3,minmax(0,1fr))}
+  .steps:has(> :nth-child(4):last-child)  {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .steps:has(> :nth-child(5):last-child)  {grid-template-columns:repeat(3,minmax(0,1fr))}
+  .steps:has(> :nth-child(7):last-child)  {grid-template-columns:repeat(4,minmax(0,1fr))}
+
+  .doors:has(> :nth-child(2):last-child)  {grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 .two{display:grid; gap:clamp(2rem,5vw,4rem); grid-template-columns:1fr; align-items:start}
 @media(min-width:880px){
   .two{grid-template-columns:1fr 1fr}
   .two--narrow{grid-template-columns:.85fr 1.15fr}
+  /* When the narrow column holds a portrait, size the column to the portrait
+     rather than the other way round. At .85fr the column came out 535px wide
+     around a photograph capped at 320px, leaving 215px of nothing between the
+     face and the text that belongs to it. */
+  .two--narrow:has(.portrait){grid-template-columns:minmax(0,340px) minmax(0,1fr)}
 }
 
 /* 5. HEADER & NAV ========================================================== */
@@ -777,23 +817,6 @@ legend{
 .card--b:hover .card__plate{background:var(--sage-deep); color:#fff}
 .card--c:hover .card__plate{background:var(--coral-deep); color:#fff}
 
-/* --- process connector ---------------------------------------------------
-   The one scroll-scrubbed element on the site. It is honest motion: the line
-   maps directly to scroll position rather than moving of its own accord, and
-   it encodes something true — the steps are a sequence.
-   Only drawn when the steps sit in a row; on a stacked mobile layout a
-   horizontal connector would be meaningless. */
-.steps{position:relative}
-.steps__line{display:none}
-@media(min-width:900px){
-  .steps__line{
-    display:block; position:absolute; left:6%; right:6%; top:44px; height:2px;
-    background:var(--teal); opacity:.35; transform:scaleX(0);
-    transform-origin:left center; z-index:0; pointer-events:none;
-  }
-  .step{position:relative; z-index:1}
-}
-
 /* --- header entrance ----------------------------------------------------- */
 @keyframes hope-head-in{from{opacity:0; transform:translateY(-6px)} to{opacity:1; transform:none}}
 .js .head__in > *{animation:hope-head-in .45s cubic-bezier(.2,.7,.3,1) both}
@@ -819,7 +842,6 @@ legend{
    section 3, which zeroes all animation and transition durations. */
 @media (prefers-reduced-motion: reduce){
   .js [data-split] .w{opacity:1 !important; transform:none !important}
-  .steps__line{transform:scaleX(1) !important}
 }
 
 /* 15. WORLD REACH MAP =======================================================
@@ -1835,18 +1857,12 @@ legend{
 .js [data-uncover].is-in{clip-path:inset(0 0 0 0)}
 .js [data-uncover].is-in img{transform:none}
 
-/* ---- 37.3 a drawn rule above every section heading ----------------------
-   The smallest possible signal that a new section has begun, and it does
-   work that three more pixels of margin cannot. */
-.section:not(.reach) h2[data-reveal]{position:relative}
-.section:not(.reach) h2[data-reveal]::before{
-  content:""; position:absolute; left:0; top:-.7rem;
-  width:44px; height:2px; background:var(--accent);
-  transform:scaleX(0); transform-origin:left center;
-  transition:transform .6s cubic-bezier(.2,.75,.3,1) .1s;
-}
-.js .section:not(.reach) h2[data-reveal].in::before{transform:scaleX(1)}
-.center h2[data-reveal]::before{left:50%; margin-left:-22px}
+/* ---- 37.3 (removed) ----------------------------------------------------
+   This drew a second rule above every section h2. But .eyebrow::after already
+   draws one under the eyebrow directly above it, so any section with both got
+   two dashes eleven pixels apart, and any section without an eyebrow got a
+   stray dash floating over the heading. One rule per section heading is the
+   design; this was a duplicate of it. */
 
 /* ---- 37.4 numbers ------------------------------------------------------
    Tabular figures so a counting number does not jitter its own width. */
@@ -1988,8 +2004,7 @@ legend{
   .js .hero__frame{animation:none}
   .js [data-uncover]{clip-path:none; transition:none}
   .js [data-uncover] img{transform:none; transition:none}
-  .section:not(.reach) h2[data-reveal]::before{transform:scaleX(1); transition:none}
-  .card::before,.mini::before,.idx::before,.mini,.idx,.btn,.choice,
+    .card::before,.mini::before,.idx::before,.mini,.idx,.btn,.choice,
   .prose a,.story a{transition:none}
 }
 
