@@ -40,3 +40,6 @@ Hope project UI redesign.zip
 # Scratch patch scripts
 _*.py
 _*.js
+
+# photo sourcing cache (tools/getphotos.py)
+tools/.photo-cache/
