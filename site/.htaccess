@@ -39,7 +39,7 @@
   # temporary Hostinger preview domain, and it loops the moment HTTP_HOST is
   # empty. This cannot loop: the target host does not match the condition.
   RewriteCond %{HTTP_HOST} ^morewithhope\.com$ [NC]
-  RewriteRule ^ https://www.morewithhope.com%{REQUEST_URI} [L,R=301]
+  RewriteRule ^ https://www.morewithhope.com%{REQUEST_URI} [L,R=301,E=HOSTREDIR:1]
 
   # The one legacy path netlify.toml redirected.
   RewriteRule ^home/?$ / [L,R=301]
@@ -60,6 +60,21 @@ Options -Indexes
 # blocked in production while still working locally -- a nasty class of bug.
 # frame-src allows the Google Maps embed on the contact page.
 <IfModule mod_headers.c>
+  # The canonical-host 301 is never stored. A 301 is cached forever by
+  # default, by browsers and by Hostinger's CDN alike -- and this domain is
+  # behind that CDN, on a separate edge from the bare name. When the redirect
+  # direction was flipped, edges still holding the previous 301 sent www back
+  # to the bare name while the origin sent the bare name to www, and visitors
+  # bounced between the two until the browser gave up. Seven clean browser
+  # profiles out of eight hit ERR_TOO_MANY_REDIRECTS.
+  #
+  # Permanence for a search engine comes from the 301 status, which is
+  # unchanged; this only stops intermediaries holding onto the rule. The cost
+  # is one 800-byte redirect per visit to the bare domain. Worth it: the
+  # failure it prevents is the whole site being unreachable, and it is not
+  # self-healing without a cache purge.
+  Header always set Cache-Control "no-store, max-age=0" env=HOSTREDIR
+
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
