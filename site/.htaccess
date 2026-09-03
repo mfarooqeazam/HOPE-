@@ -23,6 +23,15 @@
 # loop -- the origin sees plain http even when the visitor is on https.
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  # ---- 0. nothing under a dot-directory is ever served --------------------
+  # The FilesMatch rule at the bottom of this file only ever sees the last
+  # segment of a path, so it blocks /.gitignore but waves /.git/config
+  # straight through -- the filename there is "config". This catches the
+  # directory instead. .well-known is exempt because Let's Encrypt and
+  # certificate renewal need it.
+  RewriteRule (^|/)\.(?!well-known/) - [F,L]
+
   RewriteCond %{HTTP_HOST} ^www\.morewithhope\.com$ [NC]
   RewriteRule ^ https://morewithhope.com%{REQUEST_URI} [L,R=301]
 
