@@ -175,6 +175,38 @@ handled here, which is host-based and cannot loop.
 
 ---
 
+## If you ever change www ←→ non-www again
+
+**Purge the CDN cache in hPanel immediately afterwards.** Not optional, and not
+something that fixes itself.
+
+`www.morewithhope.com` is a CNAME onto Hostinger's CDN, on a different edge from
+the bare name, and that CDN caches 301s — the redirect comes back
+`x-hcdn-cache-status: HIT`. A 301 means *permanent*, so it is cached
+indefinitely by default.
+
+So when the direction was flipped on 2026-09-04, edges still holding the old
+rule sent visitors back while the origin sent them forward. Seven of eight clean
+browser profiles hit `ERR_TOO_MANY_REDIRECTS`. curl missed it completely,
+because it happened to land on an edge where the response was `DYNAMIC` rather
+than cached — which is why it looked at first like a browser-cache problem and
+was not.
+
+The usual defence is to send the redirect with `Cache-Control: no-store`, set
+conditionally via mod_rewrite's `E=` flag and mod_headers' `env=`. **That does
+not work on LiteSpeed** — tried both the plain and `REDIRECT_`-prefixed forms
+against the live site, and the header never appeared. There is no config-side
+fix here. The procedure is the fix:
+
+1. Change the redirect in `site/.htaccess`
+2. Change the canonical tag in all 15 HTML files
+3. Change `sitemap.xml` and the `Sitemap:` line in `robots.txt`
+4. Upload
+5. **Purge the CDN cache in hPanel**
+
+Steps 1–3 must agree with each other, or the server sends visitors one way while
+the pages tell Google the other. Step 5 is what stops the site going down.
+
 ## Still outstanding before this is really "launched"
 
 - **The photographs are placeholders.** Every frame carries a visible

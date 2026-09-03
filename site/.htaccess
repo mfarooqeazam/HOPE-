@@ -39,7 +39,7 @@
   # temporary Hostinger preview domain, and it loops the moment HTTP_HOST is
   # empty. This cannot loop: the target host does not match the condition.
   RewriteCond %{HTTP_HOST} ^morewithhope\.com$ [NC]
-  RewriteRule ^ https://www.morewithhope.com%{REQUEST_URI} [L,R=301,E=HOSTREDIR:1]
+  RewriteRule ^ https://www.morewithhope.com%{REQUEST_URI} [L,R=301]
 
   # The one legacy path netlify.toml redirected.
   RewriteRule ^home/?$ / [L,R=301]
@@ -60,26 +60,27 @@ Options -Indexes
 # blocked in production while still working locally -- a nasty class of bug.
 # frame-src allows the Google Maps embed on the contact page.
 <IfModule mod_headers.c>
-  # The canonical-host 301 is never stored. A 301 is cached forever by
-  # default, by browsers and by Hostinger's CDN alike -- and this domain is
-  # behind that CDN, on a separate edge from the bare name. When the redirect
-  # direction was flipped, edges still holding the previous 301 sent www back
-  # to the bare name while the origin sent the bare name to www, and visitors
-  # bounced between the two until the browser gave up. Seven clean browser
-  # profiles out of eight hit ERR_TOO_MANY_REDIRECTS.
+  # NOTE -- an attempt to stop the canonical-host 301 being cached was made
+  # here and does not work on this host. mod_rewrite sets an environment
+  # variable with E= on the redirect rule, and mod_headers is asked to set
+  # Cache-Control when it sees that variable. On Apache this works. On
+  # LiteSpeed the header simply never appears on the response; both the plain
+  # and REDIRECT_-prefixed forms were tried against the live site. The
+  # attempts are removed rather than left in place looking effective.
   #
-  # Permanence for a search engine comes from the 301 status, which is
-  # unchanged; this only stops intermediaries holding onto the rule. The cost
-  # is one 800-byte redirect per visit to the bare domain. Worth it: the
-  # failure it prevents is the whole site being unreachable, and it is not
-  # self-healing without a cache purge.
-  # Set twice on purpose. When a request has been through mod_rewrite's
-  # external redirect, the environment variable can arrive under its own
-  # name or with a REDIRECT_ prefix depending on the server and the
-  # version; LiteSpeed is not Apache and the first form alone was not
-  # applied. Whichever one exists wins, and setting both is harmless.
-  Header always set Cache-Control "no-store, max-age=0" env=HOSTREDIR
-  Header always set Cache-Control "no-store, max-age=0" env=REDIRECT_HOSTREDIR
+  # So the 301 IS cached, indefinitely, by browsers and by Hostinger's CDN --
+  # www.morewithhope.com is a CNAME onto that CDN, on a different edge from
+  # the bare name. That is what made flipping the redirect direction take the
+  # whole site down: edges still holding the previous rule bounced visitors
+  # back while the origin bounced them forward, and seven of eight clean
+  # browser profiles hit ERR_TOO_MANY_REDIRECTS.
+  #
+  # The rule that replaces it is operational, not technical:
+  #
+  #   ANY CHANGE TO THE HOST REDIRECT BELOW MUST BE FOLLOWED BY A CDN PURGE
+  #   IN hPANEL. Without it the site breaks and does not recover on its own.
+  #
+  # See DEPLOY.md.
 
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set X-Content-Type-Options "nosniff"
