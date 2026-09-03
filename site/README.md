@@ -107,7 +107,7 @@ Ordered by what breaks if you skip it:
 
 - [ ] **Add the Supabase anon key** to `assets/js/config.js` — see below. Without it the
       forms validate but send nothing.
-- [ ] **Replace `example.com`** in `robots.txt`, `sitemap.xml`, and the `<link rel="canonical">`
+- [ ] **Replace `morewithhope.com`** in `robots.txt`, `sitemap.xml`, and the `<link rel="canonical">`
       and `og:` tags at the top of each page. Wrong canonicals confuse search engines.
 - [ ] **Fill the dashed orange boxes.** Search the folder for `class="tbd"` to find them all.
 - [ ] Add real photographs to `assets/img/` (written consent for any identifiable child).
