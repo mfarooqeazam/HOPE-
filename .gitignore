@@ -43,3 +43,6 @@ _*.js
 
 # photo sourcing cache (tools/getphotos.py)
 tools/.photo-cache/
+
+# Deployment archive built by DEPLOY.md
+site-upload.zip

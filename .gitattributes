@@ -1,0 +1,5 @@
+# .htaccess is read by Apache/LiteSpeed, which is happier with LF. Git's
+# autocrlf would otherwise hand Windows checkouts a CRLF copy, and a CRLF
+# .htaccess is uploaded verbatim by most FTP clients.
+.htaccess text eol=lf
+*.sh       text eol=lf
