@@ -14,8 +14,10 @@
 
 # ---- 1. one canonical hostname -------------------------------------------
 # www and non-www both resolve, which to a search engine is two sites with
-# identical content. The canonical tags say morewithhope.com, so www goes
-# there too.
+# identical content. www.morewithhope.com is the real address -- owner's
+# choice -- so the bare domain redirects to it, and every canonical tag and
+# sitemap entry says www too. Change one of those three and they contradict
+# each other; change all three or none.
 #
 # HTTPS is deliberately NOT forced here. Hostinger's edge already redirects
 # http to https before the request reaches this file, and adding a second
@@ -32,8 +34,12 @@
   # certificate renewal need it.
   RewriteRule (^|/)\.(?!well-known/) - [F,L]
 
-  RewriteCond %{HTTP_HOST} ^www\.morewithhope\.com$ [NC]
-  RewriteRule ^ https://morewithhope.com%{REQUEST_URI} [L,R=301]
+  # Matched on the bare host specifically, not "anything that is not www".
+  # The negated form would also catch the server's own hostname and any
+  # temporary Hostinger preview domain, and it loops the moment HTTP_HOST is
+  # empty. This cannot loop: the target host does not match the condition.
+  RewriteCond %{HTTP_HOST} ^morewithhope\.com$ [NC]
+  RewriteRule ^ https://www.morewithhope.com%{REQUEST_URI} [L,R=301]
 
   # The one legacy path netlify.toml redirected.
   RewriteRule ^home/?$ / [L,R=301]

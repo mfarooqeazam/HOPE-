@@ -133,18 +133,18 @@ Run these from Git Bash, or just open the URLs.
 
 ```bash
 # 1. the homepage is served from the root
-curl -s -o /dev/null -w "%{http_code}\n" https://morewithhope.com/          # 200
+curl -s -o /dev/null -w "%{http_code}\n" https://www.morewithhope.com/          # 200
 
 # 2. a real page, at the root and not under /site/
-curl -s -o /dev/null -w "%{http_code}\n" https://morewithhope.com/therapy.html   # 200
-curl -s -o /dev/null -w "%{http_code}\n" https://morewithhope.com/site/          # 404
+curl -s -o /dev/null -w "%{http_code}\n" https://www.morewithhope.com/therapy.html   # 200
+curl -s -o /dev/null -w "%{http_code}\n" https://www.morewithhope.com/site/          # 404
 
 # 3. the source is gone
-curl -s -o /dev/null -w "%{http_code}\n" https://morewithhope.com/CLAUDE.md      # 404
-curl -s -o /dev/null -w "%{http_code}\n" https://morewithhope.com/package.json   # 404
+curl -s -o /dev/null -w "%{http_code}\n" https://www.morewithhope.com/CLAUDE.md      # 404
+curl -s -o /dev/null -w "%{http_code}\n" https://www.morewithhope.com/package.json   # 404
 
 # 4. .htaccess is being read -- this is the one that proves it
-curl -sI https://morewithhope.com/ | grep -i "content-security-policy"
+curl -sI https://www.morewithhope.com/ | grep -i "content-security-policy"
 ```
 
 Check 4 is the important one. If `Content-Security-Policy` comes back with
@@ -188,4 +188,4 @@ handled here, which is host-based and cannot loop.
   running in the Supabase SQL Editor. Until then every form tells the visitor
   honestly that nothing was sent and offers the phone number instead.
 - **Submit the sitemap.** Google Search Console → add `morewithhope.com` →
-  submit `https://morewithhope.com/sitemap.xml`.
+  submit `https://www.www.morewithhope.com/sitemap.xml`.
