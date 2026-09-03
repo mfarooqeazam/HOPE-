@@ -173,8 +173,8 @@
   --accent:var(--teal);
 
   --wrap:1320px;
-  --head-h:76px;
-  --head-h-wide:118px;
+  --head-h:97px;
+  --head-h-wide:149px;
 }
 
 /* 2. RESET & BASE ========================================================== */
@@ -334,10 +334,14 @@ code{font-family:ui-monospace,Consolas,monospace; font-size:.9em; background:var
     padding-top:.15rem; margin-top:.1rem;
   }
 }
-.logo{text-decoration:none; margin-right:auto; display:flex; align-items:center; gap:.8rem; color:var(--teal)}
-.logo img{height:54px; width:auto; flex:none}
-.logo__name{font-weight:700; font-size:1.28rem; color:var(--teal); white-space:nowrap}
-@media(max-width:1180px){ .logo__name{display:none} }
+/* No wordmark beside it: the logo already spells the name, and setting it
+   twice made the mark read as an icon in front of a heading rather than as
+   the identity of the site. With the text gone the mark takes the room --
+   64px on a phone, 76px once the header goes to two rows. The link keeps its
+   accessible name from the image's alt text. */
+.logo{text-decoration:none; margin-right:auto; display:flex; align-items:center; color:var(--teal)}
+.logo img{height:64px; width:auto; flex:none}
+@media(min-width:1181px){ .logo img{height:76px} }
 
 .nav{display:flex; gap:.1rem; align-items:center}
 @media(min-width:1181px){
@@ -1242,14 +1246,11 @@ legend{
 .cred{transition:transform .3s cubic-bezier(.2,.7,.3,1), box-shadow .3s ease}
 .cred:hover{transform:translateY(-2px); box-shadow:var(--e2)}
 
-/* Trust strip items arrive in sequence rather than all at once. Delay is
-   capped at four steps so the strip is always complete inside ~260ms. */
-.js .band .trust li{opacity:0; transform:translateY(8px);
-  transition:opacity .45s ease-out, transform .45s cubic-bezier(.2,.7,.3,1)}
-.js .band.in .trust li{opacity:1; transform:none}
-.js .band .trust li:nth-child(2){transition-delay:.06s}
-.js .band .trust li:nth-child(3){transition-delay:.12s}
-.js .band .trust li:nth-child(4){transition-delay:.18s}
+/* The trust strip used to start at opacity 0 and wait for .band.in. Nothing
+   ever set it: main.js skips .band when it marks sections, on the grounds
+   that the strip is above the fold and animating it only delays first paint.
+   So the four items never appeared and the strip rendered as an empty white
+   band between two hairlines. It is above the fold -- it is simply there. */
 
 /* The header gains a hairline shadow once the page has moved. */
 .head{transition:box-shadow .25s ease}
@@ -1270,7 +1271,6 @@ legend{
   .door:hover .door__img img,.gal .frame--comp:hover img,
   .photo.frame--comp:hover img{transform:none}
   .eyebrow::after{transform:scaleX(1); transition:none}
-  .js .band .trust li{opacity:1; transform:none; transition:none}
 }
 
 /* 22. CARD, BANNER AND TRIO MEDIA ==========================================
