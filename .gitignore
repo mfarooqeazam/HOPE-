@@ -46,3 +46,9 @@ tools/.photo-cache/
 
 # Deployment archive built by DEPLOY.md
 site-upload.zip
+assets.zip
+
+# Deployment scratch: byte-identical copies of site/ left behind while
+# getting the files onto Hostinger. Safe to delete; never the source of truth.
+myassets/
+site upload/

@@ -1,0 +1,110 @@
+# ===========================================================================
+# The Project Hope — Apache / LiteSpeed configuration.
+#
+# Hostinger runs LiteSpeed, which reads .htaccess. It does NOT read _headers
+# or netlify.toml — those two files are for Netlify and Cloudflare Pages, and
+# on this host they are inert. Everything they describe is restated here, so
+# whichever host the site ends up on, the rules are the same. If you change a
+# header in one file, change it in the other.
+#
+# NOTE: this file must sit in the *document root* — the same folder as
+# index.html. If you can reach it at morewithhope.com/.htaccess, something is
+# wrong: it should be invisible, and the rules below make it so.
+# ===========================================================================
+
+# ---- 1. one canonical hostname -------------------------------------------
+# www and non-www both resolve, which to a search engine is two sites with
+# identical content. The canonical tags say morewithhope.com, so www goes
+# there too.
+#
+# HTTPS is deliberately NOT forced here. Hostinger's edge already redirects
+# http to https before the request reaches this file, and adding a second
+# redirect on a proxied connection is the classic way to build a redirect
+# loop -- the origin sees plain http even when the visitor is on https.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # ---- 0. nothing under a dot-directory is ever served --------------------
+  # The FilesMatch rule at the bottom of this file only ever sees the last
+  # segment of a path, so it blocks /.gitignore but waves /.git/config
+  # straight through -- the filename there is "config". This catches the
+  # directory instead. .well-known is exempt because Let's Encrypt and
+  # certificate renewal need it.
+  RewriteRule (^|/)\.(?!well-known/) - [F,L]
+
+  RewriteCond %{HTTP_HOST} ^www\.morewithhope\.com$ [NC]
+  RewriteRule ^ https://morewithhope.com%{REQUEST_URI} [L,R=301]
+
+  # The one legacy path netlify.toml redirected.
+  RewriteRule ^home/?$ / [L,R=301]
+</IfModule>
+
+# ---- 2. the 404 page ------------------------------------------------------
+ErrorDocument 404 /404.html
+
+# ---- 3. no directory listings ---------------------------------------------
+# A folder without an index.html should not enumerate its contents.
+Options -Indexes
+
+# ---- 4. security headers --------------------------------------------------
+# The site collects contact details, so these are not optional.
+#
+# connect-src allows the Supabase REST endpoint that receives form
+# submissions. If the backend ever moves, update it here or the requests are
+# blocked in production while still working locally -- a nasty class of bug.
+# frame-src allows the Google Maps embed on the contact page.
+<IfModule mod_headers.c>
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+  Header always set Content-Security-Policy "default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; script-src 'self'; connect-src 'self' https://*.supabase.co; form-action 'self' https:; frame-src https://www.google.com; frame-ancestors 'self'; base-uri 'self'; object-src 'none'"
+</IfModule>
+
+# ---- 5. caching -----------------------------------------------------------
+# HTML is never cached: a page edit has to be visible on the next reload.
+# Everything else is fingerprint-free but changes rarely, so it gets the same
+# lifetimes _headers gives it.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                        "access plus 1 hour"
+  ExpiresByType text/html               "access plus 0 seconds"
+  ExpiresByType text/css                "access plus 7 days"
+  ExpiresByType application/javascript  "access plus 7 days"
+  ExpiresByType text/javascript         "access plus 7 days"
+  ExpiresByType image/webp              "access plus 30 days"
+  ExpiresByType image/png               "access plus 30 days"
+  ExpiresByType image/jpeg              "access plus 30 days"
+  ExpiresByType image/svg+xml           "access plus 30 days"
+  ExpiresByType image/x-icon            "access plus 30 days"
+  ExpiresByType font/woff2              "access plus 30 days"
+  ExpiresByType application/pdf         "access plus 7 days"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# ---- 6. compression -------------------------------------------------------
+# The fonts are already woff2 (compressed) and the images are webp; only the
+# text formats gain anything here.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript text/javascript
+  AddOutputFilterByType DEFLATE application/json image/svg+xml
+</IfModule>
+
+# ---- 7. correct types -----------------------------------------------------
+# Served with the wrong Content-Type, woff2 is re-downloaded on every page and
+# webp can be refused outright.
+AddType font/woff2 .woff2
+AddType image/webp .webp
+
+# ---- 8. files that are part of the project but not part of the website -----
+# The developer notes, the licence files beside the fonts, the config for
+# other hosts. None of them should be downloadable by a visitor.
+<FilesMatch "^\.|\.(md|toml|json|yml|yaml|py|sql|log)$|^_headers$">
+  Require all denied
+</FilesMatch>
