@@ -1,0 +1,49 @@
+# ===========================================================================
+# WORKAROUND — goes in public_html/.htaccess (the ROOT, not public_html/site/)
+#
+# Use this only if the whole repository is already sitting in public_html and
+# you would rather not re-upload. It leaves the files exactly where they are
+# and makes the server treat public_html/site as the website.
+#
+# It is a workaround, not the fix. The fix is to have index.html sitting in
+# public_html directly -- see DEPLOY.md, Option A. Reasons to do it properly
+# eventually: node_modules and .git are still on the server taking up space,
+# every request pays for one extra rewrite, and anyone who copies this setup
+# later has to understand two .htaccess files instead of one.
+#
+# What it does do, today, with one upload:
+#   - the homepage and every page work at the root
+#   - /site/... redirects to the real URL, so there is no duplicate content
+#   - CLAUDE.md, PLAN.md, package.json, supabase/ and design/ stop being
+#     downloadable, because every request is sent into site/ and they are not
+#     in there
+# ===========================================================================
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # ---- 1. nobody should be using the /site/ URLs -------------------------
+  # THE_REQUEST is the original request line and is NOT rewritten by rule 2
+  # below, so this fires only when a browser genuinely asked for /site/...
+  # Matching on REQUEST_URI instead would loop, because rule 2 puts /site/ at
+  # the front of every internal request.
+  RewriteCond %{THE_REQUEST} \s/+site/ [NC]
+  RewriteRule ^site/(.*)$ /$1 [L,R=301]
+
+  # ---- 2. serve everything out of site/ ----------------------------------
+  # Deliberately unconditional -- no "skip if the file exists" check. That
+  # check is the usual idiom, but here it is exactly wrong: it would let
+  # /CLAUDE.md and /package.json keep resolving to the real files sitting in
+  # public_html. Sending every request into site/ means anything not part of
+  # the website simply 404s.
+  RewriteCond %{REQUEST_URI} !^/site/
+  RewriteRule ^(.*)$ /site/$1 [L]
+</IfModule>
+
+# Belt and braces, in case mod_rewrite is ever unavailable: no directory
+# listing of public_html, and the project's own files are not served.
+Options -Indexes
+
+<FilesMatch "^\.|\.(md|toml|json|yml|yaml|py|sql|log|lock)$">
+  Require all denied
+</FilesMatch>

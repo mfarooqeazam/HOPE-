@@ -78,7 +78,42 @@ handoff are not for visitors.
    Turn on hidden files in File Manager (**Settings → Show hidden files**) and
    confirm `.htaccess` is there.
 
-### Option B — repoint the document root (faster, if your plan allows it)
+### Option B — two files, leaving everything where it is (fastest)
+
+If the repository is already sitting in `public_html` and you would rather not
+re-upload it all, two files will make the site work today. This is a workaround,
+not the fix — `node_modules` and `.git` stay on the server, and every request
+pays for an extra rewrite — but it clears the 403 *and* the exposed source in
+one pass.
+
+1. Upload `site/.htaccess` into **`public_html/site/`**.
+   It is not on the server yet — it did not exist when you deployed.
+2. Upload `deploy/root.htaccess` into **`public_html/`** and rename it to
+   `.htaccess` (no `root`, just the dot).
+
+In File Manager, turn on **Settings → Show hidden files** first, or you will not
+be able to see either file after uploading.
+
+What the root file does: it sends every incoming request into `site/`, and
+301-redirects `/site/...` back to the clean URL so there is no duplicate
+content. The redirect into `site/` is deliberately unconditional — there is no
+"unless the file already exists" check, which is the usual idiom but is exactly
+wrong here, because it would let `/CLAUDE.md` and `/package.json` keep resolving
+to the real files. Sending *everything* into `site/` means anything that is not
+part of the website simply 404s.
+
+**This has not been tested against your server** — I have no way to upload to it.
+The rewrite logic is standard and the loop cases are handled (`THE_REQUEST`
+rather than `REQUEST_URI` on the redirect rule, which is what keeps the two
+rules from fighting), but run the checks below and tell me what they return if
+anything misbehaves.
+
+Note that this fixes routing and exposure, not content: the HTML on the server
+is still the pre-domain version, so canonical URLs and the sitemap will keep
+saying `example.com` until you re-upload the pages. Search engines read those,
+so do not submit the sitemap until they are right.
+
+### Option C — repoint the document root (if your plan allows it)
 
 hPanel → **Websites** → your site → **Dashboard** → **Advanced** →
 **Website settings**, and set the document root to `public_html/site`.
