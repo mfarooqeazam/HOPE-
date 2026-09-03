@@ -73,7 +73,13 @@ Options -Indexes
   # is one 800-byte redirect per visit to the bare domain. Worth it: the
   # failure it prevents is the whole site being unreachable, and it is not
   # self-healing without a cache purge.
+  # Set twice on purpose. When a request has been through mod_rewrite's
+  # external redirect, the environment variable can arrive under its own
+  # name or with a REDIRECT_ prefix depending on the server and the
+  # version; LiteSpeed is not Apache and the first form alone was not
+  # applied. Whichever one exists wins, and setting both is harmless.
   Header always set Cache-Control "no-store, max-age=0" env=HOSTREDIR
+  Header always set Cache-Control "no-store, max-age=0" env=REDIRECT_HOSTREDIR
 
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set X-Content-Type-Options "nosniff"
